@@ -14,7 +14,6 @@ const authenticateTenant = async (req, email, password) => {
     const tenant = tenants[0];
     const validPassword = await bcrypt.compare(password, tenant.password);
     if (validPassword) {
-
         let auth = jwt.sign({ ...tenants[0], claims: ['landlord'] }, accessTokenSecret);
         return auth;
     }
@@ -30,7 +29,6 @@ const authenticateLandlord = async (req, email, password) => {
     const landlord = landlords[0];
     const validPassword = await bcrypt.compare(password, landlord.password);
     if (validPassword) {
-
         let auth = jwt.sign({ ...landlords[0], claims: ['landlord'] }, accessTokenSecret);
         return auth;
     }
