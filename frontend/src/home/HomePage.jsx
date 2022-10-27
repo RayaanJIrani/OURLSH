@@ -40,7 +40,7 @@ export const LoginPage = ()=>{
                 <div className='loginBox'>
                     <h1>Log In</h1> 
                     <input type="text" className="form-control" placeholder="Email" value={email} onChange={handleChangeEmail}/> 
-                    <input type="text" className="form-control" placeholder="Password" value={password} onChange={handleChangePassword}/> 
+                    <input type="password" className="form-control" placeholder="Password" value={password} onChange={handleChangePassword}/> 
                 </div>
                 <div className='Radio'>
                     <input type="radio" id="Tenant" name="fav_language" value={identity} onChange={handleChangeIdentity}/> <label htmlFor="html">Tenant</label><br></br>
