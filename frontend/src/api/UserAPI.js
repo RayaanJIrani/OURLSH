@@ -2,11 +2,11 @@ import axios from 'axios';
 import {baseEndpoint} from '../urls/API';
 
 export const checkAccount = (email,password) =>new Promise((resolve, reject) =>{
-    axios.post(baseEndpoint+'/session',{email:email, password:password})
+    axios.post(baseEndpoint+'/login/landlord',{email:email, password:password})
             .then(function(response){
-                if(response.status===201){
-                    window.alert("Successfully log in!!");
+                if(response.status===200){
                     localStorage.setItem('token',response.data);
+                    window.alert("Successfully log in!!");
                     // window.location.href="./studentHome";
                 }
                 else{
