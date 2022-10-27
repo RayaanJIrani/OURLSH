@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const tenantRoutes = require('./routes/tenant' );
 const registerRoutes = require('./routes/register');
+const loginRoutes = require('./routes/login' );
 const {createModelsMiddleware} = require('./middleware/model-middleware' );
 
 const cors = require('cors');
@@ -22,6 +23,9 @@ app.get('/health', (request, response, next) => {
 });
 //tenants routes
 app.use('/tenants', tenantRoutes);
+
+//login routes
+app.use('/login', loginRoutes);
 
 //register routes
 app.use('/register', registerRoutes);

@@ -14,7 +14,20 @@ const TENANT_TABLE = 'tenant';
        const results = await query;
        return results;
    }
-   
+
+   //for loginpurposes
+   const loginFetchTenantByEmail = async (email) => {
+      //uses passed in id to get the associated tenant but only the specified columns
+       const query = knex(TENANT_TABLE).where({ email }).select(
+         "email",
+         "first_name",
+         "last_name",
+         "password"
+       );
+       const results = await query;
+       return results;
+   }
 module.exports = {
-   fetchTenantByID
+   fetchTenantByID,
+   loginFetchTenantByEmail
 }

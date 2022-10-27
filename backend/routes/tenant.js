@@ -9,9 +9,9 @@ router.use(bodyParser.json());
 router.get('/:id', async (req, res, next) => {
     let accountId = parseInt(req.params.id);
     //let accountId = req.query.id; //Don't know whether params or body will be used
-    if(typeof(accountId) !== Number)
+    if(typeof(accountId) !== 'number' || !accountId)
     {
-        console.log("account_id is not type Number")
+        console.log("account_id is not type Number");
         res.status(400).send();
     }
     else{
