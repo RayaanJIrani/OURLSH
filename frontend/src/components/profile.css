@@ -1,0 +1,74 @@
+* {
+  font-family: Verdana;
+  box-sizing: border-box;
+}
+.app {
+  padding: 4%;
+  margin: 4%;
+  background-color: white;
+  border-radius: 2%;
+}
+body {
+  background: -webkit-linear-gradient(left, #231aa3, #54bedb);
+}
+.info-bar {
+  position: fix;
+  padding: 2%;
+  width: 40%;
+  position: relative;
+  font-size: 130%;
+}
+.info {
+  margin-left: 6%;
+}
+.picture {
+  border-radius: 40px;
+  width: 100%;
+  margin-bottom: 10%;
+}
+.app-name {
+  text-align: center;
+  font-size: 250%;
+  padding: 1%;
+  border-bottom: solid #acc0d8 3px;
+}
+.btn {
+  text-align: center;
+  background-color: #231aa3;
+  color: white;
+  margin: 5%;
+  padding: 4%;
+  display: block;
+  width: 90%;
+  border-radius: 30px;
+  font-size: 130%;
+}
+.btns {
+  margin: 10%;
+  padding: 5%;
+  width: 50%;
+  position: absolute;
+  top: 10%;
+  left: 35%;
+  font-size: 130%;
+}
+.logout-btn {
+  text-align: center;
+  background-color: #231aa3;
+  color: white;
+  padding: 0.5%;
+  width: 10%;
+  border-radius: 30px;
+  font-size: 130%;
+  margin-left: 4%;
+}
+.edit-btn {
+  text-align: center;
+  background-color: #231aa3;
+  color: white;
+  padding: 0.5%;
+  width: 10%;
+  border-radius: 30px;
+  font-size: 130%;
+  margin-left: 3%;
+}
