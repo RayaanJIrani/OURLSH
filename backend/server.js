@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const cors = require('cors');
 const { log, ExpressAPILogMiddleware } = require('@rama41222/node-logger');
+const tenantRoutes = require('./routes/tenant' );
+const { createModelsMiddleware  } = require('./middleware/model-middleware' );
 // const mysqlConnect = require('./db');
 const routes = require('./routes');
 
@@ -26,9 +28,11 @@ app.use(cors({
   origin: '*'
 }));
 app.use(ExpressAPILogMiddleware(logger, { request: true }));
+app.use(createModelsMiddleware );
 
 //include routes
 routes(app, logger);
+app.use('/tenant', tenantRoutes);
 
 // connecting the express object to listen on a particular port as defined in the config object.
 app.listen(config.port, config.host, (e) => {
