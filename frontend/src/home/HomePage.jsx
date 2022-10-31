@@ -11,7 +11,7 @@ export const LoginPage = ()=>{
     localStorage.clear();
     const [email, setEmail] = useState('');
     const [password, setPassword]=useState('');
-    // const [identity, setIdentity]=useState('');
+    const [identity, setIdentity]=useState('');
     // const navigate = useNavigate();
 
     const handleChangeEmail=(e)=>{
@@ -22,9 +22,9 @@ export const LoginPage = ()=>{
         setPassword(e.target.value);
     }
 
-    // const handleChangeIdentity=(e)=>{
-    //     setIdentity(e.target.value);
-    // }
+    const handleChangeIdentity=(e)=>{
+        setIdentity(e.target.value);
+    }
 
     // value={identity} onChange={handleChangeIdentity}
 
