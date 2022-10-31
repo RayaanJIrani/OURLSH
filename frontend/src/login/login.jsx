@@ -2,7 +2,7 @@
 // import { Button } from "@material-ui/core";
 // import { Link, useNavigate} from 'react-router-dom';
 import "./login.css";
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { checkAccount } from "../api/UserApi";
 
@@ -31,7 +31,7 @@ export const LoginPage = () => {
   const handleSubmitClick = () => {
     localStorage.clear();
     checkAccount(email, password);
-    navigate('/profile');
+    navigate("/tenant_profile");
   };
 
   return (

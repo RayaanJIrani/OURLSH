@@ -19,7 +19,7 @@ body {
   font-size: 130%;
 }
 .info {
-  margin-left: 6%;
+  margin-left: 8%;
 }
 .profilePic {
   border-radius: 40px;
@@ -44,7 +44,7 @@ body {
   font-size: 130%;
 }
 .btns {
-  margin: 10%;
+  margin: 5%;
   padding: 5%;
   width: 50%;
   position: absolute;
@@ -71,4 +71,12 @@ body {
   border-radius: 30px;
   font-size: 130%;
   margin-left: 3%;
+}
+
+a{
+  color: white;
+}
+
+a:hover {
+  background-color: grey;
 }

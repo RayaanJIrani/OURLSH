@@ -1,20 +1,18 @@
-import "./profile.css";
+import "./tenantProfile.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getTenantInfo } from "../api/UserApi";
+import { useNavigate, useLocation } from 'react-router-dom';
 // import { updateImage } from '../api/UserApi';
 
-export const Profile = () => {
+export const TenantProfile = () => {
+  const navigate = useNavigate();
   const [tenant, setTenant] = useState(undefined);
   //   const [photo, setPhoto] = useState("");
   //   const [update, setUpdate] = useState(false);
   useEffect(() => {
     getTenantInfo().then((x) => setTenant(x));
   }, []);
-
-  //   useEffect(() => {
-  //     getTenantInfo().then((x) => setTenant(x));
-  //   }, [update]);
 
   if (!tenant) { //在加载期间显示
     return <>Loading..</>;
@@ -30,6 +28,10 @@ export const Profile = () => {
   //     setUpdate(true);
   //     updateImage(photo);
   //   };
+
+  const handleLogOut = () =>{
+    navigate('/');
+  };
 
   return (
     <div className="app">
@@ -53,9 +55,9 @@ export const Profile = () => {
         <div className="info">
           <h2>Tenant Information:</h2>
           <h3>
-            Name: {tenant[0].firstname} {tenant[0].lastname}
+            Name: {tenant[0].first_name} {tenant[0].last_name}
           </h3>
-          <h3>Email: {tenant[0].emial}</h3>
+          <h3>Email: {tenant[0].email}</h3>
           <h3>Prop ID: {tenant[0].prop_id}</h3>
           <h3>Landlord ID: {tenant[0].landlord_id}</h3>
         </div>
@@ -66,14 +68,14 @@ export const Profile = () => {
           <Link to="/workorderlist">Workorder List</Link>
         </button>
         <button type="button" className="btn">
-          Create Workorder
+          <Link to="/workorder">Create Workorder</Link>
         </button>
         <button type="button" className="btn">
-          Make a Payment
+          <Link to="/payment">Make a Payment</Link>
         </button>
       </div>
       <div className="other-btns">
-        <button type="button" className="logout-btn">
+        <button type="button" className="logout-btn" onClick={handleLogOut}>
           Log Out
         </button>
         <button type="button" className="edit-btn">
@@ -83,33 +85,3 @@ export const Profile = () => {
     </div>
   );
 };
-
-// export const Profile = () => {
-//     return(
-//         <div className = "app">
-//             <h1 className = "app-name" >Welcome to OURLSH!</h1>
-//             <div className = "info-bar">
-//                 <div>
-//                     <img className = "picture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-//                 </div>
-//                 <div className = "info">
-//                     <h2>Tenant Information:</h2>
-//                     <h3>Name: Ziyu Sun</h3>
-//                     <h3>Email: ziyus@smu.edu</h3>
-//                     <h3>Prop ID: 12345</h3>
-//                     <h3>Landlord ID: 23452</h3>
-//                 </div>
-//             </div>
-//             <div className = "btns">
-//                 <h2> Selection:</h2>
-//                 <button type="button" className='btn'>Workorder List</button>
-//                 <button type="button" className='btn'>Create Workorder</button>
-//                 <button type="button" className='btn'>Make a Payment</button>
-//             </div>
-//             <div className = "other-btns">
-//                 <button type="button" className='logout-btn'>Log Out</button>
-//                 <button type="button" className='edit-btn'>Edit Profile</button>
-//             </div>
-//         </div>
-//     )
-// }
