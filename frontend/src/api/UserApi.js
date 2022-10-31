@@ -5,9 +5,9 @@ const baseEndpoint = "http://localhost:8000";
 export const checkAccount = (email,password) =>new Promise((resolve, reject) =>{
   axios.post(baseEndpoint+'/login/landlord',{email:email, password:password})
           .then(function(response){
-              if(response.status===200){
-                  localStorage.setItem('token',response.data);
-                  window.alert("Successfully log in!!");
+              if(response.status === 200){
+                  localStorage.setItem('token',response.data);//存token
+                  window.alert("Successfully log in!!"); 
                   // window.location.href="./studentHome";
               }
               else{
@@ -15,7 +15,7 @@ export const checkAccount = (email,password) =>new Promise((resolve, reject) =>{
               }
           })
           .catch(function(error){
-              if(error.response.status===401){
+              if(error.response.status === 401){
                   window.alert("Unmatched username & password");
               }
               else{
@@ -32,8 +32,7 @@ export const getTenantInfo = () => new Promise((resolve, reject) => {
       Authorization: "Bearer " + localStorage.getItem("token"),//login放token如local storage，我再取
     },
   };
-  axios
-    .get(`${baseEndpoint}/tenants`, apiConfig)
+  axios.get(`${baseEndpoint}/tenants`, apiConfig)
     .then((x) => resolve(x.data))
     .catch((x) => {
       alert(x);
