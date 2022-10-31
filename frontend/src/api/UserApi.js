@@ -3,7 +3,7 @@ const baseEndpoint = "http://localhost:8000";
 
 // log in 
 export const checkAccount = (email,password) =>new Promise((resolve, reject) =>{
-  axios.post(baseEndpoint+'/login/landlord',{email:email, password:password})
+  axios.post(baseEndpoint+'/login/tenant',{email:email, password:password})
           .then(function(response){
               if(response.status === 200){
                   localStorage.setItem('token',response.data);//存token
