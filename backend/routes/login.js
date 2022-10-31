@@ -1,7 +1,7 @@
+const bodyParser = require('body-parser');
 const express = require('express');
-const router = express.Router();
-const TenantController = require('../controllers/tenant');
-const LandlordController = require('../controllers/landlord');
+router = express.Router();
+router.use(bodyParser.json());
 
 router.post('/tenant', async (req, res, next) => {
    try {
