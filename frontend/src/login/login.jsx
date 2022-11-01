@@ -30,8 +30,8 @@ export const LoginPage = () => {
 
   const handleSubmitClick = () => {
     localStorage.clear();
-    checkAccount(email, password);
-    navigate("/tenant_profile");
+    checkAccount(email, password); 
+    navigate("/tenant_profile/1");
   };
 
   return (

@@ -27,6 +27,7 @@ export const checkAccount = (email,password) =>new Promise((resolve, reject) =>{
 
 // tenant profile
 export const getTenantInfo = (id) => new Promise((resolve, reject) => {
+    id = 1;
     let apiConfig = {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),//login放token如local storage，我再取
@@ -43,6 +44,7 @@ export const getTenantInfo = (id) => new Promise((resolve, reject) => {
 
 
   export const getLandlordInfo = (id) => new Promise((resolve, reject) => {
+      id = 1;
       let apiConfig = {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),//login放token如local storage，我再取
