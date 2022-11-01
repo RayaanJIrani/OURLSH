@@ -37,7 +37,7 @@ export const TenantProfile = () => {
     <div className="app">
       <h1 className="app-name">Welcome to OURLSH!</h1>
       <div className="info-bar">
-        <div>
+        {/* <div>
           {(() => {
             if (tenant[0].profile_pic === null) {
               return (
@@ -47,7 +47,7 @@ export const TenantProfile = () => {
               return <img src={tenant[0].profile_pic} className="profilePic" />;
             }
           })()}
-        </div>
+        </div> */}
         {/* <div className="pic-btn">
             <input className="updatePhoto" value={photo} onChange={handlePhoto}></input>
             <button onClick={handleUpdate}>Update Portrait</button>
