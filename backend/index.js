@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-const tenantRoutes = require('./routes/tenant' );
+const tenantRoutes = require('./routes/tenant');
+const landlordRoutes = require('./routes/landlord');
 const registerRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login' );
 const {createModelsMiddleware} = require('./middleware/model-middleware' );
@@ -21,8 +22,11 @@ app.get('/health', (request, response, next) => {
     // next() is how we tell express to continue through the middleware chain
     next();
 });
-//tenants routes
+//tenant routes
 app.use('/tenants', tenantRoutes);
+
+//landlord routes
+app.use('/landlords', landlordRoutes);
 
 //login routes
 app.use('/login', loginRoutes);

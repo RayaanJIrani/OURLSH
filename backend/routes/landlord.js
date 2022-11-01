@@ -10,11 +10,11 @@ router.get('/:id', async (req, res, next) => {
     //let accountId = req.query.id; //Don't know whether params or body will be used
     if(typeof(accountId) !== 'number' || !accountId)
     {
-        console.log("account_id is not type Number");
+        console.log("account_id is not type Number or is 0");
         res.status(400).send();
     }
     else{
-        const tenantByID = await req.models.tenant.fetchTenantByID(accountId);
+        const tenantByID = await req.models.landlord.fetchLandlordByID(accountId);
         //will return 404 not found if id does not exist
         if(JSON.stringify(tenantByID) == '[]')
         {
