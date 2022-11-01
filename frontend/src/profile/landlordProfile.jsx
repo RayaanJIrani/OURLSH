@@ -12,7 +12,7 @@ export const LandlordProfile = () => {
   //   const [update, setUpdate] = useState(false);
   useEffect(() => {
     getLandlordInfo().then((x) => setLandlord(x));
-  }, []); //渲染的时机
+  }, []);
 
   if (!landload) {
     //在加载期间显示
@@ -38,7 +38,7 @@ export const LandlordProfile = () => {
     <div className="app">
       <h1 className="app-name">Welcome to OURLSH!</h1>
       <div className="info-bar">
-        {/* <div>
+        <div>
           {(() => {
             if (landload[0].profile_pic === null) {
               return (
@@ -53,7 +53,7 @@ export const LandlordProfile = () => {
               );
             }
           })()}
-        </div> */}
+        </div>
         {/* <div className="pic-btn">
             <input className="updatePhoto" value={photo} onChange={handlePhoto}></input>
             <button onClick={handleUpdate}>Update Portrait</button>
