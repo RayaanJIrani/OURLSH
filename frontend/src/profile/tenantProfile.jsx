@@ -11,7 +11,7 @@ export const TenantProfile = () => {
   //   const [photo, setPhoto] = useState("");
   //   const [update, setUpdate] = useState(false);
   useEffect(() => {
-    getTenantInfo().then((x) => setTenant(x));
+    getTenantInfo(tenant[0].prop_id).then((x) => setTenant(x));
   }, []);
 
   if (!tenant) { //在加载期间显示
