@@ -7,8 +7,10 @@ export const checkAccount = (email,password) =>new Promise((resolve, reject) =>{
           .then(function(response){
               if(response.status === 200){
                   localStorage.setItem('token',response.data);//存token
+                  window.location.href="./tenant_profile";
+                  // window.location.href="./tenant_profile/"+response.data.id;
+                  // window.location.href="./tenant_profile/"+localStorage.getItem('id');
                   window.alert("Successfully log in!!"); 
-                  // window.location.href="./studentHome";
               }
               else{
                   window.alert("Logged with error");
