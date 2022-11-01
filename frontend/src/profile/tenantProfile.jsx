@@ -2,7 +2,7 @@ import "./tenantProfile.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getTenantInfo } from "../api/UserApi";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from "react-router-dom";
 // import { updateImage } from '../api/UserApi';
 
 export const TenantProfile = () => {
@@ -14,8 +14,9 @@ export const TenantProfile = () => {
     getTenantInfo().then((x) => setTenant(x));
   }, []);
 
-  if (!tenant) { //在加载期间显示
-    return <>Loading..</>;
+  if (!tenant) { //rennant是undefined的话
+    //在加载期间显示
+    return <>Loading..</>; //什么都不许运行
   }
 
   //   const handlePhoto = (e) => {
@@ -29,15 +30,15 @@ export const TenantProfile = () => {
   //     updateImage(photo);
   //   };
 
-  const handleLogOut = () =>{
-    navigate('/');
+  const handleLogOut = () => {
+    navigate("/");
   };
 
   return (
     <div className="app">
       <h1 className="app-name">Welcome to OURLSH!</h1>
       <div className="info-bar">
-        <div>
+        {/* <div>
           {(() => {
             if (tenant[0].profile_pic === null) {
               return (
@@ -47,7 +48,7 @@ export const TenantProfile = () => {
               return <img src={tenant[0].profile_pic} className="profilePic" />;
             }
           })()}
-        </div>
+        </div> */}
         {/* <div className="pic-btn">
             <input className="updatePhoto" value={photo} onChange={handlePhoto}></input>
             <button onClick={handleUpdate}>Update Portrait</button>
