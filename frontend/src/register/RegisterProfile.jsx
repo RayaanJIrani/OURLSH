@@ -14,7 +14,7 @@ export const RegisterProfile = () => {
     //The following are the states for the input fields
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [identity, setIdentity]=useState('');
+    const [identity, setIdentity]=useState('tenant');
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
 
