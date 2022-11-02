@@ -64,8 +64,8 @@ export const RegisterProfile = () => {
             <div className="homeTitle">
                 <h1>WELCOME TO OURLSH</h1>
             </div>
-            <div className="login">
-                <div className="loginBox">
+            <div className="register">
+                <div className="registerBox">
                     <h1>Register</h1>
                     <input
                         type="text"
@@ -97,7 +97,10 @@ export const RegisterProfile = () => {
                     />
                 </div>
                 <div className="Radio">
-                    <input type="radio" id="Tenant" name="fav_language" />{" "}
+                    <input type="radio"
+                           id="Tenant"
+                           name="fav_language"
+                    />{" "}
                     <label htmlFor="html">Tenant</label>
                     <br></br>
                     <input type="radio" id="Landload" name="fav_language" />{" "}
