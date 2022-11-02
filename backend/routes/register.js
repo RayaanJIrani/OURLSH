@@ -3,6 +3,13 @@ const express = require('express');
 router = express.Router();
 router.use(bodyParser.json());
 
+//check if email entered is valid
+const checkIfValid = (email) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log("Is valid email:", re.test(String(email).toLowerCase()));
+    return re.test(String(email).toLowerCase());
+};
+
 //to create a tenant
 router.post('/tenant', async (req, res, next) => {
 
@@ -11,7 +18,7 @@ router.post('/tenant', async (req, res, next) => {
     let first_name = req.body.first_name;
     let last_name = req.body.last_name;
 
-    if (email === undefined || password === undefined || first_name === undefined || last_name === undefined) {
+    if (checkIfValid(email) || password === undefined || first_name === undefined || last_name === undefined) {
         return res.sendStatus(400);
     }
     const tenants = await req.models.tenant.loginFetchTenantByEmail(email);
@@ -46,8 +53,7 @@ router.post('/landlord', async (req, res, next) => {
     let first_name = req.body.first_name
     let last_name = req.body.last_name
 
-
-    if (email === undefined || password === undefined || first_name === undefined || last_name === undefined) {
+    if (checkIfValid(email) || password === undefined || first_name === undefined || last_name === undefined) {
         return res.sendStatus(400);
     }
 
