@@ -4,13 +4,20 @@
 import "./RegisterProfile.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { checkAccount } from "../api/UserApi";
+import { registerTenant, registerLandlord, checkAccount } from "../api/UserApi";
+
 
 export const RegisterProfile = () => {
     const navigate = useNavigate();
     localStorage.clear();
+
+    //The following are the states for the input fields
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [identity, setIdentity]=useState('');
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+
     // const [identity, setIdentity]=useState('');
     // const navigate = useNavigate();
 
@@ -22,6 +29,19 @@ export const RegisterProfile = () => {
         setPassword(e.target.value);
     };
 
+    const handleChangeIdentity = (e) => {
+        setIdentity(e.target.value);
+    }
+
+    const handleChangeFirstName = (e) => {
+        setFirstName(e.target.value);
+    }
+
+    const handleChangeLastName = (e) => {
+        setLastName(e.target.value);
+    }
+
+
     // const handleChangeIdentity=(e)=>{
     //     setIdentity(e.target.value);
     // }
@@ -30,7 +50,11 @@ export const RegisterProfile = () => {
 
     const handleSubmitClick = () => {
         localStorage.clear();
-        checkAccount(email, password);
+        if (identity === "tenant") {
+            registerTenant(email, password, firstName, lastName);
+        } else if (identity === "landlord") {
+            registerLandlord(email, password, firstName, lastName);
+        }
         // let response = checkAccount(email, password);
         // navigate("/tenant_profile");
     };
@@ -42,7 +66,21 @@ export const RegisterProfile = () => {
             </div>
             <div className="login">
                 <div className="loginBox">
-                    <h1>Log In</h1>
+                    <h1>Register</h1>
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="First Name"
+                        value={firstName}
+                        onChange={handleChangeFirstName}
+                    />
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Last Name"
+                        value={lastName}
+                        onChange={handleChangeLastName}
+                    />
                     <input
                         type="text"
                         className="form-control"
