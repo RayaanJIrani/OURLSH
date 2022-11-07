@@ -38,5 +38,6 @@ const createWorkOrder = async (property, tenant, descrip) => {
    }
 module.exports = {
    fetchTenantByID,
-   loginFetchTenantByEmail
+   loginFetchTenantByEmail,
+   createWorkOrder
 }
