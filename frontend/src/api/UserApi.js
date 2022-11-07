@@ -44,22 +44,22 @@ export const getTenantInfo = (id) => new Promise((resolve, reject) => {
       });
   });
 
-
-  export const getLandlordInfo = (id) => new Promise((resolve, reject) => {
-      id = 1;
-      let apiConfig = {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),//login放token如local storage，我再取
-        },
-      };
-      axios
-        .get(`${baseEndpoint}/landlords/${id}`, apiConfig)
-        .then((x) => resolve(x.data))
-        .catch((x) => {
-          alert(x);
-          reject(x);
-        });
+// landlord profile
+export const getLandlordInfo = (id) => new Promise((resolve, reject) => {
+  id = 1;
+  let apiConfig = {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),//login放token如local storage，我再取
+    },
+  };
+  axios
+    .get(`${baseEndpoint}/landlords/${id}`, apiConfig)
+    .then((x) => resolve(x.data))
+    .catch((x) => {
+      alert(x);
+      reject(x);
     });
+});
 
     
 // export const updateImage = (photo) =>new Promise((resolve,reject)=>{

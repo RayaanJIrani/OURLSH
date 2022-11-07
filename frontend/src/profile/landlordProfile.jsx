@@ -1,21 +1,24 @@
-import "./landlordProfile.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getLandlordInfo } from "../api/UserApi";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from 'react-router-dom';
+import { TextField } from '../components/textField';
 // import { updateImage } from '../api/UserApi';
 
 export const LandlordProfile = () => {
   const navigate = useNavigate();
-  const [landload, setLandlord] = useState(undefined);
-  //   const [photo, setPhoto] = useState("");
-  //   const [update, setUpdate] = useState(false);
+  const [landlord, setLandlord] = useState(undefined);
+  const [newFirstName, setNewFirstName] = useState('');
+  const [newLastName, setNewLastName] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [newPhoto, setNewPhoto] = useState('');
+  const [edit, setEdit] = useState('0');
   useEffect(() => {
+    // getLandlordInfo(landlord[0].prop_id).then((x) => setLandlord(x));
     getLandlordInfo().then((x) => setLandlord(x));
   }, []);
 
-  if (!landload) {
-    //在加载期间显示
+  if (!landlord) { //在加载期间显示
     return <>Loading..</>;
   }
 
@@ -30,61 +33,80 @@ export const LandlordProfile = () => {
   //     updateImage(photo);
   //   };
 
-  const handleLogOut = () => {
-    navigate("/");
+  const handleLogOut = () =>{
+    navigate('/');
+  }; //back to log in page
+  const handleWorkorderlist = () =>{
+    navigate('/workorderlist');
+  }; //redirect to work order list page
+  const handleTenantlist = () =>{
+    navigate('/tenantlist');
+  }; //redirect to tenant list page
+  const handlEdit = (e) =>{
+    e.preventDefault();
+    setEdit('1');
   };
 
   return (
-    <div className="app">
-      <h1 className="app-name">Welcome to OURLSH!</h1>
-      <div className="info-bar">
-        {/* <div>
-          {(() => {
-            if (landload[0].profile_pic === null) {
-              return (
-                <img
-                  src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png"
-                  className="profilePic"
-                />
-              );
-            } else {
-              return (
-                <img src={landload[0].profile_pic} className="profilePic" />
-              );
-            }
-          })()}
-        </div> */}
-        {/* <div className="pic-btn">
-            <input className="updatePhoto" value={photo} onChange={handlePhoto}></input>
-            <button onClick={handleUpdate}>Update Portrait</button>
-        </div> */}
-        <div className="info">
-          <h2>Landlord Information:</h2>
-          <h3>
-            Name: {landload[0].first_name} {landload[0].last_name}
-          </h3>
-          <h3>Email: {landload[0].email}</h3>
-          <h3>Prop ID: {landload[0].prop_id}</h3>
-          <h3>Landlord ID: {landload[0].landlord_id}</h3>
+    <div className="container my-5 bg-white border border-light border-2">
+      <h1 className="text-center border-bottom py-5">Welcome to OURLSH!</h1>
+      {(() => {
+        if (!landlord[0].profile_pic) {
+          return (
+            <img src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png" className="my-4 rounded mx-auto d-block"/>
+          );
+        } else {
+          return (
+            <img src={landlord[0].profile_pic} className="my-4 rounded mx-auto d-block"/>
+          );
+        }
+      })()}
+      <div className="my-4 row justify-content-center">
+        <div className="col-4 my-3">
+          <h2 className="my-3">Landlord Profile:</h2>
+          <div>
+            <h5 className="my-2">Landlord ID: {landlord[0].id}</h5>
+            <h5 className="my-2">Last Name: <span className="text-muted">{landlord[0].last_name}</span></h5>
+            <h5 className="my-2">First Name: <span className="text-muted">{landlord[0].first_name}</span></h5>
+            <h5 className="my-2">Email: <span className="text-muted">{landlord[0].email}</span></h5>
+          </div>
+        </div>
+        <div className="col-3 my-3">
+          <h2 className="my-3"> Selection:</h2>
+          <div className="my-3">
+            <button type="button" className="btn btn-primary" onClick={handleWorkorderlist}>
+              Workorder List
+            </button>
+          </div>
+          <div className="my-3">
+            <button type="button" className="btn btn-primary" onClick={handleTenantlist}>
+              Tenant List
+            </button>
+          </div>
+        </div>
+        <div className="container col-8 p-4 border-top">
+            <h5>Edit Profile:</h5>
+            <TextField label="New Last Name"
+              value={newFirstName}
+              setValue={ setNewFirstName } />
+            <TextField label="New First Name"
+              value={newLastName}
+              setValue={ setNewLastName } />
+            <TextField label="New Email"
+              value={newEmail}
+              setValue={ setNewEmail } />
+            <TextField label="New Photo"
+              value={newPhoto}
+              setValue={ setNewPhoto } />
+            <button type="button" className="btn btn-secondary" onClick={handlEdit}>
+              Save
+            </button>
         </div>
       </div>
-      <div className="btns">
-        <h2> Selection:</h2>
-        <button type="button" className="btn">
-          <Link to="/workorderlist">Workorder List</Link>
-        </button>
-        <button type="button" className="btn">
-          <Link to="/tenantlist"> Tenant List</Link>
-        </button>
-      </div>
-      <div className="other-btns">
-        <button type="button" className="logout-btn" onClick={handleLogOut}>
-          Log Out
-        </button>
-        <button type="button" className="edit-btn">
-          Edit Profile
-        </button>
-      </div>
+      <button type="button" className="float-end m-3 btn btn-secondary" onClick={handleLogOut}>
+        Log Out
+      </button>
+      <div className="clearfix"></div>
     </div>
   );
 };
