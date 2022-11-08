@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getLandlordInfo } from "../api/UserApi";
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -13,9 +13,16 @@ export const LandlordProfile = () => {
   const [newEmail, setNewEmail] = useState('');
   const [newPhoto, setNewPhoto] = useState('');
   const [edit, setEdit] = useState('0');
+
+  // const params = useParams();
+
   useEffect(() => {
-    // getLandlordInfo(landlord[0].prop_id).then((x) => setLandlord(x));
-    getLandlordInfo().then((x) => setLandlord(x));
+    // if(params.id){
+    //   getLandlordInfo(params.id).then((x) => setLandlord(x));
+    // }else{
+    //   setLandlord({});
+    // }
+    getLandlordInfo(1).then((x) => setLandlord(x));
   }, []);
 
   if (!landlord) { //在加载期间显示

@@ -2,12 +2,12 @@ import axios from "axios";
 const baseEndpoint = "http://localhost:8000";
 
 // log in 
-export const checkAccount = (email,password) => new Promise((resolve, reject) =>{
+export const checkTenantAccount = (email,password) =>new Promise((resolve, reject) =>{
   axios.post(baseEndpoint+'/login/tenant',{email:email, password:password})
           .then(function(response){
               if(response.status === 200){
                   localStorage.setItem('token',response.data);//存token
-                  window.location.href="./tenant_profile";
+                  window.location.href="./tenants";
                   // window.location.href="./tenant_profile/"+response.data.id;
                   // window.location.href="./tenant_profile/"+localStorage.getItem('id');
                   window.alert("Successfully log in!!"); 
@@ -26,10 +26,33 @@ export const checkAccount = (email,password) => new Promise((resolve, reject) =>
       });
 });
 
+export const checkLandlordAccount = (email,password) =>new Promise((resolve, reject) =>{
+  axios.post(baseEndpoint+'/login/landlord',{email:email, password:password})
+          .then(function(response){
+              if(response.status === 200){
+                  localStorage.setItem('token',response.data);//存token
+
+                  window.location.href="./landlords";
+                  // window.location.href="./tenant_profile/"+response.data.id;
+                  // window.location.href="./tenant_profile/"+localStorage.getItem('id');
+                  window.alert("Successfully log in!!"); 
+              }
+              else{
+                  window.alert("Logged with error");
+              }
+          })
+          .catch(function(error){
+              if(error.response.status === 401){
+                  window.alert("Unmatched username & password");
+              }
+              else{
+                  window.alert(error);
+              }
+      });
+});
 
 // tenant profile
 export const getTenantInfo = (id) => new Promise((resolve, reject) => {
-    id = 1;
     let apiConfig = {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),//login放token如local storage，我再取
@@ -46,7 +69,6 @@ export const getTenantInfo = (id) => new Promise((resolve, reject) => {
 
 // landlord profile
 export const getLandlordInfo = (id) => new Promise((resolve, reject) => {
-  id = 1;
   let apiConfig = {
     headers: {
       Authorization: "Bearer " + localStorage.getItem("token"),//login放token如local storage，我再取
