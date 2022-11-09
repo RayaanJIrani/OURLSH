@@ -5,29 +5,32 @@ router.use(bodyParser.json());
 
 
 
-router.get('/:workorders?status=&wo_num=', async (req, res, next) => {
-    let workOrderNum = parseInt(req.params.wo_num);
+router.get('/:workorders?status=&description=', async (req, res, next) => {
+    let text = (req.params.description);
+    // const splitDescription = text.split("");
     let status = parseInt(req.params.status);
 
     //let accountId = req.query.id; //Don't know whether params or body will be used
-    if(typeof(workOrderNum) !== 'number' || !workOrderNum)
-    {
-        console.log("work order number is not a number, please try again");
-        res.status(400).send();
+
+    
+    //will return 404 not found if id does not exist
+    let workOrders;
+    if (req.query.status) {
+         workOrders = await req.models.workOrders.fetchWorkOrderByStatus;
     }
-    else{
-        const tenantByID = await req.models.tenant.fetchTenantByID(accountId);
-        //will return 404 not found if id does not exist
-        if(JSON.stringify(tenantByID) == '[]')
-        {
-            console.log("No user found with id", accountId)
-            res.status(404).send();
-        }
-        else
-        {
-            res.json(tenantByID);
+    else {
+         workOrders = await req.models.workOrders.fetchAllWorkOrders();
+  
+    }
+    let newWorkOrders = [];
+    for(i = 0; i < workOrders.length; i++){
+        if(workOrders[i].find(text)){
+            newWorkOrders.append(workOrders[i]);
+            
         }
     }
+    res.status(200).json(newWorkOrders);
+
     next();
 });
 
