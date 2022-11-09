@@ -7,7 +7,7 @@ router.use(bodyParser.json());
 
 
 
-router.get('/:workorders?status=&description=', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     let text = (req.params.description);
 
 
@@ -20,10 +20,10 @@ router.get('/:workorders?status=&description=', async (req, res, next) => {
     //will return 404 not found if id does not exist
     let workOrders;
     if (req.query.status) {
-         workOrders = await req.models.workOrders.fetchWorkOrderByStatus;
+         workOrders = await req.models.workorders.fetchWorkOrderByStatus;
     }
     else {
-         workOrders = await req.models.workOrders.fetchAllWorkOrders();
+         workOrders = await req.models.workorders.fetchAllWorkOrders();
   
     }
     let newWorkOrders = [];
@@ -38,7 +38,7 @@ router.get('/:workorders?status=&description=', async (req, res, next) => {
     next();
 });
 
-router.get('/:workorder/:id', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
 
     
 });
@@ -59,6 +59,12 @@ router.post('/', async (req, res, next) => {
     )
     res.status(201).json(makeWorkOrder);
     next();
+});
+
+router.put('/:id', async (req, res, next) => {
+    const updateWorkOrder = await req.models.workorders.updateWorkOrder(req.body.resolved, req.body.property, req.body.description,req.body.tenant);
+        res.json(updateWorkOrder);
+        next();
 });
 
 module.exports = router;
