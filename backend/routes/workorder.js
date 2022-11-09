@@ -38,9 +38,29 @@ router.get('/:workorders?status=&description=', async (req, res, next) => {
     next();
 });
 
-router.get('/:workorder/:id', async (req, res, next) => {
+router.get('/:wo_num', async (req, res, next) => {
 
-    
+    let wo_num = parseInt(req.params.wo_num);
+    //let accountId = req.query.id; //Don't know whether params or body will be used
+    if(typeof(wo_num) !== 'number' || !wo_num)
+    {
+        console.log("work order number is not type Number");
+        res.status(400).send();
+    }
+    else{
+        const workOrderByID = await req.models.workorder.getworkOrderByID(wo_num);
+        //will return 404 not found if id does not exist
+        if(JSON.stringify(workOrderByID) == '[]')
+        {
+            console.log("No work order found with id ", wo_num)
+            res.status(404).send();
+        }
+        else
+        {
+            res.json(workOrderByID);
+        }
+    }
+    next();
 });
 
 router.post('/', async (req, res, next) => {

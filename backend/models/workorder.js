@@ -25,15 +25,18 @@ const createWorkOrder = async (property, tenant_id, descrip) => {
     return result;
 }
 
-   const workOrderByID = async (wo_num) => {
+   const getworkOrderByID = async (wo_num) => {
       //uses passed in id to get the associated work order but only the specified columns
        const query = knex(WORK_ORDER_TABLE).where({ wo_num })
-       .select("id",
-               "email",
-               "first_name",
-               "last_name",
+       .select("description",
+               "status",
+               "date",
+               "resolved",
+               "importance",
+               "tenant_id",
+               "invoice_id",
                "prop_id",
-               "landlord_id");
+               "land_id");
 
        const results = await query;
        return results;
@@ -52,5 +55,7 @@ const createWorkOrder = async (property, tenant_id, descrip) => {
    }
 module.exports = {
    fetchAllWorkOrders,
-   fetchWorkOrderByStatus
+   fetchWorkOrderByStatus,
+   createWorkOrder,
+   getworkOrderByID
 }
