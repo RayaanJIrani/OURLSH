@@ -38,7 +38,7 @@ router.get('/', async (req, res, next) => {
     next();
 });
 
-router.get('/:workorder/:id', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
 
     
 });
@@ -59,6 +59,12 @@ router.post('/', async (req, res, next) => {
     )
     res.status(201).json(makeWorkOrder);
     next();
+});
+
+router.put('/:id', async (req, res, next) => {
+    const updateWorkOrder = await req.models.workorders.updateWorkOrder(req.body.resolved, req.body.property, req.body.description,req.body.tenant);
+        res.json(updateWorkOrder);
+        next();
 });
 
 module.exports = router;
