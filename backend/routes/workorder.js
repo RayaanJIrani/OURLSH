@@ -1,13 +1,17 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const { createWorkOrder } = require('../models/workorder');
 router = express.Router();
 router.use(bodyParser.json());
 
 
 
+
 router.get('/:workorders?status=&description=', async (req, res, next) => {
     let text = (req.params.description);
-    // const splitDescription = text.split("");
+
+
+
     let status = parseInt(req.params.status);
 
     //let accountId = req.query.id; //Don't know whether params or body will be used
@@ -36,8 +40,25 @@ router.get('/:workorders?status=&description=', async (req, res, next) => {
 
 router.get('/:workorder/:id', async (req, res, next) => {
 
-})
+    
+});
 
-router.post('/workorder')
+router.post('/', async (req, res, next) => {
+    let prop_id = req.body.prop_id;
+    let tenant = req.body.tenant;
+    let descrip = req.body.descrip;
+
+    if (prop_id === undefined || tenant === undefined || descrip === undefined){
+        return res.sendStatus(400);
+    }
+
+    const makeWorkOrder = await createWorkOrder(
+        prop_id,
+        tenant,
+        descrip
+    )
+    res.status(201).json(makeWorkOrder);
+    next();
+});
 
 module.exports = router;
