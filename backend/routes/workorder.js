@@ -5,34 +5,34 @@ router = express.Router();
 router.use(bodyParser.json());
 
 
+router.get('/', async (req, res, next) => {
+    console.log("params = ", req.query)
+    let text = (req.query.description);
 
+    let status = parseInt(req.query.status);
 
-router.get('/:workorders?status=&description=', async (req, res, next) => {
-    let text = (req.params.description);
-
-
-
-    let status = parseInt(req.params.status);
-
-    //let accountId = req.query.id; //Don't know whether params or body will be used
-
-    
     //will return 404 not found if id does not exist
     let workOrders;
     if (req.query.status) {
-         workOrders = await req.models.workOrders.fetchWorkOrderByStatus;
+         workOrders = await req.models.workorder.fetchWorkOrderByStatus(status);
     }
     else {
-         workOrders = await req.models.workOrders.fetchAllWorkOrders();
-  
+         workOrders = await req.models.workorder.fetchAllWorkOrders();
     }
     let newWorkOrders = [];
-    for(i = 0; i < workOrders.length; i++){
-        if(workOrders[i].find(text)){
-            newWorkOrders.append(workOrders[i]);
-            
+    if(!text)
+    {
+        newWorkOrders=workOrders
+    }
+    else
+    {
+        for(i = 0; i < workOrders.length; i++){
+            if(workOrders[i].description.search(text) !== -1){
+                newWorkOrders.push(workOrders[i]);
+            }
         }
     }
+    console.log("returned list =", newWorkOrders)
     res.status(200).json(newWorkOrders);
 
     next();
@@ -79,6 +79,12 @@ router.post('/', async (req, res, next) => {
     )
     res.status(201).json(makeWorkOrder);
     next();
+});
+
+router.put('/:id', async (req, res, next) => {
+    const updateWorkOrder = await req.models.workorders.updateWorkOrder(req.body.resolved, req.body.property, req.body.description,req.body.tenant);
+        res.json(updateWorkOrder);
+        next();
 });
 
 module.exports = router;

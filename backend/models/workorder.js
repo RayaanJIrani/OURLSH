@@ -53,9 +53,17 @@ const createWorkOrder = async (property, tenant_id, descrip) => {
       const results = await query;
       return results;
    }
+
+   const updateWorkOrder = async (resolved, property, description, tenant) =>{
+      const query = knex(work).update({resolved, property, description, tenant}).where({id});
+      const results = await query;
+      return results;
+   }
 module.exports = {
    fetchAllWorkOrders,
    fetchWorkOrderByStatus,
    createWorkOrder,
-   getworkOrderByID
+   getworkOrderByID,
+   updateWorkOrder
+
 }
