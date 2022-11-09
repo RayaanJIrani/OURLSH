@@ -32,7 +32,9 @@ router.get('/:workorders?status=&wo_num=', async (req, res, next) => {
 });
 
 router.get('/:workorder/:id', async (req, res, next) => {
-    
+
 })
+
+router.post('/workorder')
 
 module.exports = router;
