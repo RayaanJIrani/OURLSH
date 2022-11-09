@@ -4,6 +4,7 @@ const tenantRoutes = require('./routes/tenant');
 const landlordRoutes = require('./routes/landlord');
 const registerRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login' );
+const workorderRoutes = require('./routes/workorder');
 const {createModelsMiddleware} = require('./middleware/model-middleware' );
 
 const cors = require('cors');
@@ -33,6 +34,9 @@ app.use('/login', loginRoutes);
 
 //register routes
 app.use('/register', registerRoutes);
+
+//workorder routes
+app.use('/workorder',workorderRoutes);
 
 app.listen(port, () => {
     console.log(`This app is listening on port ${port}`);
