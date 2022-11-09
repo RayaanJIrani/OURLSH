@@ -4,6 +4,7 @@ const tenantRoutes = require('./routes/tenant');
 const landlordRoutes = require('./routes/landlord');
 const registerRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login' );
+const workorderRoutes = require('./routes/workorder' );
 const {createModelsMiddleware} = require('./middleware/model-middleware' );
 
 const cors = require('cors');
