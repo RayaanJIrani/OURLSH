@@ -36,7 +36,7 @@ app.use('/login', loginRoutes);
 app.use('/register', registerRoutes);
 
 //workorder routes
-app.use('/workorders',workorderRoutes);
+app.use('/workorders', workorderRoutes);
 
 app.listen(port, () => {
     console.log(`This app is listening on port ${port}`);
