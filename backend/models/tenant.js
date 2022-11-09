@@ -29,6 +29,7 @@ const loginFetchTenantByEmail = async (email) => {
    const results = await query;
    return results;
 }
+
 module.exports = {
    fetchTenantByID,
    loginFetchTenantByEmail
