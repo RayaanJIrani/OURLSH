@@ -157,4 +157,33 @@ module.exports = function routes(app, logger) {
     }
 
   })
-}
+
+//   app.get('/workorders?status=&description=', (req, res) => {
+//     try {
+//       pool.getConnection(function(err, connection) {
+//         if(err){
+//           logger.error('Problem obtaining MySql connection', err)
+//           res.status(400).send('Problem obtaining MySql connection');
+//         } else {
+//           connection.query('SELECT value FROM `db`.`test_table`', function (err, rows, fields){
+//             connection.release();
+//             if(err) {
+//               logger.error("Error while fetching values: \n", err);
+//               res.status(400).json({
+//                 "data": [],
+//                 "error": "Error obtaining values"
+//               })
+//             } else {
+//               res.status(200).json({
+//                 "data": rows
+//               })
+//             }
+//           })
+//         }
+//       })
+//     }
+//   }
+// })
+
+
+
