@@ -2,7 +2,7 @@ import axios from "axios";
 const baseEndpoint = "http://localhost:8000";
 
 // log in 
-export const checkAccount = (email,password) =>new Promise((resolve, reject) =>{
+export const checkAccount = (email,password) => new Promise((resolve, reject) =>{
   axios.post(baseEndpoint+'/login/tenant',{email:email, password:password})
           .then(function(response){
               if(response.status === 200){
@@ -76,3 +76,53 @@ export const getTenantInfo = (id) => new Promise((resolve, reject) => {
 //         window.alert(error);
 //     });
 // });
+
+export const registerTenant = (firstName, lastName, email, password) => new Promise((resolve, reject) => {
+    axios.post(baseEndpoint + '/register/tenant', {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        password: password
+    })
+        .then(function (response) {
+            if (response.status === 200) {
+                sessionStorage.setItem('token', response.data.accessToken);
+                console.log('this is the response: ');
+                resolve(response);
+            } else {
+                window.alert("Register with error");
+            }
+        })
+        .catch(function (error) {
+            console.log('this is the error: ');
+            console.log(error);
+            reject(error);
+        });
+});
+
+export const registerLandlord = (firstName, lastName, email, password) => new Promise((resolve, reject) => {
+    axios.post(baseEndpoint + '/register/landlord', {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        password: password
+    })
+        .then(function (response) {
+            if (response.status === 200) {
+                sessionStorage.setItem('token', response.data.accessToken);
+                console.log('this is the response: ');
+                resolve(response);
+            } else {
+                window.alert("Register with error");
+            }
+        })
+        .catch(function (error) {
+            console.log('this is the error: ');
+            console.log(error);
+            reject(error);
+        });
+});
+
+
+
+

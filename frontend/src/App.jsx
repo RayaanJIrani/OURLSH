@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { TenantProfile } from"./profile/tenantProfile";
 import { LandlordProfile } from"./profile/landlordProfile";
 import { LoginPage } from "./login/login";
+import {RegisterProfile} from "./register/RegisterProfile";
 
 
 export const App = () => {
@@ -12,6 +13,7 @@ export const App = () => {
         <Route exact path="/" element={<LoginPage/>} />
         <Route exact path="/tenant_profile" element={<TenantProfile/>} />
         <Route exact path="/landlord_profile" element={<LandlordProfile/>} />
+        <Route exact path={"/register"} element={<RegisterProfile/>} />
       </Routes>
     </div>
   );
