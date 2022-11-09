@@ -36,6 +36,7 @@ router.post('/tenant', async (req, res, next) => {
     
     if (email === undefined || password === undefined || first_name === undefined || last_name ===undefined) {
         return res.sendStatus(400);
+        
     }
     const registerLandlord = await req.models.register.createLandlord
     (email,
