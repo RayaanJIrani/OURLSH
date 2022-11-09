@@ -51,7 +51,7 @@ CREATE TABLE work_order(
         wo_num INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         description VARCHAR(255) NOT NULL,
         status INT NOT NULL,
-        date VARCHAR(255) NOT NULL,
+        date DATETIME NOT NULL,
         resolved BOOLEAN NOT NULL,
         importance INT NOT NULL,
         tenant_id INT NOT NULL REFERENCES tenant(id),
