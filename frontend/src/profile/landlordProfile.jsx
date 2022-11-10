@@ -58,18 +58,18 @@ export const LandlordProfile = () => {
     <div className="container my-5 bg-white border border-light border-2">
       <h1 className="text-center border-bottom py-5">Welcome to OURLSH!</h1>
       {(() => {
-        if (!landlord[0].profile_pic) {
+        if (!landlord[0].photo) {
           return (
             <img src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png" className="my-4 rounded mx-auto d-block"/>
           );
         } else {
           return (
-            <img src={landlord[0].profile_pic} className="my-4 rounded mx-auto d-block"/>
+            <img src={landlord[0].photo} className="my-4 rounded mx-auto d-block"/>
           );
         }
       })()}
       <div className="my-4 row justify-content-center">
-        <div className="col-4 my-3">
+        <div className="col-md-4 col-lg-3 col-6 my-3">
           <h2 className="my-3">Landlord Profile:</h2>
           <div>
             <h5 className="my-2">Landlord ID: {landlord[0].id}</h5>
@@ -78,7 +78,7 @@ export const LandlordProfile = () => {
             <h5 className="my-2">Email: <span className="text-muted">{landlord[0].email}</span></h5>
           </div>
         </div>
-        <div className="col-3 my-3">
+        <div className="col-md-3 col-lg-3 col-4 my-3">
           <h2 className="my-3"> Selection:</h2>
           <div className="my-3">
             <button type="button" className="btn btn-primary" onClick={handleWorkorderlist}>
@@ -87,11 +87,11 @@ export const LandlordProfile = () => {
           </div>
           <div className="my-3">
             <button type="button" className="btn btn-primary" onClick={handleTenantlist}>
-              Tenant List
+              MyTenants List
             </button>
           </div>
         </div>
-        <div className="container col-8 p-4 border-top">
+        <div className="container col-md-8 col-lg-8 col-11 p-4 border-top">
             <h5>Edit Profile:</h5>
             <TextField label="New Last Name"
               value={newFirstName}

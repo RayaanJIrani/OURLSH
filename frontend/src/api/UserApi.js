@@ -84,20 +84,37 @@ export const getLandlordInfo = (id) => new Promise((resolve, reject) => {
 });
 
     
-// export const updateImage = (photo) =>new Promise((resolve,reject)=>{
-//     let apiConfig={
-//         headers:{
-//             Authorization:'Bearer ' + localStorage.getItem('token')
-//         }
-//     };
-//     axios.put(`${baseEndpoint}/tenants/picture`, {profile_pic: photo}, apiConfig)
-//     .then(function(response){
-//         console.log("Successfully changed!!");
-//     })
-//     .catch(function(error){
-//         window.alert(error);
-//     });
-// });
+export const updateTenantProfile = (id, body) =>new Promise((resolve,reject)=>{
+    let apiConfig={
+        headers:{
+            Authorization:'Bearer ' + localStorage.getItem('token')
+        }
+    };
+    axios
+        .put(`${baseEndpoint}/tenants/${id}`, {body}, apiConfig)
+        .then(function(response){
+            console.log("Successfully changed!!");
+        })
+        .catch(function(error){
+        window.alert(error);
+        });
+});
+
+export const updateLandlordProfile = (id, body) =>new Promise((resolve,reject)=>{
+    let apiConfig={
+        headers:{
+            Authorization:'Bearer ' + localStorage.getItem('token')
+        }
+    };
+    axios
+        .put(`${baseEndpoint}/tenants/${id}`, {body}, apiConfig)
+        .then(function(response){
+            console.log("Successfully changed!!");
+        })
+        .catch(function(error){
+        window.alert(error);
+        });
+});
 
 export const registerTenant = (firstName, lastName, email, password) => new Promise((resolve, reject) => {
     axios.post(baseEndpoint + '/register/tenant', {
