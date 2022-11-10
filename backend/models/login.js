@@ -14,7 +14,11 @@ const authenticateTenant = async (req, email, password) => {
     if (validPassword) {
 
         let auth = jwt.sign({ ...tenants[0], claims: ['tenant', tenants[0].id] }, accessTokenSecret);
-        return auth;
+        let user = {
+            ...tenant,
+            "token": auth
+        };
+        return user;
     }
     return null;
 }
@@ -30,7 +34,11 @@ const authenticateLandlord = async (req, email, password) => {
     if (validPassword) {
 
         let auth = jwt.sign({ ...landlords[0], claims: ['landlord', landlords[0].id] }, accessTokenSecret);
-        return auth;
+        let user = {
+            ...landlord,
+            "token": auth
+        };
+        return user;
     }
     return null;
 }
