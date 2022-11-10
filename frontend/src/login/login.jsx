@@ -44,27 +44,27 @@ export const LoginPage = () => {
 
   const handleRegisterClick = () => {
     localStorage.clear(); 
-    navigate(""); 
+    navigate("/register"); 
   };
 // className="bg-white"
   return (
-    <>
+    <div className="container my-5">
       <div className="homeTitle" >
-        <h1 className="bg-white" >WELCOME TO OURLSH</h1>
+        <h1 className="bg-white rounded-1 my-5" >WELCOME TO OURLSH</h1>
       </div>
-      <div className="login">
+      <div className="login bg-white p-5 rounded-1">
         <div className="loginBox">
           <h1>Log In</h1>
           <input
             type="text"
-            className="form-control"
+            className="form-control m-1"
             placeholder="Email"
             value={email}
             onChange={handleChangeEmail}
           />
           <input
             type="password"
-            className="form-control"
+            className="form-control m-1"
             placeholder="Password"
             value={password}
             onChange={handleChangePassword}
@@ -78,14 +78,14 @@ export const LoginPage = () => {
           <label htmlFor="html">Landload</label>
           <br></br>
         </div>
-        <button type="button" onClick={handleSubmitClick}>
+        <button type="btm btm-primary" onClick={handleSubmitClick}>
           Submit
         </button>
-        <button type="button" onClick={handleRegisterClick}>
+        <button type="btm btm-primary" onClick={handleRegisterClick}>
           Register
         </button>
       </div>
       {/* <div className="showPhoto"></div> */}
-    </>
+    </div>
   );
 };
