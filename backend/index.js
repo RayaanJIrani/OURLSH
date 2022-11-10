@@ -6,6 +6,7 @@ const registerRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login' );
 const workorderRoutes = require('./routes/workorder' );
 const {createModelsMiddleware} = require('./middleware/model-middleware' );
+const { authenticateJWT, authenticateWithClaims } = require('./middleware/auth-middleware');
 
 const cors = require('cors');
 const app = express();

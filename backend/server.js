@@ -1,43 +1,35 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql');
-const cors = require('cors');
-const { log, ExpressAPILogMiddleware } = require('@rama41222/node-logger');
 const tenantRoutes = require('./routes/tenant' );
-const { createModelsMiddleware  } = require('./middleware/model-middleware' );
-// const mysqlConnect = require('./db');
-const routes = require('./routes');
+const registerRoutes = require('./routes/register');
+const loginRoutes = require('./routes/login' );
+const {createModelsMiddleware} = require('./middleware/model-middleware' );
 
-// set up some configs for express.
-const config = {
-  name: 'sample-express-app',
-  port: 8000,
-  host: '0.0.0.0',
-};
-
-// create the express.js object
+const cors = require('cors');
 const app = express();
+const port = 8000;
+app.use(createModelsMiddleware);
 
-// create a logger object.  Using logger is preferable to simply writing to the console.
-const logger = log({ console: true, file: false, label: config.name });
-
-// specify middleware to use
-app.use(bodyParser.json());
+//get rid of CORS issue
 app.use(cors({
   origin: '*'
 }));
-app.use(ExpressAPILogMiddleware(logger, { request: true }));
-app.use(createModelsMiddleware );
 
-//include routes
-routes(app, logger);
-app.use('/tenant', tenantRoutes);
+app.get('/health', (request, response, next) => {
+  const responseBody = { status: 'up', port };
+  response.json(responseBody);
+  // next() is how we tell express to continue through the middleware chain
+  next();
+});
+//tenants routes
+app.use('/tenants', tenantRoutes);
 
-// connecting the express object to listen on a particular port as defined in the config object.
-app.listen(config.port, config.host, (e) => {
-  if (e) {
-    throw new Error('Internal Server Error');
-  }
-  logger.info(`${config.name} running on ${config.host}:${config.port}`);
+//login routes
+app.use('/login', loginRoutes);
+
+//register routes
+app.use('/register', registerRoutes);
+
+app.listen(port, () => {
+  console.log(`This app is listening on port ${port}`);
 });
