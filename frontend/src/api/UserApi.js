@@ -147,4 +147,3 @@ export const registerLandlord = (firstName, lastName, email, password) => new Pr
 
 
 
-
