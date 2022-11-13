@@ -1,7 +1,7 @@
 import axios from "axios";
 const baseEndpoint = "http://localhost:8000";
 
-// log in 
+// Login Tenant
 export const checkTenantAccount = (email,password) =>new Promise((resolve, reject) =>{
   axios.post(baseEndpoint+'/login/tenant',{email:email, password:password})
           .then(function(response){
@@ -26,6 +26,7 @@ export const checkTenantAccount = (email,password) =>new Promise((resolve, rejec
       });
 });
 
+// Login Landlord
 export const checkLandlordAccount = (email,password) =>new Promise((resolve, reject) =>{
   axios.post(baseEndpoint+'/login/landlord',{email:email, password:password})
           .then(function(response){
@@ -51,7 +52,7 @@ export const checkLandlordAccount = (email,password) =>new Promise((resolve, rej
       });
 });
 
-// tenant profile
+// Tenant Profile
 export const getTenantInfo = (id) => new Promise((resolve, reject) => {
     let apiConfig = {
       headers: {
@@ -67,7 +68,7 @@ export const getTenantInfo = (id) => new Promise((resolve, reject) => {
       });
   });
 
-// landlord profile
+// Landlord Profile
 export const getLandlordInfo = (id) => new Promise((resolve, reject) => {
   let apiConfig = {
     headers: {
@@ -83,7 +84,7 @@ export const getLandlordInfo = (id) => new Promise((resolve, reject) => {
     });
 });
 
-    
+// Update Tenant    
 export const updateTenantProfile = (id, body) =>new Promise((resolve,reject)=>{
     let apiConfig={
         headers:{
@@ -96,10 +97,11 @@ export const updateTenantProfile = (id, body) =>new Promise((resolve,reject)=>{
             console.log("Successfully changed!!");
         })
         .catch(function(error){
-        window.alert(error);
+            window.alert(error);
         });
 });
 
+// Update Landlord
 export const updateLandlordProfile = (id, body) =>new Promise((resolve,reject)=>{
     let apiConfig={
         headers:{
@@ -112,7 +114,7 @@ export const updateLandlordProfile = (id, body) =>new Promise((resolve,reject)=>
             console.log("Successfully changed!!");
         })
         .catch(function(error){
-        window.alert(error);
+            window.alert(error);
         });
 });
 

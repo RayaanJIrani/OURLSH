@@ -10,10 +10,8 @@ export const App = () => {
     <div>
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
-        {/* <Route exact path="/tenants/:id" element={<TenantProfile />} />
-        <Route exact path="/landlords/:id" element={<LandlordProfile />} /> */}
-        <Route exact path="/tenants" element={<TenantProfile />} />
-        <Route exact path="/landlords" element={<LandlordProfile />} />
+        <Route exact path="/tenants/:id" element={<TenantProfile />} />
+        <Route exact path="/landlords/:id" element={<LandlordProfile />} />
         <Route exact path={"/register"} element={<RegisterProfile />} />
       </Routes>
     </div>
