@@ -25,10 +25,10 @@ app.get('/health', (request, response, next) => {
     next();
 });
 //tenant routes
-app.use('/tenants', tenantRoutes);
+app.use('/tenants', authenticateJWT, tenantRoutes);
 
 //landlord routes
-app.use('/landlords', landlordRoutes);
+app.use('/landlords', authenticateJWT, landlordRoutes);
 
 //login routes
 app.use('/login', loginRoutes);
@@ -37,7 +37,7 @@ app.use('/login', loginRoutes);
 app.use('/register', registerRoutes);
 
 //workorder routes
-app.use('/workorders', workorderRoutes);
+app.use('/workorders', authenticateJWT, workorderRoutes);
 
 app.listen(port, () => {
     console.log(`This app is listening on port ${port}`);
