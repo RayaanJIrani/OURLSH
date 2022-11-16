@@ -9,10 +9,9 @@ export const Router = () => {
     return useRoutes([
         { path: '/', element: <LoginPage /> },
         { path: '/login', element: <LoginPage /> },
-        { path: '/tenant', element: <TenantProfile /> },
-        { path: '/landlord', element: <LandlordProfile /> },
-        { path: '/register', element: <RegisterProfile /> },
-        { path: '*', element: <Navigate to="/" /> }
+        { path: '/tenants/:id', element: <TenantProfile /> },
+        { path: '/landlords/:id', element: <LandlordProfile /> },
+        { path: '/register', element: <RegisterProfile /> }
     ]);
 }
 

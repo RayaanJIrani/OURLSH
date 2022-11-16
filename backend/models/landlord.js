@@ -10,7 +10,7 @@ const fetchLandlordByID = async (id) => {
              "last_name");
 
      const results = await query;
-     return results;
+     return results[0];
  }
 
 const loginFetchLandlordByEmail = async (email) => {
