@@ -5,6 +5,7 @@ import "./RegisterProfile.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { registerTenant, registerLandlord, checkAccount } from "../api/UserApi";
+import {RadioInputHandlerHorizontal} from './Radio';
 
 
 export const RegisterProfile = () => {
@@ -14,7 +15,7 @@ export const RegisterProfile = () => {
     //The following are the states for the input fields
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [identity, setIdentity]=useState('tenant');
+    const [identity, setIdentity] = useState('tenant');
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
 
@@ -96,16 +97,16 @@ export const RegisterProfile = () => {
                         onChange={handleChangePassword}
                     />
                 </div>
-                <div className="Radio">
-                    <input type="radio"
-                           id="Tenant"
-                           name="fav_language"
-                    />{" "}
-                    <label htmlFor="html">Tenant</label>
-                    <br></br>
-                    <input type="radio" id="Landload" name="fav_language" />{" "}
-                    <label htmlFor="html">Landload</label>
-                    <br></br>
+                <div className={"Radio"}>
+                    <RadioInputHandlerHorizontal
+                        value={identity}
+                        setValue={setIdentity}
+                        formLabel={""}
+                        options={[
+                            { value: "tenant", label: "Tenant" },
+                            { value: "landlord", label: "Landlord" },
+                        ]}
+                    />
                 </div>
                 <button type="button" onClick={handleSubmitClick}>
                     Submit
