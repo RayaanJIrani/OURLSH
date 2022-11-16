@@ -65,11 +65,11 @@ export const TenantProfile = () => {
             <h5 className="my-2">Landlord ID: {tenant.landlord_id}</h5>
             <h5 className="my-2">
               Last Name:
-              <span className="text-muted">{tenant.last_name}</span>
+              <span className="text-muted"> {tenant.last_name}</span>
             </h5>
             <h5 className="my-2">
               First Name:
-              <span className="text-muted">{tenant.first_name}</span>
+              <span className="text-muted"> {tenant.first_name}</span>
             </h5>
             <h5 className="my-2">
               Email: <span className="text-muted">{tenant.email}</span>
@@ -81,7 +81,7 @@ export const TenantProfile = () => {
           <div className="my-3">
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary mx-0"
               onClick={handleWorkorderlist}
             >
               Workorder List
@@ -90,7 +90,7 @@ export const TenantProfile = () => {
           <div className="my-3">
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary mx-0"
               onClick={handleWorkorder}
             >
               Create Workorder
@@ -99,7 +99,7 @@ export const TenantProfile = () => {
           <div className="my-3">
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary mx-0"
               onClick={handlePayment}
             >
               Make Payments
@@ -130,7 +130,7 @@ export const TenantProfile = () => {
           />
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-secondary mx-0"
             onClick={() =>
               updateTenantProfile(tenant.id, tenant).then((x) =>
                 setTenant(x)

@@ -113,7 +113,7 @@ export const LoginPage = () => {
 
                 <div className="mb-3">
                   <button
-                    className="btn btn-primary btn-lg btn-block col-12 text-center p-2"
+                    className="btn btn-primary btn-lg btn-block col-12 text-center p-2 mx-0"
                     type="button"
                     onClick={handleSubmitClick}
                   >
@@ -123,7 +123,7 @@ export const LoginPage = () => {
                 <div className="mb-3">
                   <button
                     type="button"
-                    className="btn btn-primary btn-lg btn-block col-12 text-center p-2"
+                    className="btn btn-primary btn-lg btn-block col-12 text-center p-2 mx-0"
                     onClick={handleRegisterClick}
                   >
                     Register
