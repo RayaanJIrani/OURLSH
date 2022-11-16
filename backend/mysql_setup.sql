@@ -8,7 +8,8 @@ CREATE TABLE landlord(
         password VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL,
         first_name VARCHAR(255) NOT NULL,
-        last_name VARCHAR(255) NOT NULL
+        last_name VARCHAR(255) NOT NULL,
+        pfp BLOB NOT NULL
 );
 
 # PROPERTY TABLE
@@ -31,7 +32,8 @@ CREATE TABLE tenant(
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NOT NULL,
         prop_id INT REFERENCES prop(id),
-        landlord_id INT REFERENCES landlord(id)
+        landlord_id INT REFERENCES landlord(id),
+        pfp BLOB NOT NULL
 );
 
 # INVOICE TABLE
@@ -59,10 +61,3 @@ CREATE TABLE work_order(
         invoice_id INT NOT NULL REFERENCES invoice(id),
         land_id INT NOT NULL REFERENCES landlord(id)
 );
-
-
-
-   
-
-    
-
