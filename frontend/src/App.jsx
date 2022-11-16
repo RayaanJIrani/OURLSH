@@ -9,3 +9,4 @@ export const App = () =>
         <ScrollToTop />
         <Router />
     </BrowserRouter>
+
