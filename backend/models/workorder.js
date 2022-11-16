@@ -49,13 +49,13 @@ const createWorkOrder = async (property, tenant_id, descrip) => {
       }
 
    const fetchWorkOrderByStatus = async (status) =>{
-      const query = knex(WORK_ORDER_TABLE).where({status});
+      const query = knex(work_order).where({status});
       const results = await query;
       return results;
    }
 
    const updateWorkOrder = async (resolved, property, description, tenant) =>{
-      const query = knex(work).update({resolved, property, description, tenant}).where({id});
+      const query = knex(work_order).update({resolved, property, description, tenant}).where({id});
       const results = await query;
       return results;
    }

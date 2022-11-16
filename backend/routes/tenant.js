@@ -29,4 +29,10 @@ router.get('/:id', async (req, res, next) => {
     next();
 });
 
+router.put('/:id', async (req, res, next) => {
+    const updatetenant = await req.models.tenant.updateTenant(req.body.email, req.body.first_name, req.body.last_name,req.body.photo);
+        res.json(updatetenant);
+        next();
+});
+
 module.exports = router;
