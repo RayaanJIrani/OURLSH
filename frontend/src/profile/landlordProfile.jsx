@@ -91,12 +91,12 @@ export const LandlordProfile = () => {
         <div className="container col-md-8 col-lg-8 col-11 p-4 border-top">
           <h5>Edit Profile:</h5>
           <TextField
-            label="New Last Name"
+            label="New First Name"
             value={landlord.first_name}
             setValue={(first_name) => mergeLandlord({ first_name })}
           />
           <TextField
-            label="New First Name"
+            label="New Last Name"
             value={landlord.last_name}
             setValue={(last_name) => mergeLandlord({ last_name })}
           />

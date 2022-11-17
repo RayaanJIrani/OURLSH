@@ -6,10 +6,8 @@ export const checkTenantAccount = (email,password) =>new Promise((resolve, rejec
   axios.post(baseEndpoint+'/login/tenant',{email:email, password:password})
           .then(function(response){
               if(response.status === 200){
-                  localStorage.setItem('token',response.data); //存token
-                  window.location.href="./tenants";
-                  // window.location.href="./tenant_profile/"+response.data.id;
-                  // window.location.href="./tenant_profile/"+localStorage.getItem('id');
+                  localStorage.setItem('token',response.data); //存token 
+                  window.location.href="./tenants/"+response.data.id; 
                   window.alert("Successfully log in!!"); 
               }
               else{
@@ -33,9 +31,7 @@ export const checkLandlordAccount = (email,password) =>new Promise((resolve, rej
               if(response.status === 200){
                   localStorage.setItem('token',response.data);//存token
 
-                  window.location.href="./landlords";
-                  // window.location.href="./tenant_profile/"+response.data.id;
-                  // window.location.href="./tenant_profile/"+localStorage.getItem('id');
+                  window.location.href="./landlords/"+response.data.id; 
                   window.alert("Successfully log in!!"); 
               }
               else{

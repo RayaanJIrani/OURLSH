@@ -2,6 +2,7 @@ import {LoginPage} from "../login/login";
 import {TenantProfile} from "../profile/tenantProfile";
 import {LandlordProfile} from "../profile/landlordProfile";
 import {RegisterProfile} from "../register/RegisterProfile";
+import {WorkOrderList} from "../workOrderList/workOrderList";
 import { Navigate, useRoutes } from 'react-router-dom';
 
 export const Router = () => {
@@ -11,7 +12,8 @@ export const Router = () => {
         { path: '/login', element: <LoginPage /> },
         { path: '/tenants/:id', element: <TenantProfile /> },
         { path: '/landlords/:id', element: <LandlordProfile /> },
-        { path: '/register', element: <RegisterProfile /> }
+        { path: '/register', element: <RegisterProfile /> },
+        { path: '/workorderlists', element: <WorkOrderList /> }
     ]);
 }
 

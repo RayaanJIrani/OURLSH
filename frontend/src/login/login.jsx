@@ -117,7 +117,7 @@ export const LoginPage = () => {
                     type="button"
                     onClick={handleSubmitClick}
                   >
-                    Login in
+                    Log in
                   </button>
                 </div>
                 <div className="mb-3">
