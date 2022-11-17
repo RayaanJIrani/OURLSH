@@ -31,30 +31,31 @@ const loginFetchTenantByEmail = async (email) => {
 }
 
 
-const updateTenant = async (email, first_name, last_name, photo) =>{
-      
-   if(email !== undefined){
-      const query = knex(TENANT_TABLE).update({email}).where({id});         const results = await query;
-   }
-   if(first_name !== undefined){
-      const query = knex(TENANT_TABLE).update({first_name}).where({id});
-        const results = await query;
-   }
-      if(last_name !== undefined){
-      const query = knex(TENANT_TABLE).update({last_name}).where({id});
+const updateTenantById = async (id, email, first_name, last_name, photo) => {
+
+   if (email !== undefined) {
+      const query = knex(TENANT_TABLE).update({ email }).where({ id });
       const results = await query;
    }
-   if(photo !== undefined){
-      const query = knex(TENANT_TABLE).update({photo}).where({id});
+   if (first_name !== undefined) {
+      const query = knex(TENANT_TABLE).update({ first_name }).where({ id });
       const results = await query;
    }
-      const query = knex(TENANT_TABLE).where({id});
+   if (last_name !== undefined) {
+      const query = knex(TENANT_TABLE).update({ last_name }).where({ id });
       const results = await query;
-      return results;
    }
+   if (photo !== undefined) {
+      const query = knex(TENANT_TABLE).update({ photo }).where({ id });
+      const results = await query;
+   }
+   const query = knex(TENANT_TABLE).where({ id });
+   const results = await query;
+   return results;
+}
 
 module.exports = {
    fetchTenantByID,
    loginFetchTenantByEmail,
-   updateTenant
+   updateTenantById
 }
