@@ -4,7 +4,9 @@ const tenantRoutes = require('./routes/tenant');
 const landlordRoutes = require('./routes/landlord');
 const registerRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login' );
+const workorderRoutes = require('./routes/workorder' );
 const {createModelsMiddleware} = require('./middleware/model-middleware' );
+const { authenticateJWT, authenticateWithClaims } = require('./middleware/auth-middleware');
 
 const cors = require('cors');
 const app = express();
@@ -23,10 +25,10 @@ app.get('/health', (request, response, next) => {
     next();
 });
 //tenant routes
-app.use('/tenants', tenantRoutes);
+app.use('/tenants', authenticateJWT, tenantRoutes);
 
 //landlord routes
-app.use('/landlords', landlordRoutes);
+app.use('/landlords', authenticateJWT, landlordRoutes);
 
 //login routes
 app.use('/login', loginRoutes);
@@ -34,6 +36,10 @@ app.use('/login', loginRoutes);
 //register routes
 app.use('/register', registerRoutes);
 
+//workorder routes
+app.use('/workorders', authenticateJWT, workorderRoutes);
+
 app.listen(port, () => {
     console.log(`This app is listening on port ${port}`);
 });
+
