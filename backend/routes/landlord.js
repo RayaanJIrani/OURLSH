@@ -24,11 +24,12 @@ router.get('/:id', async (req, res, next) => {
         }
         else
         {
-            res.json(tenantByID);
+            res.json(tenantByID[0]);
         }
     }
     next();
 });
+
 
 router.put('/:id', async (req, res, next) => {
     let id = req.params.id

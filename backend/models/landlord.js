@@ -8,10 +8,10 @@ const fetchLandlordByID = async (id) => {
             "email",
             "first_name",
             "last_name");
-
     const results = await query;
     return results[0];
 }
+
 
 const loginFetchLandlordByEmail = async (email) => {
     //uses passed in id to get the associated tenant but only the specified columns
