@@ -47,10 +47,11 @@ export const LoginPage = () => {
   return (
     <>
       <div className="bg-white text-left">
-        <h1 className="container p-5 display-5 fw-bold ls-tight ">
+        <h1 className="container p-5 display-5 fw-bold ls-tight mx-0">
           WELCOME TO OURLSH
         </h1>
       </div>
+      <div className="p-5">
       <div className="container py-5 my-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-12 col-md-8 col-lg-8 col-xl-6">
@@ -133,6 +134,7 @@ export const LoginPage = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );
