@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const { authenticateMultipleClaims } = require('../middleware/auth-middleware');
 router = express.Router();
 router.use(bodyParser.json());
 
@@ -30,9 +31,19 @@ router.get('/:id', async (req, res, next) => {
 });
 
 router.put('/:id', async (req, res, next) => {
-    const updatetenant = await req.models.tenant.updateTenant(req.body.email, req.body.first_name, req.body.last_name,req.body.photo);
+    let id = req.params.id
+    let auth = await authenticateMultipleClaims(['tenant', `${id}`], req, res)
+    console.log(res.status)
+    if (res.status === 200)
+    {
+        const updatetenant = await req.models.tenant.updateTenantById(id, req.body.email, req.body.first_name, req.body.last_name, req.body.photo);
         res.json(updatetenant);
         next();
+    }
+    else
+    {   
+        res.sendStatus(res.status);
+    }
 });
 
 module.exports = router;
