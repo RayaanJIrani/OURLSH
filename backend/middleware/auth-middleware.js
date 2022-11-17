@@ -2,11 +2,11 @@ const jwt = require("jsonwebtoken");
 const accessTokenSecret = 'not-a-password';
 
 const authenticateJWT = (req, res, next) => {
-    const authHeader = req.headers.authorization;
+    const authHeader = req.headers.token;
     if (!authHeader) {
         return res.sendStatus(401);
     }
-    const token = authHeader.split(" ")[1];
+    const token = authHeader
     jwt.verify(token, accessTokenSecret, (err, user) => {
         if (err) {
             return res.sendStatus(403);
@@ -17,11 +17,11 @@ const authenticateJWT = (req, res, next) => {
 };
 
 const authenticateWithClaims = (claims) => (req, res, next) => {
-    const authHeader = req.headers.authorization;
+    const authHeader = req.headers.token;
     if (!authHeader) {
         return res.sendStatus(401);
     }
-    const token = authHeader.split(" ")[1];
+    const token = authHeader;
     jwt.verify(token, accessTokenSecret, (err, user) => {
         if (err) {
             return res.sendStatus(403);
@@ -36,22 +36,34 @@ const authenticateWithClaims = (claims) => (req, res, next) => {
     });
 }
 
-const authenticateMultipleClaims = async (claims, req) => {
-    const authHeader = req.headers.authorization;
+const authenticateMultipleClaims = async (claims, req, res) => {
+    const authHeader = req.headers.token;
     if (!authHeader) {
-        return 401;
+        console.log("sending 401")
+        res.status= 401;
+        return
     }
-    const token = authHeader.split(" ")[1];
+    const token = authHeader;
     jwt.verify(token, accessTokenSecret, (err, user) => {
-        if (err) {
-            return 403;
+        if (err) {        
+            console.log("ERROR - sending 403")
+            console.log(err)
+            res.status= 403;
+            return
         }
+        console.log(user.claims)
         for (let claim of claims) {
             if (!user.claims.includes(claim)) {
-                return 403;
+                console.log("claim fail=",claim)
+                
+                console.log("sending 403")
+                res.status= 403;
+                return
             }
         }
-        return 200;
+        console.log("sending 200")
+        res.status= 200;
+        return
     });
 }
 
