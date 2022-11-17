@@ -13,7 +13,7 @@ const fetchTenantByID = async (id) => {
          "landlord_id");
 
    const results = await query;
-   return results;
+   return results[0];
 }
 
 //for loginpurposes
