@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef2f5184-4b78-4ad1-ba57-3478b56ca4f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/WelcomeHeader.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/EntryTextField.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/welcomeHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/EntryBox.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +17,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="2HSs3bLDBF6JzZmgVcqm0drGTv4" />
   <component name="ProjectViewState">
@@ -59,13 +66,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668744241869</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added &amp; Implemented EntryBox Component">
+      <created>1668748109313</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668748109313</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Deleted RegisterProfile.css. Moved the background CSS definition to App.css." />
     <MESSAGE value="Added barrel files to components and register" />
     <MESSAGE value="Added welcomeHeader component" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added welcomeHeader component" />
+    <MESSAGE value="Added &amp; Implemented EntryBox Component" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added &amp; Implemented EntryBox Component" />
   </component>
 </project>

@@ -4,11 +4,13 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { checkTenantAccount, checkLandlordAccount } from "../api/UserApi";
-import {WelcomeHeader, EntryBox} from "../components";
+import {WelcomeHeader, EntryBox, EntryTextField} from "../components";
 
 export const RegisterProfile = () => {
     const navigate = useNavigate();
     localStorage.clear();
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [identity, setIdentity] = useState("");
@@ -49,24 +51,10 @@ export const RegisterProfile = () => {
         <>
             <WelcomeHeader/>
             <EntryBox title={"Register"}>
-                <div className="form-outline mb-4">
-                    <input
-                        type="text"
-                        className="form-control form-control-lg p-3 fs-4"
-                        placeholder="Email"
-                        value={email}
-                        onChange={handleChangeEmail}
-                    />
-                </div>
-                <div className="form-outline mb-4 ">
-                    <input
-                        type="password"
-                        className="form-control form-control-lg p-3 fs-4"
-                        placeholder="Password"
-                        value={password}
-                        onChange={handleChangePassword}
-                    />
-                </div>
+                <EntryTextField placeholder={"First Name"} fieldValue={firstName} fieldOnChange={setFirstName}/>
+                <EntryTextField placeholder={"Last Name"} fieldValue={lastName} fieldOnChange={setLastName}/>
+                <EntryTextField placeholder={"Email"} fieldValue={email} fieldOnChange={handleChangeEmail}/>
+                <EntryTextField placeholder={"Password"} fieldValue={password} fieldOnChange={handleChangePassword}/>
                 <div
                     className="d-flex justify-content-start mb-4"
                     onChange={handleChangeIdentity}
