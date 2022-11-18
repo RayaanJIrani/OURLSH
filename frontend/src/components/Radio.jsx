@@ -13,7 +13,7 @@ return (
                             className=""
                             type="radio"
                             id={option[optionValueKey]}
-                            name={option[optionValueKey]}
+                            name={formLabel !== "" ? formLabel : "name"}
                             value={option[optionValueKey]}
                         />
                         <label
@@ -30,3 +30,4 @@ return (
     </>
   );
 }
+
