@@ -4,7 +4,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { checkTenantAccount, checkLandlordAccount } from "../api/UserApi";
-import {WelcomeHeader} from "../components";
+import {WelcomeHeader, EntryBox} from "../components";
 
 export const RegisterProfile = () => {
     const navigate = useNavigate();
@@ -48,89 +48,80 @@ export const RegisterProfile = () => {
     return (
         <>
             <WelcomeHeader/>
-            <div className="container py-5 my-5 h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
-                    <div className="col-12 col-md-8 col-lg-8 col-xl-6">
-                        <div className="card shadow-2-strong">
-                            <div className="card-body p-5 text-center">
-                                <h1 className="mb-5 ">Register</h1>
-                                <div className="form-outline mb-4">
-                                    <input
-                                        type="text"
-                                        className="form-control form-control-lg p-3 fs-4"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={handleChangeEmail}
-                                    />
-                                </div>
-                                <div className="form-outline mb-4 ">
-                                    <input
-                                        type="password"
-                                        className="form-control form-control-lg p-3 fs-4"
-                                        placeholder="Password"
-                                        value={password}
-                                        onChange={handleChangePassword}
-                                    />
-                                </div>
-                                <div
-                                    className="d-flex justify-content-start mb-4"
-                                    onChange={handleChangeIdentity}
-                                >
-                                    <div className="col-7 ">
-                                        <input
-                                            className=""
-                                            type="radio"
-                                            id="Tenant"
-                                            name="fav_language"
-                                            value="Tenant"
-                                        />
-                                        <label
-                                            className="custom-control-label fs-4 p-2"
-                                            htmlFor="html"
-                                        >
-                                            Tenant
-                                        </label>
-                                    </div>
-                                    <div className="col-7 d-flex ">
-                                        <input
-                                            className=""
-                                            type="radio"
-                                            id="Landload"
-                                            name="fav_language"
-                                            value="Landload"
-                                        />
-                                        <label
-                                            className="custom-control-label fs-4  p-2"
-                                            htmlFor="html"
-                                        >
-                                            Landload
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div className="mb-3">
-                                    <button
-                                        className="btn btn-primary btn-lg btn-block col-12 text-center p-2 mx-0"
-                                        type="button"
-                                        onClick={handleSubmitClick}
-                                    >
-                                        Login in
-                                    </button>
-                                </div>
-                                <div className="mb-3">
-                                    <button
-                                        type="button"
-                                        className="btn btn-primary btn-lg btn-block col-12 text-center p-2 mx-0"
-                                        onClick={handleRegisterClick}
-                                    >
-                                        Register
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+            <EntryBox title={"Register"}>
+                <div className="form-outline mb-4">
+                    <input
+                        type="text"
+                        className="form-control form-control-lg p-3 fs-4"
+                        placeholder="Email"
+                        value={email}
+                        onChange={handleChangeEmail}
+                    />
+                </div>
+                <div className="form-outline mb-4 ">
+                    <input
+                        type="password"
+                        className="form-control form-control-lg p-3 fs-4"
+                        placeholder="Password"
+                        value={password}
+                        onChange={handleChangePassword}
+                    />
+                </div>
+                <div
+                    className="d-flex justify-content-start mb-4"
+                    onChange={handleChangeIdentity}
+                >
+                    <div className="col-7 ">
+                        <input
+                            className=""
+                            type="radio"
+                            id="Tenant"
+                            name="fav_language"
+                            value="Tenant"
+                        />
+                        <label
+                            className="custom-control-label fs-4 p-2"
+                            htmlFor="html"
+                        >
+                            Tenant
+                        </label>
+                    </div>
+                    <div className="col-7 d-flex ">
+                        <input
+                            className=""
+                            type="radio"
+                            id="Landload"
+                            name="fav_language"
+                            value="Landload"
+                        />
+                        <label
+                            className="custom-control-label fs-4  p-2"
+                            htmlFor="html"
+                        >
+                            Landload
+                        </label>
                     </div>
                 </div>
-            </div>
+
+                <div className="mb-3">
+                    <button
+                        className="btn btn-primary btn-lg btn-block col-12 text-center p-2 mx-0"
+                        type="button"
+                        onClick={handleSubmitClick}
+                    >
+                        Login in
+                    </button>
+                </div>
+                <div className="mb-3">
+                    <button
+                        type="button"
+                        className="btn btn-primary btn-lg btn-block col-12 text-center p-2 mx-0"
+                        onClick={handleRegisterClick}
+                    >
+                        Register
+                    </button>
+                </div>
+            </EntryBox>
         </>
     );
 };

@@ -1,2 +1,3 @@
 export * from './textField';
-export * from './welcomeHeader';
+export * from './WelcomeHeader';
+export * from './EntryBox';
