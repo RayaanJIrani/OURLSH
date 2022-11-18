@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef2f5184-4b78-4ad1-ba57-3478b56ca4f0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Radio.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Radio.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668757346117</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed the bug from earlier. Now the buttons work?">
+      <created>1668757587220</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1668757587220</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -102,6 +109,7 @@
     <MESSAGE value="Added &amp; Implemented EntryTextField.jsx" />
     <MESSAGE value="Added &amp; Implemented Button" />
     <MESSAGE value="Have the basic of the Radio done, need to fix some of the functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Have the basic of the Radio done, need to fix some of the functionality" />
+    <MESSAGE value="Fixed the bug from earlier. Now the buttons work?" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the bug from earlier. Now the buttons work?" />
   </component>
 </project>

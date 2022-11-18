@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { checkTenantAccount, checkLandlordAccount } from "../api/UserApi";
+import { registerTenant, registerLandlord } from "../api/UserApi";
 import {WelcomeHeader, EntryBox, EntryTextField, Button, Radio} from "../components";
 
 export const RegisterProfile = () => {
@@ -33,26 +33,24 @@ export const RegisterProfile = () => {
         setIdentity(e.target.value);
     };
 
-    //TODO: change this functionality
     const handleSubmitClick = () => {
         localStorage.clear();
         if (!identity) {
-            window.alert("Select Tenant or Landload");
+            window.alert("Select Tenant or Landlord");
         } else {
             if (identity === "Tenant") {
-                checkTenantAccount(email, password);
-            } else if (identity === "Landload") {
-                checkLandlordAccount(email, password);
+                registerTenant(firstName, lastName, email, password);
+            } else if (identity === "Landlord") {
+                registerLandlord(firstName, lastName, email, password)
             }
         }
         // let response = checkAccount(email, password);
         // navigate("/tenant_profile");
     };
 
-    //TODO: change this functionality
     const handleRegisterClick = () => {
         localStorage.clear();
-        navigate("/register");
+        navigate("/login");
     };
 
     return (
@@ -64,8 +62,8 @@ export const RegisterProfile = () => {
                 <EntryTextField placeholder={"Email"} fieldValue={email} fieldOnChange={handleChangeEmail}/>
                 <EntryTextField placeholder={"Password"} fieldValue={password} fieldOnChange={handleChangePassword}/>
                 <Radio value={identity} onChange={handleChangeIdentity} options={[{"value": "Tenant"},{"value": "Landlord"}]}/>
-                <Button buttonName={"Login"} onClick={handleSubmitClick}/>
-                <Button buttonName={"Register"} buttonOnClick={handleRegisterClick}/>
+                <Button buttonName={"Register"} onClick={handleSubmitClick}/>
+                <Button buttonName={"Login"} buttonOnClick={handleRegisterClick}/>
             </EntryBox>
         </>
     );
