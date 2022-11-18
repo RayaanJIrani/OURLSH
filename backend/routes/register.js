@@ -18,10 +18,11 @@ router.post('/tenant', async (req, res, next) => {
     let first_name = req.body.first_name;
     let last_name = req.body.last_name;
 
-    if (checkIfValid(email) || password === undefined || first_name === undefined || last_name === undefined) {
-        return res.sendStatus(400);
+    if (!checkIfValid(email) || password === undefined || first_name === undefined || last_name === undefined) {
+        return res.sendStatus(406);
     }
     const tenants = await req.models.tenant.loginFetchTenantByEmail(email);
+    console.log(tenants)
     if (tenants.length === 0) {
         console.log(`No tenants matched the email: ${email}, creating account`);
         const registerTenant = await req.models.register.createTenant
@@ -53,8 +54,8 @@ router.post('/landlord', async (req, res, next) => {
     let first_name = req.body.first_name
     let last_name = req.body.last_name
 
-    if (checkIfValid(email) || password === undefined || first_name === undefined || last_name === undefined) {
-        return res.sendStatus(400);
+    if (!checkIfValid(email) || password === undefined || first_name === undefined || last_name === undefined) {
+        return res.sendStatus(406);
     }
 
     const landlords = await req.models.landlord.loginFetchLandlordByEmail(email);
