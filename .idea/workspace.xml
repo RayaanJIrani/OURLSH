@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef2f5184-4b78-4ad1-ba57-3478b56ca4f0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/register/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +32,18 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Deleted RegisterProfile.css. Moved the background CSS definition to App.css.">
+      <created>1668743277672</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1668743277672</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Deleted RegisterProfile.css. Moved the background CSS definition to App.css." />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted RegisterProfile.css. Moved the background CSS definition to App.css." />
   </component>
 </project>
