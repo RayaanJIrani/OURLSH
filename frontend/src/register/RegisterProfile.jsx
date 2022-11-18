@@ -4,7 +4,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { checkTenantAccount, checkLandlordAccount } from "../api/UserApi";
-import {WelcomeHeader, EntryBox, EntryTextField} from "../components";
+import {WelcomeHeader, EntryBox, EntryTextField, Button} from "../components";
 
 export const RegisterProfile = () => {
     const navigate = useNavigate();
@@ -15,6 +15,14 @@ export const RegisterProfile = () => {
     const [password, setPassword] = useState("");
     const [identity, setIdentity] = useState("");
     // const navigate = useNavigate();
+
+    const handleChangeFirstName = (e) => {
+        setFirstName(e.target.value);
+    }
+
+    const handleChangeLastName = (e) => {
+        setLastName(e.target.value);
+    }
 
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
@@ -51,8 +59,8 @@ export const RegisterProfile = () => {
         <>
             <WelcomeHeader/>
             <EntryBox title={"Register"}>
-                <EntryTextField placeholder={"First Name"} fieldValue={firstName} fieldOnChange={setFirstName}/>
-                <EntryTextField placeholder={"Last Name"} fieldValue={lastName} fieldOnChange={setLastName}/>
+                <EntryTextField placeholder={"First Name"} fieldValue={firstName} fieldOnChange={handleChangeFirstName}/>
+                <EntryTextField placeholder={"Last Name"} fieldValue={lastName} fieldOnChange={handleChangeLastName}/>
                 <EntryTextField placeholder={"Email"} fieldValue={email} fieldOnChange={handleChangeEmail}/>
                 <EntryTextField placeholder={"Password"} fieldValue={password} fieldOnChange={handleChangePassword}/>
                 <div
@@ -91,24 +99,8 @@ export const RegisterProfile = () => {
                     </div>
                 </div>
 
-                <div className="mb-3">
-                    <button
-                        className="btn btn-primary btn-lg btn-block col-12 text-center p-2 mx-0"
-                        type="button"
-                        onClick={handleSubmitClick}
-                    >
-                        Login in
-                    </button>
-                </div>
-                <div className="mb-3">
-                    <button
-                        type="button"
-                        className="btn btn-primary btn-lg btn-block col-12 text-center p-2 mx-0"
-                        onClick={handleRegisterClick}
-                    >
-                        Register
-                    </button>
-                </div>
+                <Button buttonName={"Login"} onClick={handleSubmitClick}/>
+                <Button buttonName={"Register"} buttonOnClick={handleRegisterClick}/>
             </EntryBox>
         </>
     );
