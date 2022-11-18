@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef2f5184-4b78-4ad1-ba57-3478b56ca4f0" name="Changes" comment="Fixed b">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Button.jsx" afterDir="false" />
+    <list default="true" id="ef2f5184-4b78-4ad1-ba57-3478b56ca4f0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Radio.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" afterDir="false" />
     </list>
@@ -79,7 +80,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668749231339</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added &amp; Implemented Button">
+      <created>1668749664376</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1668749664376</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -88,6 +96,7 @@
     <MESSAGE value="Added welcomeHeader component" />
     <MESSAGE value="Added &amp; Implemented EntryBox Component" />
     <MESSAGE value="Added &amp; Implemented EntryTextField.jsx" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added &amp; Implemented EntryTextField.jsx" />
+    <MESSAGE value="Added &amp; Implemented Button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added &amp; Implemented Button" />
   </component>
 </project>

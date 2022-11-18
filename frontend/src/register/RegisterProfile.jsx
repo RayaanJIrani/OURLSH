@@ -1,10 +1,7 @@
-// import { TextField } from "@mui/material";
-// import { Button } from "@material-ui/core";
-// import { Link, useNavigate} from 'react-router-dom';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { checkTenantAccount, checkLandlordAccount } from "../api/UserApi";
-import {WelcomeHeader, EntryBox, EntryTextField, Button} from "../components";
+import {WelcomeHeader, EntryBox, EntryTextField, Button, Radio} from "../components";
 
 export const RegisterProfile = () => {
     const navigate = useNavigate();
@@ -36,6 +33,7 @@ export const RegisterProfile = () => {
         setIdentity(e.target.value);
     };
 
+    //TODO: change this functionality
     const handleSubmitClick = () => {
         localStorage.clear();
         if (!identity) {
@@ -51,10 +49,12 @@ export const RegisterProfile = () => {
         // navigate("/tenant_profile");
     };
 
+    //TODO: change this functionality
     const handleRegisterClick = () => {
         localStorage.clear();
         navigate("/register");
     };
+
     return (
         <>
             <WelcomeHeader/>
@@ -63,42 +63,7 @@ export const RegisterProfile = () => {
                 <EntryTextField placeholder={"Last Name"} fieldValue={lastName} fieldOnChange={handleChangeLastName}/>
                 <EntryTextField placeholder={"Email"} fieldValue={email} fieldOnChange={handleChangeEmail}/>
                 <EntryTextField placeholder={"Password"} fieldValue={password} fieldOnChange={handleChangePassword}/>
-                <div
-                    className="d-flex justify-content-start mb-4"
-                    onChange={handleChangeIdentity}
-                >
-                    <div className="col-7 ">
-                        <input
-                            className=""
-                            type="radio"
-                            id="Tenant"
-                            name="fav_language"
-                            value="Tenant"
-                        />
-                        <label
-                            className="custom-control-label fs-4 p-2"
-                            htmlFor="html"
-                        >
-                            Tenant
-                        </label>
-                    </div>
-                    <div className="col-7 d-flex ">
-                        <input
-                            className=""
-                            type="radio"
-                            id="Landload"
-                            name="fav_language"
-                            value="Landload"
-                        />
-                        <label
-                            className="custom-control-label fs-4  p-2"
-                            htmlFor="html"
-                        >
-                            Landload
-                        </label>
-                    </div>
-                </div>
-
+                <Radio value={identity} onChange={handleChangeIdentity} options={[{"value": "Tenant"},{"value": "Landlord"}]}/>
                 <Button buttonName={"Login"} onClick={handleSubmitClick}/>
                 <Button buttonName={"Register"} buttonOnClick={handleRegisterClick}/>
             </EntryBox>
