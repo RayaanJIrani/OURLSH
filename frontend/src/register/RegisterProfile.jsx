@@ -1,7 +1,6 @@
 // import { TextField } from "@mui/material";
 // import { Button } from "@material-ui/core";
 // import { Link, useNavigate} from 'react-router-dom';
-import "./RegisterProfile.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { registerTenant, registerLandlord, checkAccount } from "../api/UserApi";
