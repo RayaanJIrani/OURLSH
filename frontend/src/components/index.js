@@ -3,4 +3,4 @@ export * from './WelcomeHeader';
 export * from './EntryBox';
 export * from './EntryTextField';
 export * from './Button';
-export * from './Radio';
+export * from './RoleRadioSelector';

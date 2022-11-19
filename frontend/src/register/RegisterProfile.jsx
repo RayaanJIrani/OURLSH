@@ -1,7 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { registerTenant, registerLandlord } from "../api/UserApi";
-import {WelcomeHeader, EntryBox, EntryTextField, Button, Radio} from "../components";
+import {WelcomeHeader, EntryBox, EntryTextField, Button, RoleRadioSelector} from "../components";
 
 export const RegisterProfile = () => {
     const navigate = useNavigate();
@@ -30,25 +30,27 @@ export const RegisterProfile = () => {
     };
 
     const handleChangeIdentity = (e) => {
+        console.log("Changed identity to: " + e.target.value);
         setIdentity(e.target.value);
     };
 
-    const handleSubmitClick = () => {
+    const handleRegisterClick = () => {
+        console.log("A click to register");
         localStorage.clear();
         if (!identity) {
             window.alert("Select Tenant or Landlord");
         } else {
             if (identity === "Tenant") {
-                registerTenant(firstName, lastName, email, password);
+                registerTenant(firstName, lastName, email, password) === 200 ? window.alert("Account Suceesfully created") : window.alert("Error in creating account"); //TODO: add a popup that looks pretty
             } else if (identity === "Landlord") {
-                registerLandlord(firstName, lastName, email, password)
+                registerLandlord(firstName, lastName, email, password) === 200 ? window.alert("Account Suceesfully created") : window.alert("Error in creating account");
             }
         }
         // let response = checkAccount(email, password);
         // navigate("/tenant_profile");
     };
 
-    const handleRegisterClick = () => {
+    const handleLoginClick = () => {
         localStorage.clear();
         navigate("/login");
     };
@@ -60,11 +62,11 @@ export const RegisterProfile = () => {
                 <EntryTextField placeholder={"First Name"} fieldValue={firstName} fieldOnChange={handleChangeFirstName}/>
                 <EntryTextField placeholder={"Last Name"} fieldValue={lastName} fieldOnChange={handleChangeLastName}/>
                 <EntryTextField placeholder={"Email"} fieldValue={email} fieldOnChange={handleChangeEmail}/>
-                <EntryTextField placeholder={"Password"} fieldValue={password} fieldOnChange={handleChangePassword}/>
-                <Radio value={identity} onChange={handleChangeIdentity} options={[{"value": "Tenant"},{"value": "Landlord"}]}/>
-                <Button buttonName={"Register"} onClick={handleSubmitClick}/>
-                <Button buttonName={"Login"} buttonOnClick={handleRegisterClick}/>
+                <EntryTextField placeholder={"Password"} fieldValue={password} fieldOnChange={handleChangePassword} isPassword={true}/>
+                <RoleRadioSelector handleChangeIdentity={handleChangeIdentity}/>
             </EntryBox>
         </>
     );
 };
+
+//<Radio value={identity} onChange={handleChangeIdentity} options={[{"value": "Tenant", "key":"Tenant"},{"value": "Landlord", "key": "Landlord"}]}/>
