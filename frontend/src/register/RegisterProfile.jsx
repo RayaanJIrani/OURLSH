@@ -1,7 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import {registerTenant, registerLandlord, checkTenantAccount, checkLandlordAccount} from "../api/UserApi";
-import {WelcomeHeader, EntryBox, EntryTextField, Button, RoleRadioSelector} from "../components";
+import {WelcomeHeader, EntryBox, EntryTextField, Button, RoleRadioSelector, Notification} from "../components";
 
 export const RegisterProfile = () => {
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ export const RegisterProfile = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [identity, setIdentity] = useState("");
-    // const navigate = useNavigate();
+    const [sendNotification, setSendNotification] = useState(false);
 
     const handleChangeFirstName = (e) => {
         setFirstName(e.target.value);
@@ -42,17 +42,18 @@ export const RegisterProfile = () => {
             if (identity === "Tenant") {
                 registerTenant(firstName, lastName, email, password).then((response) => {
                     if (response.status <= 201) {
-                        window.alert("Tenant account created successfully");
+                        // navigate("/tenant/dashboard");
                     } else {
-                        window.alert("Email already exists");
+                        console.log("Account not succesfuly created");
+                        setSendNotification(true);
                     }
                 });
             } else if (identity === "Landlord") {
                 registerLandlord(firstName, lastName, email, password).then((response) => {
                     if (response.status <= 201) {
-                        window.alert("Landlord account created successfully");
                     } else {
-                        window.alert("Email already exists");
+                        console.log("Account not sucessfuly created");
+                        setSendNotification(true);
                     }
                 });
             }
@@ -69,6 +70,7 @@ export const RegisterProfile = () => {
     return (
         <>
             <WelcomeHeader/>
+            {sendNotification && <Notification type={"danger"} message={"Registration not successful"}/>}
             <EntryBox title={"Register"}>
                 <EntryTextField placeholder={"First Name"} fieldValue={firstName} fieldOnChange={handleChangeFirstName}/>
                 <EntryTextField placeholder={"Last Name"} fieldValue={lastName} fieldOnChange={handleChangeLastName}/>
