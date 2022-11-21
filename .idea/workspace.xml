@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ef2f5184-4b78-4ad1-ba57-3478b56ca4f0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/EntryTextField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/EntryTextField.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/RoleRadioSelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/RoleRadioSelector.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669061646327</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added a way to handle passwords">
+      <created>1669062319805</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669062319805</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -143,6 +149,7 @@
     <MESSAGE value="Register should work?" />
     <MESSAGE value="This changes the Radio component into the more specific RoleRadioSelector to render the buttons for selection." />
     <MESSAGE value="Finished connection." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished connection." />
+    <MESSAGE value="Added a way to handle passwords" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a way to handle passwords" />
   </component>
 </project>

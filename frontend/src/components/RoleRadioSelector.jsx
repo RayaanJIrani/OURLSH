@@ -1,4 +1,4 @@
-//This component is used to select the role of the user between Landlord and Tenant
+//This is a component which creates a way to select between tenant and landlord as the role using radio buttons. It is used in the register page & the login page.
 export const RoleRadioSelector = ({handleChangeIdentity}) => {
     return (
         <div
@@ -20,7 +20,7 @@ export const RoleRadioSelector = ({handleChangeIdentity}) => {
                     Tenant
                 </label>
             </div>
-            <div className="col-7 d-flex ">
+            <div className="col-7 d-flex">
                 <input
                     className=""
                     type="radio"
