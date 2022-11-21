@@ -1,25 +1,25 @@
-// import { TextField } from "@mui/material";
-// import { Button } from "@material-ui/core";
-// import { Link, useNavigate} from 'react-router-dom';
-import "./RegisterProfile.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { registerTenant, registerLandlord, checkAccount } from "../api/UserApi";
-
+import {registerTenant, registerLandlord, checkTenantAccount, checkLandlordAccount} from "../api/UserApi";
+import {WelcomeHeader, EntryBox, EntryTextField, Button, RoleRadioSelector} from "../components";
 
 export const RegisterProfile = () => {
     const navigate = useNavigate();
     localStorage.clear();
-
-    //The following are the states for the input fields
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [identity, setIdentity]=useState('tenant');
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-
-    // const [identity, setIdentity]=useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [identity, setIdentity] = useState("");
     // const navigate = useNavigate();
+
+    const handleChangeFirstName = (e) => {
+        setFirstName(e.target.value);
+    }
+
+    const handleChangeLastName = (e) => {
+        setLastName(e.target.value);
+    }
 
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
@@ -31,87 +31,53 @@ export const RegisterProfile = () => {
 
     const handleChangeIdentity = (e) => {
         setIdentity(e.target.value);
-    }
+    };
 
-    const handleChangeFirstName = (e) => {
-        setFirstName(e.target.value);
-    }
-
-    const handleChangeLastName = (e) => {
-        setLastName(e.target.value);
-    }
-
-
-    // const handleChangeIdentity=(e)=>{
-    //     setIdentity(e.target.value);
-    // }
-
-    // value={identity} onChange={handleChangeIdentity}
-
-    const handleSubmitClick = () => {
+    const handleRegisterClick = () => {
+        console.log("A click to register");
         localStorage.clear();
-        if (identity === "tenant") {
-            registerTenant(email, password, firstName, lastName);
-        } else if (identity === "landlord") {
-            registerLandlord(email, password, firstName, lastName);
+        if (!identity) {
+            window.alert("Select Tenant or Landlord");
+        } else {
+            if (identity === "Tenant") {
+                registerTenant(firstName, lastName, email, password).then((response) => {
+                    if (response.status <= 201) {
+                        window.alert("Tenant account created successfully");
+                    } else {
+                        window.alert("Email already exists");
+                    }
+                });
+            } else if (identity === "Landlord") {
+                registerLandlord(firstName, lastName, email, password).then((response) => {
+                    if (response.status <= 201) {
+                        window.alert("Landlord account created successfully");
+                    } else {
+                        window.alert("Email already exists");
+                    }
+                });
+            }
         }
         // let response = checkAccount(email, password);
         // navigate("/tenant_profile");
     };
 
+    const handleLoginClick = () => {
+        localStorage.clear();
+        navigate("/login");
+    };
+
     return (
         <>
-            <div className="homeTitle">
-                <h1>WELCOME TO OURLSH</h1>
-            </div>
-            <div className="register">
-                <div className="registerBox">
-                    <h1>Register</h1>
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="First Name"
-                        value={firstName}
-                        onChange={handleChangeFirstName}
-                    />
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Last Name"
-                        value={lastName}
-                        onChange={handleChangeLastName}
-                    />
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Email"
-                        value={email}
-                        onChange={handleChangeEmail}
-                    />
-                    <input
-                        type="password"
-                        className="form-control"
-                        placeholder="Password"
-                        value={password}
-                        onChange={handleChangePassword}
-                    />
-                </div>
-                <div className="Radio">
-                    <input type="radio"
-                           id="Tenant"
-                           name="fav_language"
-                    />{" "}
-                    <label htmlFor="html">Tenant</label>
-                    <br></br>
-                    <input type="radio" id="Landload" name="fav_language" />{" "}
-                    <label htmlFor="html">Landload</label>
-                    <br></br>
-                </div>
-                <button type="button" onClick={handleSubmitClick}>
-                    Submit
-                </button>
-            </div>
-            <div className="showPhoto"></div>
+            <WelcomeHeader/>
+            <EntryBox title={"Register"}>
+                <EntryTextField placeholder={"First Name"} fieldValue={firstName} fieldOnChange={handleChangeFirstName}/>
+                <EntryTextField placeholder={"Last Name"} fieldValue={lastName} fieldOnChange={handleChangeLastName}/>
+                <EntryTextField placeholder={"Email"} fieldValue={email} fieldOnChange={handleChangeEmail}/>
+                <EntryTextField placeholder={"Password"} fieldValue={password} fieldOnChange={handleChangePassword} isPassword={true}/>
+                <RoleRadioSelector handleChangeIdentity={handleChangeIdentity}/>
+                <Button buttonName={"Register"} handleClick={handleRegisterClick}/>
+                <Button buttonName={"Login"} handleClick={handleLoginClick}/>
+            </EntryBox>
         </>
     );
 };
