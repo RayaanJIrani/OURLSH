@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef2f5184-4b78-4ad1-ba57-3478b56ca4f0" name="Changes" comment="This changes the Radio component into the more specific RoleRadioSelector to render the buttons for selection.">
+    <list default="true" id="ef2f5184-4b78-4ad1-ba57-3478b56ca4f0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/UserApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/UserApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/EntryTextField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/EntryTextField.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668817935114</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Finished connection.">
+      <created>1669061646327</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669061646327</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -135,6 +142,7 @@
     <MESSAGE value="Fixed the bug from earlier. Now the buttons work?" />
     <MESSAGE value="Register should work?" />
     <MESSAGE value="This changes the Radio component into the more specific RoleRadioSelector to render the buttons for selection." />
-    <option name="LAST_COMMIT_MESSAGE" value="This changes the Radio component into the more specific RoleRadioSelector to render the buttons for selection." />
+    <MESSAGE value="Finished connection." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished connection." />
   </component>
 </project>

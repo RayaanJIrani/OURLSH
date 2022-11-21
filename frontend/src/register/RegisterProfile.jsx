@@ -30,7 +30,6 @@ export const RegisterProfile = () => {
     };
 
     const handleChangeIdentity = (e) => {
-        console.log("Changed identity to: " + e.target.value);
         setIdentity(e.target.value);
     };
 
