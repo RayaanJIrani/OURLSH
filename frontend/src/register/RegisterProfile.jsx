@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { registerTenant, registerLandlord } from "../api/UserApi";
+import {registerTenant, registerLandlord, checkTenantAccount, checkLandlordAccount} from "../api/UserApi";
 import {WelcomeHeader, EntryBox, EntryTextField, Button, RoleRadioSelector} from "../components";
 
 export const RegisterProfile = () => {
@@ -41,9 +41,21 @@ export const RegisterProfile = () => {
             window.alert("Select Tenant or Landlord");
         } else {
             if (identity === "Tenant") {
-                registerTenant(firstName, lastName, email, password) === 200 ? window.alert("Account Suceesfully created") : window.alert("Error in creating account"); //TODO: add a popup that looks pretty
+                registerTenant(firstName, lastName, email, password).then((response) => {
+                    if (response.status <= 201) {
+                        window.alert("Tenant account created successfully");
+                    } else {
+                        window.alert("Email already exists");
+                    }
+                });
             } else if (identity === "Landlord") {
-                registerLandlord(firstName, lastName, email, password) === 200 ? window.alert("Account Suceesfully created") : window.alert("Error in creating account");
+                registerLandlord(firstName, lastName, email, password).then((response) => {
+                    if (response.status <= 201) {
+                        window.alert("Landlord account created successfully");
+                    } else {
+                        window.alert("Email already exists");
+                    }
+                });
             }
         }
         // let response = checkAccount(email, password);
@@ -64,9 +76,9 @@ export const RegisterProfile = () => {
                 <EntryTextField placeholder={"Email"} fieldValue={email} fieldOnChange={handleChangeEmail}/>
                 <EntryTextField placeholder={"Password"} fieldValue={password} fieldOnChange={handleChangePassword} isPassword={true}/>
                 <RoleRadioSelector handleChangeIdentity={handleChangeIdentity}/>
+                <Button buttonName={"Register"} handleClick={handleRegisterClick}/>
+                <Button buttonName={"Login"} handleClick={handleLoginClick}/>
             </EntryBox>
         </>
     );
 };
-
-//<Radio value={identity} onChange={handleChangeIdentity} options={[{"value": "Tenant", "key":"Tenant"},{"value": "Landlord", "key": "Landlord"}]}/>

@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef2f5184-4b78-4ad1-ba57-3478b56ca4f0" name="Changes" comment="Register should work?">
+    <list default="true" id="ef2f5184-4b78-4ad1-ba57-3478b56ca4f0" name="Changes" comment="This changes the Radio component into the more specific RoleRadioSelector to render the buttons for selection.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Radio.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Radio.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/textField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/textField.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/UserApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/UserApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +24,13 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
   </component>
   <component name="ProjectId" id="2HSs3bLDBF6JzZmgVcqm0drGTv4" />
   <component name="ProjectViewState">
@@ -109,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668758372888</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="This changes the Radio component into the more specific RoleRadioSelector to render the buttons for selection.">
+      <created>1668817935114</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668817935114</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -122,6 +134,7 @@
     <MESSAGE value="Have the basic of the Radio done, need to fix some of the functionality" />
     <MESSAGE value="Fixed the bug from earlier. Now the buttons work?" />
     <MESSAGE value="Register should work?" />
-    <option name="LAST_COMMIT_MESSAGE" value="Register should work?" />
+    <MESSAGE value="This changes the Radio component into the more specific RoleRadioSelector to render the buttons for selection." />
+    <option name="LAST_COMMIT_MESSAGE" value="This changes the Radio component into the more specific RoleRadioSelector to render the buttons for selection." />
   </component>
 </project>
