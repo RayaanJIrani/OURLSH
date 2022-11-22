@@ -126,7 +126,7 @@ export const registerTenant = (firstName, lastName, email, password) => new Prom
         password: password
     })
         .then(function (response) {
-            if (response.status === 200) {
+            if (response.status === 201) {
                 sessionStorage.setItem('token', response.data.accessToken);
                 console.log('this is the response: ');
                 resolve(response);
@@ -149,7 +149,7 @@ export const registerLandlord = (firstName, lastName, email, password) => new Pr
         password: password
     })
         .then(function (response) {
-            if (response.status === 200) {
+            if (response.status === 201) {
                 sessionStorage.setItem('token', response.data.accessToken);
                 console.log('this is the response: ');
                 resolve(response);
