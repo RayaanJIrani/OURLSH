@@ -30,17 +30,16 @@ router.post('/tenant', async (req, res, next) => {
                 password,
                 first_name,
                 last_name);
-
-        res.status(201).json(registerTenant);
+        console.log("Account created, logging in...")
+        const loginAsTenant = await req.models.login.authenticateTenant(req, email, password);
+        res.status(201).json(loginAsTenant);
         next();
     }
-    else if(tenants.length > 0)
-    {
+    else if (tenants.length > 0) {
         console.log(`Tenant account already created with email address = ${email}`);
         return res.sendStatus(400);
     }
-    else
-    {
+    else {
         console.log(`Unknown error has occured`);
         return res.sendStatus(401);
     }
@@ -66,17 +65,16 @@ router.post('/landlord', async (req, res, next) => {
                 password,
                 first_name,
                 last_name);
-
-        res.status(201).json(registerLandlord);
+        console.log("Account created, logging in...")
+        const loginAsLandlord = await req.models.login.authenticateLandlord(req, email, password);
+        res.status(201).json(loginAsLandlord);
         next();
     }
-    else if(landlords.length > 0)
-    {
+    else if (landlords.length > 0) {
         console.log(`Landlord account already created with that email address = ${email}`);
         return res.sendStatus(400);
     }
-    else
-    {
+    else {
         console.log(`Unknown error has occured`);
         return res.sendStatus(401);
     }
