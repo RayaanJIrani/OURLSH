@@ -44,7 +44,7 @@ export const RegisterProfile = () => {
                     if (response.status <= 201) {
                         window.alert("Tenant account created successfully");
                     } else {
-                        window.alert("Email already exists");
+                        window.alert("Error in registration");
                     }
                 });
             } else if (identity === "Landlord") {
@@ -52,7 +52,7 @@ export const RegisterProfile = () => {
                     if (response.status <= 201) {
                         window.alert("Landlord account created successfully");
                     } else {
-                        window.alert("Email already exists");
+                        window.alert("Error in registration");
                     }
                 });
             }
