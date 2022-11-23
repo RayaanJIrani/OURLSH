@@ -56,4 +56,22 @@ router.put('/:id', async (req, res, next) => {
     }
 });
 
+router.get('/', async (req, res, next) => {
+    const params = req.query;
+    console.log("params = ", req.query);
+    const landlord_id = params.landlord
+    if(landlord_id === undefined)
+    {
+        const getAllTenants = await req.models.tenant.getAllTenants();
+        res.json(getAllTenants);
+        next();
+    }
+    else{
+        const getAllTenantsUnderLandlord = await req.models.tenant.getTenantsByLandlord(landlord_id);
+        res.json(getAllTenantsUnderLandlord);
+        next();
+    }
+
+});
+
 module.exports = router;
