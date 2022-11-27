@@ -24,7 +24,7 @@ router.get('/:id', async (req, res, next) => {
         }
         else
         {
-            res.json(tenantByID[0]);
+            res.json(tenantByID);
         }
     }
     next();
