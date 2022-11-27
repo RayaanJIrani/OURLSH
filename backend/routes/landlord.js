@@ -46,7 +46,7 @@ router.put('/:id', async (req, res, next) => {
         else
         {
             const updatelandlord = await req.models.landlord.updateLandlordById(id, req.body.email, req.body.first_name, req.body.last_name, req.body.photo);
-            res.json(updatelandlord);
+            res.json(updatelandlord[0]);
             next();
         }
     }
