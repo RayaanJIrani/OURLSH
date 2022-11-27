@@ -13,9 +13,9 @@ export const Router = () => {
         { path: '/login', element: <LoginPage /> },
         { path: '/tenants/:id', element: <TenantProfile /> },
         { path: '/landlords/:id', element: <LandlordProfile /> },
+        { path: '/workorders', element: <WorkOrderList /> },
         { path: '/register', element: <RegisterProfile /> },
-        { path: '/404', element: <Page404 /> },
-        { path: '/workorderlists', element: <WorkOrderList /> }
+        { path: '/404', element: <Page404 /> }
     ]);
 }
 

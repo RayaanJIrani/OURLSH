@@ -23,7 +23,7 @@ export const LandlordProfile = () => {
     navigate("/");
   }; //back to log in page
   const handleWorkorderlist = () => {
-    navigate("/workorderlists");
+    navigate("/workorders");
   }; //redirect to work order list page
   const handleTenantlist = () => {
     navigate("/tenantlist");

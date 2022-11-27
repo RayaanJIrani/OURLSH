@@ -27,7 +27,7 @@ export const TenantProfile = () => {
     navigate("/");
   }; //back to log in page
   const handleWorkorderlist = () => {
-    navigate("/workorderlists");
+    navigate("/workorders");
   }; //redirect to work order list page
   const handleWorkorder = () => {
     navigate("/workorder");

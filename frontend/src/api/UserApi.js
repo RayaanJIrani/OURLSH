@@ -172,5 +172,35 @@ export const registerLandlord = (firstName, lastName, email, password) => new Pr
         });
 });
 
+export const getWorkOrders = () => new Promise((resolve,reject) => {
+    let apiConfig={
+        headers:{
+            token : localStorage.getItem('token')
+        }
+    };
+    axios.get(`${baseEndpoint}/workorders`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+    });
+});
+
+export const getWorkOrderById = (id) => new Promise((resolve,reject) => {
+    let apiConfig={
+        headers:{
+            token : localStorage.getItem('token')
+        }
+    };
+    axios.get(`${baseEndpoint}/workorders/${id}`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+    });
+});
+
+
+
 
 
