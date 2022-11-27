@@ -6,7 +6,7 @@ export const checkTenantAccount = (email,password) =>new Promise((resolve, rejec
   axios.post(baseEndpoint+'/login/tenant',{email:email, password:password})
           .then(function(response){
               if(response.status === 200){
-                  localStorage.setItem('token',response.data); //存token 
+                  localStorage.setItem('token',response.data.token); //存token 
                   window.location.href="./tenants/"+response.data.id; 
                   window.alert("Successfully log in!!"); 
               }
@@ -29,7 +29,7 @@ export const checkLandlordAccount = (email,password) =>new Promise((resolve, rej
   axios.post(baseEndpoint+'/login/landlord',{email:email, password:password})
           .then(function(response){
               if(response.status === 200){
-                  localStorage.setItem('token',response.data);//存token
+                  localStorage.setItem('token',response.data.token);//存token
 
                   window.location.href="./landlords/"+response.data.id; 
                   window.alert("Successfully log in!!"); 
@@ -52,7 +52,7 @@ export const checkLandlordAccount = (email,password) =>new Promise((resolve, rej
 export const getTenantInfo = (id) => new Promise((resolve, reject) => {
     let apiConfig = {
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),//login放token如local storage，我再取
+        token: localStorage.getItem("token"),//login放token如local storage，我再取
       },
     };
     axios
@@ -68,7 +68,7 @@ export const getTenantInfo = (id) => new Promise((resolve, reject) => {
 export const getLandlordInfo = (id) => new Promise((resolve, reject) => {
   let apiConfig = {
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("token"),//login放token如local storage，我再取
+        token: localStorage.getItem("token"),//login放token如local storage，我再取
     },
   };
   axios
