@@ -1,4 +1,4 @@
-export const TextField = ({ label, value, setValue }) => <>
+export const TextField = ({ label, value, setValue}) => <>
     <div className="form-group mb-3">
         <label htmlFor="value">{ label }</label>
         <input type="text"

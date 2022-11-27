@@ -18,10 +18,11 @@ router.post('/tenant', async (req, res, next) => {
     let first_name = req.body.first_name;
     let last_name = req.body.last_name;
 
-    if (checkIfValid(email) || password === undefined || first_name === undefined || last_name === undefined) {
-        return res.sendStatus(400);
+    if (!checkIfValid(email) || password === undefined || first_name === undefined || last_name === undefined) {
+        return res.sendStatus(406);
     }
     const tenants = await req.models.tenant.loginFetchTenantByEmail(email);
+    console.log(tenants)
     if (tenants.length === 0) {
         console.log(`No tenants matched the email: ${email}, creating account`);
         const registerTenant = await req.models.register.createTenant
@@ -29,17 +30,16 @@ router.post('/tenant', async (req, res, next) => {
                 password,
                 first_name,
                 last_name);
-
-        res.status(201).json(registerTenant);
+        console.log("Account created, logging in...")
+        const loginAsTenant = await req.models.login.authenticateTenant(req, email, password);
+        res.status(201).json(loginAsTenant);
         next();
     }
-    else if(tenants.length > 0)
-    {
+    else if (tenants.length > 0) {
         console.log(`Tenant account already created with email address = ${email}`);
         return res.sendStatus(400);
     }
-    else
-    {
+    else {
         console.log(`Unknown error has occured`);
         return res.sendStatus(401);
     }
@@ -53,9 +53,10 @@ router.post('/landlord', async (req, res, next) => {
     let first_name = req.body.first_name
     let last_name = req.body.last_name
 
-    if (checkIfValid(email) || password === undefined || first_name === undefined || last_name === undefined) {
-        return res.sendStatus(400);
-    }
+
+     if (!checkIfValid(email) || password === undefined || first_name === undefined || last_name === undefined) {
+         return res.sendStatus(406);
+     }
 
     const landlords = await req.models.landlord.loginFetchLandlordByEmail(email);
     if (landlords.length === 0) {
@@ -65,17 +66,16 @@ router.post('/landlord', async (req, res, next) => {
                 password,
                 first_name,
                 last_name);
-
-        res.status(201).json(registerLandlord);
+        console.log("Account created, logging in...")
+        const loginAsLandlord = await req.models.login.authenticateLandlord(req, email, password);
+        res.status(201).json(loginAsLandlord);
         next();
     }
-    else if(landlords.length > 0)
-    {
+    else if (landlords.length > 0) {
         console.log(`Landlord account already created with that email address = ${email}`);
         return res.sendStatus(400);
     }
-    else
-    {
+    else {
         console.log(`Unknown error has occured`);
         return res.sendStatus(401);
     }
