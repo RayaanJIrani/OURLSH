@@ -31,7 +31,7 @@ const loginFetchTenantByEmail = async (email) => {
 }
 
 
-const updateTenantById = async (id, email, first_name, last_name, photo) => {
+const updateTenantById = async (id, email, first_name, last_name, pfp) => {
 
    if (email !== undefined) {
       const query = knex(TENANT_TABLE).update({ email }).where({ id });
@@ -45,8 +45,8 @@ const updateTenantById = async (id, email, first_name, last_name, photo) => {
       const query = knex(TENANT_TABLE).update({ last_name }).where({ id });
       const results = await query;
    }
-   if (photo !== undefined) {
-      const query = knex(TENANT_TABLE).update({ photo }).where({ id });
+   if (pfp !== undefined) {
+      const query = knex(TENANT_TABLE).update({ pfp }).where({ id });
       const results = await query;
    }
    const query = knex(TENANT_TABLE).where({ id });
