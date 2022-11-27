@@ -84,16 +84,22 @@ export const getLandlordInfo = (id) => new Promise((resolve, reject) => {
 export const updateTenantProfile = (id, body) =>new Promise((resolve,reject)=>{
     let apiConfig={
         headers:{
-            Authorization:'Bearer ' + localStorage.getItem('token')
+            token: localStorage.getItem('token'),
         }
     };
+    console.log(body);
     axios
         .put(`${baseEndpoint}/tenants/${id}`, {body}, apiConfig)
         .then(function(response){
             console.log("Successfully changed!!");
         })
         .catch(function(error){
-            window.alert(error);
+            if(error.response.status === 403){
+                window.alert("exist email");
+            }
+            else{
+                window.alert(error);
+            }
         });
 });
 
@@ -101,16 +107,22 @@ export const updateTenantProfile = (id, body) =>new Promise((resolve,reject)=>{
 export const updateLandlordProfile = (id, body) =>new Promise((resolve,reject)=>{
     let apiConfig={
         headers:{
-            Authorization:'Bearer ' + localStorage.getItem('token')
+            token: localStorage.getItem('token'),
         }
     };
+    console.log(body);
     axios
         .put(`${baseEndpoint}/tenants/${id}`, {body}, apiConfig)
         .then(function(response){
             console.log("Successfully changed!!");
         })
         .catch(function(error){
-            window.alert(error);
+            if(error.response.status === 403){
+                window.alert("exist email");
+            }
+            else{
+                window.alert(error);
+            }
         });
 });
 

@@ -51,7 +51,7 @@ export const TenantProfile = () => {
           return (
             <img
               src={tenant.photo}
-              className="my-4 col-4 rounded mx-auto d-block"
+              className="my-4 col- rounded mx-auto d-block"
             />
           );
         }
