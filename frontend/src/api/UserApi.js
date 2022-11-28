@@ -135,9 +135,9 @@ export const registerTenant = (firstName, lastName, email, password) => new Prom
     })
         .then(function (response) {
             if (response.status === 201) {
-                sessionStorage.setItem('token', response.data.accessToken);
-                console.log('this is the response: ');
-                resolve(response);
+                localStorage.setItem('token',response.data.token); //存token
+                window.location.href="./tenants/"+response.data.id;
+                window.alert("Successfully Registered!!");
             } else {
                 window.alert("Register with error");
             }
@@ -158,9 +158,9 @@ export const registerLandlord = (firstName, lastName, email, password) => new Pr
     })
         .then(function (response) {
             if (response.status === 201) {
-                sessionStorage.setItem('token', response.data.accessToken);
-                console.log('this is the response: ');
-                resolve(response);
+                localStorage.setItem('token',response.data.token);//token
+                window.location.href="./landlords/"+response.data.id;
+                window.alert("Successfully log in!!");
             } else {
                 window.alert("Register with error");
             }

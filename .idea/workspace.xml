@@ -7,7 +7,6 @@
     <list default="true" id="ef2f5184-4b78-4ad1-ba57-3478b56ca4f0" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/frontend/src/404/Page404.jsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/404/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/utils/Routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/Routes.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/EntryTextField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/EntryTextField.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/register/RegisterProfile.jsx" afterDir="false" />
@@ -39,6 +38,9 @@
         <option value="main" />
       </list>
     </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2HSs3bLDBF6JzZmgVcqm0drGTv4" />
   <component name="ProjectViewState">
@@ -161,5 +163,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added thing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added thing" />
   </component>
 </project>
