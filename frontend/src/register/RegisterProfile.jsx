@@ -40,21 +40,9 @@ export const RegisterProfile = () => {
             window.alert("Select Tenant or Landlord");
         } else {
             if (identity === "Tenant") {
-                registerTenant(firstName, lastName, email, password).then((response) => {
-                    if (response.status <= 201) {
-                        window.alert("Tenant account created successfully");
-                    } else {
-                        window.alert("Error in registration");
-                    }
-                });
+                registerTenant(firstName, lastName, email, password);
             } else if (identity === "Landlord") {
-                registerLandlord(firstName, lastName, email, password).then((response) => {
-                    if (response.status <= 201) {
-                        window.alert("Landlord account created successfully");
-                    } else {
-                        window.alert("Error in registration");
-                    }
-                });
+                registerLandlord(firstName, lastName, email, password);
             }
         }
         // let response = checkAccount(email, password);
