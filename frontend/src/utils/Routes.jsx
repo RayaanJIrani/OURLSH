@@ -4,6 +4,7 @@ import {LandlordProfile} from "../profile/landlordProfile";
 import {RegisterProfile} from "../register/RegisterProfile";
 import {Page404} from "../404";
 import {WorkOrderList} from "../workOrderList/workOrderList";
+import {PaymentPage} from "../payment/payment";
 import { Navigate, useRoutes } from 'react-router-dom';
 
 export const Router = () => {
@@ -15,7 +16,8 @@ export const Router = () => {
         { path: '/landlords/:id', element: <LandlordProfile /> },
         { path: '/workorders', element: <WorkOrderList /> },
         { path: '/register', element: <RegisterProfile /> }, 
-        { path: '/404', element: <Page404 /> }
+        { path: '/404', element: <Page404 /> },
+        { path: '/payments', element: <PaymentPage /> }
     ]);
 }
 
