@@ -30,7 +30,7 @@ export const WorkOrderList = () => {
         {workOrderList.map((workOrder) => (
           <li key={workOrder.wo_num} className="list-group-item">
             <div className="col badge badge-pill bg-primary align-top float-none"> 
-            {workOrder.status} </div>
+            {workOrder.status ? "Open" : "Closed"} </div>
             <div className="float-end">Date: {workOrder.date}</div> 
             <div className="fw-bold clearfix row">
               <div className="col"> Prop ID: {workOrder.prop_id} </div>

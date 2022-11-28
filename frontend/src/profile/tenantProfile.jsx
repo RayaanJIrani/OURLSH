@@ -33,7 +33,7 @@ export const TenantProfile = () => {
     navigate("/workorder");
   }; //redirect to work order page
   const handlePayment = () => {
-    navigate("/payment");
+    navigate("/payments");
   }; //redirect to payment page
 
   return (
