@@ -34,7 +34,6 @@ router.get('/', async (req, res, next) => {
     }
     console.log("returned list =", newWorkOrders)
     res.status(200).json(newWorkOrders);
-
     next();
 });
 

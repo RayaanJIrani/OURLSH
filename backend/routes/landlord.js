@@ -37,15 +37,21 @@ router.put('/:id', async (req, res, next) => {
     console.log(res.status)
     if (res.status === 200)
     {
-        const landlords = await req.models.landlord.loginFetchLandlordByEmail(req.body.email);
-        if(landlords.length > 0)
-        {
-            console.log("Cannot update, email is already in use")
-            res.sendStatus(403);
-        }
-        else
-        {
-            const updatelandlord = await req.models.landlord.updateLandlordById(id, req.body.email, req.body.first_name, req.body.last_name, req.body.photo);
+        if(req.body.body.email !== undefined){
+            const landlords = await req.models.landlord.loginFetchLandlordByEmail(req.body.body.email);
+            if(landlords.length > 0)
+            {
+                console.log("Cannot update, email is already in use")
+                res.sendStatus(403);
+            }
+            else
+            {
+                const updatelandlord = await req.models.landlord.updateLandlordById(id, req.body.body.email, req.body.body.first_name, req.body.body.last_name, req.body.body.photo);
+                res.json(updatelandlord[0]);
+                next();
+            }
+        }else{
+            const updatelandlord = await req.models.landlord.updateLandlordById(id, req.body.body.email, req.body.body.first_name, req.body.body.last_name, req.body.body.photo);
             res.json(updatelandlord[0]);
             next();
         }

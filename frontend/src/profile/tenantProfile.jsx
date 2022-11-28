@@ -27,13 +27,13 @@ export const TenantProfile = () => {
     navigate("/");
   }; //back to log in page
   const handleWorkorderlist = () => {
-    navigate("/workorderlist");
+    navigate("/workorders");
   }; //redirect to work order list page
   const handleWorkorder = () => {
     navigate("/workorder");
   }; //redirect to work order page
   const handlePayment = () => {
-    navigate("/payment");
+    navigate("/payments");
   }; //redirect to payment page
 
   return (
@@ -44,14 +44,14 @@ export const TenantProfile = () => {
           return (
             <img
               src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png"
-              className="my-4 rounded mx-auto d-block"
+              className="my-4 col-4 rounded mx-auto d-block"
             />
           );
         } else {
           return (
             <img
               src={tenant.photo}
-              className="my-4 rounded mx-auto d-block"
+              className="my-4 col- rounded mx-auto d-block"
             />
           );
         }
@@ -109,12 +109,12 @@ export const TenantProfile = () => {
         <div className="container col-md-8 col-lg-8 col-11 p-4 border-top">
           <h5>Edit Profile:</h5>
           <TextField
-            label="New Last Name"
+            label="New First Name"
             value={tenant.first_name}
             setValue={(first_name) => mergeTenant({ first_name })}
           />
           <TextField
-            label="New First Name"
+            label="New Last Name"
             value={tenant.last_name}
             setValue={(last_name) => mergeTenant({ last_name })}
           />

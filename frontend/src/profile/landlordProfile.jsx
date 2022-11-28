@@ -23,7 +23,7 @@ export const LandlordProfile = () => {
     navigate("/");
   }; //back to log in page
   const handleWorkorderlist = () => {
-    navigate("/workorderlist");
+    navigate("/workorders");
   }; //redirect to work order list page
   const handleTenantlist = () => {
     navigate("/tenantlist");
@@ -37,14 +37,14 @@ export const LandlordProfile = () => {
           return (
             <img
               src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png"
-              className="my-4 rounded mx-auto d-block"
+              className="my-4 col-4 rounded mx-auto d-block"
             />
           );
         } else {
           return (
             <img
               src={landlord.photo}
-              className="my-4 rounded mx-auto d-block"
+              className="my-4 col-4 rounded mx-auto d-block"
             />
           );
         }
@@ -91,12 +91,12 @@ export const LandlordProfile = () => {
         <div className="container col-md-8 col-lg-8 col-11 p-4 border-top">
           <h5>Edit Profile:</h5>
           <TextField
-            label="New Last Name"
+            label="New First Name"
             value={landlord.first_name}
             setValue={(first_name) => mergeLandlord({ first_name })}
           />
           <TextField
-            label="New First Name"
+            label="New Last Name"
             value={landlord.last_name}
             setValue={(last_name) => mergeLandlord({ last_name })}
           />

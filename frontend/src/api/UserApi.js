@@ -6,10 +6,8 @@ export const checkTenantAccount = (email,password) =>new Promise((resolve, rejec
   axios.post(baseEndpoint+'/login/tenant',{email:email, password:password})
           .then(function(response){
               if(response.status === 200){
-                  localStorage.setItem('token',response.data); //存token
-                  window.location.href="./tenants";
-                  // window.location.href="./tenant_profile/"+response.data.id;
-                  // window.location.href="./tenant_profile/"+localStorage.getItem('id');
+                  localStorage.setItem('token',response.data.token); //存token 
+                  window.location.href="./tenants/"+response.data.id; 
                   window.alert("Successfully log in!!"); 
               }
               else{
@@ -31,11 +29,9 @@ export const checkLandlordAccount = (email,password) =>new Promise((resolve, rej
   axios.post(baseEndpoint+'/login/landlord',{email:email, password:password})
           .then(function(response){
               if(response.status === 200){
-                  localStorage.setItem('token',response.data);//存token
+                  localStorage.setItem('token',response.data.token);//存token
 
-                  window.location.href="./landlords";
-                  // window.location.href="./tenant_profile/"+response.data.id;
-                  // window.location.href="./tenant_profile/"+localStorage.getItem('id');
+                  window.location.href="./landlords/"+response.data.id; 
                   window.alert("Successfully log in!!"); 
               }
               else{
@@ -56,7 +52,7 @@ export const checkLandlordAccount = (email,password) =>new Promise((resolve, rej
 export const getTenantInfo = (id) => new Promise((resolve, reject) => {
     let apiConfig = {
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),//login放token如local storage，我再取
+        token: localStorage.getItem("token"),//login放token如local storage，我再取
       },
     };
     axios
@@ -72,7 +68,7 @@ export const getTenantInfo = (id) => new Promise((resolve, reject) => {
 export const getLandlordInfo = (id) => new Promise((resolve, reject) => {
   let apiConfig = {
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("token"),//login放token如local storage，我再取
+        token: localStorage.getItem("token"),//login放token如local storage，我再取
     },
   };
   axios
@@ -88,16 +84,22 @@ export const getLandlordInfo = (id) => new Promise((resolve, reject) => {
 export const updateTenantProfile = (id, body) =>new Promise((resolve,reject)=>{
     let apiConfig={
         headers:{
-            Authorization:'Bearer ' + localStorage.getItem('token')
+            token: localStorage.getItem('token'),
         }
     };
+    console.log(body);
     axios
         .put(`${baseEndpoint}/tenants/${id}`, {body}, apiConfig)
         .then(function(response){
             console.log("Successfully changed!!");
         })
         .catch(function(error){
-            window.alert(error);
+            if(error.response.status === 403){
+                window.alert("exist email");
+            }
+            else{
+                window.alert(error);
+            }
         });
 });
 
@@ -105,16 +107,22 @@ export const updateTenantProfile = (id, body) =>new Promise((resolve,reject)=>{
 export const updateLandlordProfile = (id, body) =>new Promise((resolve,reject)=>{
     let apiConfig={
         headers:{
-            Authorization:'Bearer ' + localStorage.getItem('token')
+            token: localStorage.getItem('token'),
         }
     };
+    console.log(body);
     axios
         .put(`${baseEndpoint}/tenants/${id}`, {body}, apiConfig)
         .then(function(response){
             console.log("Successfully changed!!");
         })
         .catch(function(error){
-            window.alert(error);
+            if(error.response.status === 403){
+                window.alert("exist email");
+            }
+            else{
+                window.alert(error);
+            }
         });
 });
 
@@ -163,6 +171,36 @@ export const registerLandlord = (firstName, lastName, email, password) => new Pr
             reject(error);
         });
 });
+
+export const getWorkOrders = () => new Promise((resolve,reject) => {
+    let apiConfig={
+        headers:{
+            token : localStorage.getItem('token')
+        }
+    };
+    axios.get(`${baseEndpoint}/workorders`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+    });
+});
+
+export const getWorkOrderById = (id) => new Promise((resolve,reject) => {
+    let apiConfig={
+        headers:{
+            token : localStorage.getItem('token')
+        }
+    };
+    axios.get(`${baseEndpoint}/workorders/${id}`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+    });
+});
+
+
 
 
 
