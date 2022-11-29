@@ -3,14 +3,12 @@ import { useState, useEffect } from "react";
 import { getLandlordInfo, updateLandlordProfile } from "../api/UserApi";
 import { useNavigate, useLocation } from "react-router-dom";
 import { TextField } from "../components/textField";
+import { Nav } from "../nav/nav";
 
 export const LandlordProfile = () => {
   const navigate = useNavigate();
   const [landlord, setLandlord] = useState(undefined);
   const params = useParams();
-  const identity = localStorage.getItem("tenant") ? "tenant" : "landlord";
-  const tenant_id = localStorage.getItem("tenant") 
-  const landlord_id = localStorage.getItem("landlord")
 
   useEffect(() => {
     getLandlordInfo(params.id).then((x) => setLandlord(x));
@@ -25,96 +23,35 @@ export const LandlordProfile = () => {
   const handleLogOut = () => {
     navigate("/");
   }; //back to log in page
-  const handleWorkorderlist = () => {
-    navigate("/workorders");
-  }; //redirect to work order list page
-  const handleTenantlist = () => {
-    navigate("/tenantlist");
-  }; //redirect to tenant list page
 
   return (
     <div>
-      <nav className=" bg-black bg-opacity-50 px-3 pt-3 pb-1 my-0 navbar ">
-        <div className=" px-3">
-          <h1 className="text-center text-white">MENU</h1>
-        </div>
-        {(() => {
-          if (identity === "tenant") {
-            return (
-              <div className=" row ">
-                <div className="nav-item active col" aria-current="page">
-                  <a className="nav-link text-white  p-2 col" href=" ">
-                    OrderList{" "}
-                  </a>
-                </div>
-                <div className="nav-item col" aria-current="page">
-                  <a className="nav-link text-white p-2" href="/workorders">
-                    NewOrder{" "}
-                  </a>
-                </div>
-                <div className="nav-item col" aria-current="page">
-                  <a className="nav-link text-white  p-2" href="/payments">
-                    NewPayment{" "}
-                  </a>
-                </div>
-                <div className="nav-item col" aria-current="page">
-                  <a className="nav-link text-white  p-2" href="/profiles">
-                    MyProfile{" "}
-                  </a>
-                </div>
-              </div>
-            );
-          } else if (identity === "landlord") {
-            return (
-              <div className=" row ">
-                <div className="nav-item active col" aria-current="page">
-                  <a
-                    className="nav-link text-white  p-2 col"
-                    href="/workorders"
-                  >
-                    OrderList{" "}
-                  </a>
-                </div>
-                <div className="nav-item col" aria-current="page">
-                  <a className="nav-link text-white p-2" href="/workorders">
-                    TenantList{" "}
-                  </a>
-                </div>
-
-                <div className="nav-item col" aria-current="page">
-                  <a className="nav-link text-white  p-2" href="{tenant_id}">
-                    MyProfile{" "}
-                  </a>
-                </div>
-              </div>
-            );
-          }
-        })()}
-      </nav>
-      <div className="container my-5 bg-white border border-light border-2">
-        <h1 className="text-center border-bottom py-5 mx-5">
-          Welcome to OURLSH!
+      <Nav></Nav>
+      <div className="p-5 mt-1 pb-0">
+        <h1 className="text-center bg-white p-4 py-5 display-5 fw-bold ls-tight rounded">
+        Landlord Profile
         </h1>
+      </div>
+      <div className="m-5 rounded bg-white border border-light border-2">
         {(() => {
           if (!landlord.photo) {
             return (
               <img
                 src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png"
-                className="my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
+                className="mt-5 my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
               />
             );
           } else {
             return (
               <img
                 src={landlord.photo}
-                className="my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
+                className="mt-5 my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
               />
             );
           }
         })()}
         <div className="my-4">
           <div className="my-3 text-center">
-            <h2 className="my-3">Tenant Profile:</h2>
             <div>
               <h5 className="my-2">Tenant ID: {landlord.id}</h5>
               <h5 className="my-2">Property ID: {landlord.prop_id}</h5>

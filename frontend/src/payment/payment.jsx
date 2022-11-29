@@ -1,6 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { checkTenantAccount } from "../api/UserApi";
+import { Nav } from "../nav/nav";
 
 export const PaymentPage = () => {
 
@@ -9,11 +10,14 @@ export const PaymentPage = () => {
   //   };
   return (
     <>
-      <h1 className="container bg-white mt-5 p-5 display-5 fw-bold ls-tight rounded ">
+      <Nav></Nav>
+      <div className="p-5 mt-1 pb-0">
+        <h1 className="text-center bg-white p-4 py-5 display-5 fw-bold ls-tight rounded">
         New Payment
       </h1>
-      <div className="container p-5">
-        <div className="card px-4">
+      </div>
+      <div className="p-5">
+        <div className="card px-5 py-3">
           <p className="h8 py-3 fs-5">
             <strong>Payment Info</strong>
           </p>

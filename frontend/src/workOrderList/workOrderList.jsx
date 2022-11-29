@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getWorkOrders, getWorkOrderById } from "../api/UserApi";
+import { Nav } from "../nav/nav";
 
 export const WorkOrderList = () => {
   const navigate = useNavigate();
   const [workOrderList, setWorkOrderList] = useState([]);
-  const identity = localStorage.getItem("tenant") ? "tenant" : "landlord";
-  const tenant_id = localStorage.getItem("tenant");
-  const landlord_id = localStorage.getItem("landlord");
 
   useEffect(() => {
     getWorkOrders().then((x) => {
@@ -22,92 +20,14 @@ export const WorkOrderList = () => {
     );
   };
  
-  const handleTenantProfile = () => {
-    <Link to="/">{navigate(`/tenants/${tenant_id}`)}</Link>;
-  };
- 
-  const handleLandlordProfile = () => {
-    <Link to="/">{navigate(`/landlords/${landlord_id}`)}</Link>;
-  };
-
   return (
     <>
-      <nav className=" bg-black bg-opacity-50 px-3 pt-3 pb-1 my-0 navbar ">
-        <div className=" px-3">
-          <h1 className="text-center text-white">MENU</h1>
-        </div>
-        {(() => {
-          if (identity === "tenant") {
-            return (
-              <div className=" row ">
-                <div className="nav-item active col" aria-current="page">
-                  <a
-                    className="nav-link text-white  p-2 col"
-                    href="/workorders"
-                  >
-                    OrderList{" "}
-                  </a>
-                </div>
-                <div className="nav-item col" aria-current="page">
-                  <a className="nav-link text-white p-2" href="/workorders">
-                    NewOrder{" "}
-                  </a>
-                </div>
-                <div className="nav-item col" aria-current="page">
-                  <a className="nav-link text-white  p-2" href="/payments">
-                    NewPayment{" "}
-                  </a>
-                </div>
-                <div className="nav-item col" aria-current="page">
-                  <a
-                    className="nav-link text-white  p-2"
-                    href=""
-                    onClick={handleTenantProfile}
-                  >
-                    MyProfile{" "}
-                  </a>
-                </div>
-              </div>
-            );
-          } else if (identity === "landlord") {
-            return (
-              <div className=" row ">
-                <div className="nav-item active col" aria-current="page">
-                  <a
-                    className="nav-link text-white  p-2 col"
-                    href="/workorders"
-                  >
-                    OrderList{" "}
-                  </a>
-                </div>
-                <div className="nav-item col" aria-current="page">
-                  <a className="nav-link text-white p-2" href="/workorders">
-                    TenantList{" "}
-                  </a>
-                </div>
-
-                <div className="nav-item col" aria-current="page">
-                  <a
-                    className="nav-link text-white  p-2 "
-                    href=""
-                    onClick={handleLandlordProfile}
-                  >
-                    MyProfile{" "}
-                  </a>
-                </div>
-              </div>
-            );
-          }
-        })()}
-      </nav>
-      {/* <div className="bg-white text-left"> */}
+      <Nav></Nav>
       <div className="p-5 mt-1 pb-0">
-        <h1 className=" bg-white p-5 display-5 fw-bold ls-tight rounded ">
+        <h1 className="text-center bg-white p-4 py-5 display-5 fw-bold ls-tight rounded">
           Work Order List
         </h1>
       </div>
-
-      {/* </div> */}
       <ol className="list-group list-group-light list-group-numbered mt-2 p-5">
         {workOrderList.map((workOrder) => (
           <li key={workOrder.wo_num} className="list-group-item">

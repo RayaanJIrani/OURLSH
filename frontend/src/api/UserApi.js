@@ -33,7 +33,8 @@ export const checkLandlordAccount = (email,password) =>new Promise((resolve, rej
               if(response.status === 200){
                   localStorage.setItem('token',response.data.token); 
                   localStorage.setItem('landlord',response.data.id); 
-                  window.location.href="./landlords/"+response.data.id; 
+                  window.location.href="./workorders";
+                //   window.location.href="./landlords/"+response.data.id; 
                   window.alert("Successfully log in!!"); 
               }
               else{
