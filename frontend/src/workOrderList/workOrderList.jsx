@@ -22,7 +22,7 @@ export const WorkOrderList = () => {
   return (
     <>
       <nav className=" bg-black bg-opacity-50 px-3 pt-3 pb-1 my-0 navbar ">
-      <div className=" p-3">
+      <div className=" px-3">
         <h1 className="text-center text-white">
           MENU
         </h1>
