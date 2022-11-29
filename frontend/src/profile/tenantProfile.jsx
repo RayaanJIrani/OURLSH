@@ -41,7 +41,7 @@ export const TenantProfile = () => {
       </div>
       <div className="m-5 rounded bg-white border border-light border-2">
         {(() => {
-          if (!tenant.photo) {
+          if (!tenant.phote) {
             return (
               <img
                 src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png"
@@ -51,7 +51,7 @@ export const TenantProfile = () => {
           } else {
             return (
               <img
-                src={tenant.photo}
+                src={tenant.pfp}
                 className="mt-5 my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
               />
             );
