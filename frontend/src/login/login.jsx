@@ -36,8 +36,6 @@ export const LoginPage = () => {
         checkLandlordAccount(email, password);
       }
     }
-    // let response = checkAccount(email, password);
-    // navigate("/tenant_profile");
   };
 
   const handleRegisterClick = () => {
