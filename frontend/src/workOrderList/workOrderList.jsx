@@ -63,7 +63,7 @@ export const WorkOrderList = () => {
         </div>
       </nav>
       {/* <div className="bg-white text-left"> */}
-      <div className="p-5 mt-5 pb-0">
+      <div className="p-5 mt-3 pb-0">
         <h1 className=" bg-white p-5 display-5 fw-bold ls-tight rounded ">
           Work Order List
         </h1>

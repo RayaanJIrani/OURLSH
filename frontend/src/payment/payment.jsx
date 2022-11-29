@@ -8,7 +8,7 @@ export const PaymentPage = () => {
   return (
     <>
       <h1 className="container bg-white mt-5 p-5 display-5 fw-bold ls-tight rounded ">
-        Make Payments
+        New Payment
       </h1>
       <div class="container p-5">
         <div class="card px-4">
