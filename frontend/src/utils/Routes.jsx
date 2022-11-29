@@ -5,6 +5,7 @@ import {RegisterProfile} from "../register/RegisterProfile";
 import {Page404} from "../404";
 import {WorkOrderList} from "../workOrderList/workOrderList";
 import {PaymentPage} from "../payment/payment";
+import {WorkOrder} from "../workorder/workOrder";
 import { Navigate, useRoutes } from 'react-router-dom';
 
 export const Router = () => {
