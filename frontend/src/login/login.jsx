@@ -28,11 +28,11 @@ export const LoginPage = () => {
   const handleSubmitClick = () => {
     localStorage.clear();
     if (!identity) {
-      window.alert("Select Tenant or Landload");
+      window.alert("Select Tenant or Landlord");
     } else {
       if (identity === "Tenant") {
         checkTenantAccount(email, password);
-      } else if (identity === "Landload") {
+      } else if (identity === "Landlord") {
         checkLandlordAccount(email, password);
       }
     }
@@ -99,15 +99,15 @@ export const LoginPage = () => {
                     <input
                       className=""
                       type="radio"
-                      id="Landload"
+                      id="Landlord"
                       name="fav_language"
-                      value="Landload"
+                      value="Landlord"
                     />
                     <label
                       className="custom-control-label fs-4  p-2"
                       htmlFor="html"
                     >
-                      Landload
+                      Landlord
                     </label>
                   </div>
                 </div>

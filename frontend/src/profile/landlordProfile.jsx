@@ -25,8 +25,8 @@ export const LandlordProfile = () => {
   const handleWorkorderlist = () => {
     navigate("/workorders");
   }; //redirect to work order list page
-  const handleTenantlist = () => {
-    navigate("/tenantlist");
+  const handleTenantlist = ({id}) => {
+    navigate("/tenantList/"+id);
   }; //redirect to tenant list page
 
   return (
@@ -82,7 +82,7 @@ export const LandlordProfile = () => {
             <button
               type="button"
               className="btn btn-primary mx-0"
-              onClick={handleTenantlist}
+              onClick={handleTenantlist(landlord.id)}
             >
               MyTenants List
             </button>
