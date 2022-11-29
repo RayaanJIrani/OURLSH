@@ -7,7 +7,7 @@ export const checkTenantAccount = (email,password) =>new Promise((resolve, rejec
           .then(function(response){
               if(response.status === 200){
                   localStorage.setItem('token',response.data.token); 
-                  localStorage.setItem('id',response.data.id); 
+                  localStorage.setItem('tenant',response.data.id); 
                   window.location.href="./workorders";
                 //   window.location.href="./tenants/"+response.data.id; 
                   window.alert("Successfully log in!!"); 
@@ -32,7 +32,7 @@ export const checkLandlordAccount = (email,password) =>new Promise((resolve, rej
           .then(function(response){
               if(response.status === 200){
                   localStorage.setItem('token',response.data.token); 
-                  localStorage.setItem('id',response.data.id); 
+                  localStorage.setItem('landlord',response.data.id); 
                   window.location.href="./landlords/"+response.data.id; 
                   window.alert("Successfully log in!!"); 
               }
