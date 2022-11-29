@@ -12,6 +12,9 @@ export const TenantProfile = () => {
   const navigate = useNavigate();
   const [tenant, setTenant] = useState(undefined);
   const params = useParams(); //使用url上的params，id
+  const identity = localStorage.getItem("tenant") ? "tenant" : "landlord";
+  const tenant_id = localStorage.getItem("tenant");
+  const landlord_id = localStorage.getItem("landlord");
 
   useEffect(() => {
     getTenantInfo(params.id).then((x) => setTenant(x));
@@ -37,89 +40,148 @@ export const TenantProfile = () => {
   }; //redirect to payment page
 
   return (
-    <div className="container my-5 bg-white border border-light border-2">
-      <h1 className="text-center border-bottom py-5 mx-5">Welcome to OURLSH!</h1>
-      {(() => {
-        if (!tenant.photo) {
-          return (
-            <img
-              src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png"
-              className="my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
+    <div>
+      <nav className=" bg-black bg-opacity-50 px-3 pt-3 pb-1 my-0 navbar ">
+        <div className=" px-3">
+          <h1 className="text-center text-white">MENU</h1>
+        </div>
+        {(() => {
+          if (identity === "tenant") {
+            return (
+              <div className=" row ">
+                <div className="nav-item active col" aria-current="page">
+                  <a className="nav-link text-white  p-2 col" href=" ">
+                    OrderList{" "}
+                  </a>
+                </div>
+                <div className="nav-item col" aria-current="page">
+                  <a className="nav-link text-white p-2" href="/workorders">
+                    NewOrder{" "}
+                  </a>
+                </div>
+                <div className="nav-item col" aria-current="page">
+                  <a className="nav-link text-white  p-2" href="/payments">
+                    NewPayment{" "}
+                  </a>
+                </div>
+                <div className="nav-item col" aria-current="page">
+                  <a className="nav-link text-white  p-2" href="/profiles">
+                    MyProfile{" "}
+                  </a>
+                </div>
+              </div>
+            );
+          } else if (identity === "landlord") {
+            return (
+              <div className=" row ">
+                <div className="nav-item active col" aria-current="page">
+                  <a
+                    className="nav-link text-white  p-2 col"
+                    href="/workorders"
+                  >
+                    OrderList{" "}
+                  </a>
+                </div>
+                <div className="nav-item col" aria-current="page">
+                  <a className="nav-link text-white p-2" href="/workorders">
+                    TenantList{" "}
+                  </a>
+                </div>
+
+                <div className="nav-item col" aria-current="page">
+                  <a className="nav-link text-white  p-2" href="{tenant_id}">
+                    MyProfile{" "}
+                  </a>
+                </div>
+              </div>
+            );
+          }
+        })()}
+      </nav>
+      <div className="container my-5 bg-white border border-light border-2">
+        <h1 className="text-center border-bottom py-5 mx-5">
+          Welcome to OURLSH!
+        </h1>
+        {(() => {
+          if (!tenant.photo) {
+            return (
+              <img
+                src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png"
+                className="my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
+              />
+            );
+          } else {
+            return (
+              <img
+                src={tenant.photo}
+                className="my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
+              />
+            );
+          }
+        })()}
+        <div className="my-4">
+          <div className="my-3 text-center">
+            <h2 className="my-3">Tenant Profile:</h2>
+            <div>
+              <h5 className="my-2">Tenant ID: {tenant.id}</h5>
+              <h5 className="my-2">Property ID: {tenant.prop_id}</h5>
+              <h5 className="my-2">Landlord ID: {tenant.landlord_id}</h5>
+              <h5 className="my-2">
+                Last Name:
+                <span className="text-muted"> {tenant.last_name}</span>
+              </h5>
+              <h5 className="my-2">
+                First Name:
+                <span className="text-muted"> {tenant.first_name}</span>
+              </h5>
+              <h5 className="my-2 mb-4">
+                Email: <span className="text-muted">{tenant.email}</span>
+              </h5>
+            </div>
+          </div>
+          <h1 className="border-bottom mx-5"></h1>
+          <div className="container col-md-8 col-lg-8 col-8 p-4">
+            <h5>Edit Profile:</h5>
+            <TextField
+              label="New First Name"
+              value={tenant.first_name}
+              setValue={(first_name) => mergeTenant({ first_name })}
             />
-          );
-        } else {
-          return (
-            <img
-              src={tenant.photo}
-              className="my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
+            <TextField
+              label="New Last Name"
+              value={tenant.last_name}
+              setValue={(last_name) => mergeTenant({ last_name })}
             />
-          );
-        }
-      })()}
-      <div className="my-4">
-        <div className="my-3 text-center">
-          <h2 className="my-3">Tenant Profile:</h2>
-          <div>
-            <h5 className="my-2">Tenant ID: {tenant.id}</h5>
-            <h5 className="my-2">Property ID: {tenant.prop_id}</h5>
-            <h5 className="my-2">Landlord ID: {tenant.landlord_id}</h5>
-            <h5 className="my-2">
-              Last Name:
-              <span className="text-muted"> {tenant.last_name}</span>
-            </h5>
-            <h5 className="my-2">
-              First Name:
-              <span className="text-muted"> {tenant.first_name}</span>
-            </h5>
-            <h5 className="my-2 mb-4">
-              Email: <span className="text-muted">{tenant.email}</span>
-            </h5>
+            <TextField
+              label="New Email"
+              value={tenant.email}
+              setValue={(email) => mergeTenant({ email })}
+            />
+            <TextField
+              label="New Photo"
+              value={tenant.phote}
+              setValue={(phote) => mergeTenant({ phote })}
+            />
+            <button
+              type="button"
+              className="btn btn-secondary mx-0"
+              onClick={() =>
+                updateTenantProfile(tenant.id, tenant).then((x) => setTenant(x))
+              }
+            >
+              Save
+            </button>
           </div>
         </div>
-        <h1 className="border-bottom mx-5"></h1>
-        <div className="container col-md-8 col-lg-8 col-8 p-4">
-          <h5>Edit Profile:</h5>
-          <TextField
-            label="New First Name"
-            value={tenant.first_name}
-            setValue={(first_name) => mergeTenant({ first_name })}
-          />
-          <TextField
-            label="New Last Name"
-            value={tenant.last_name}
-            setValue={(last_name) => mergeTenant({ last_name })}
-          />
-          <TextField
-            label="New Email"
-            value={tenant.email}
-            setValue={(email) => mergeTenant({ email })}
-          />
-          <TextField
-            label="New Photo"
-            value={tenant.phote}
-            setValue={(phote) => mergeTenant({ phote })}
-          />
-          <button
-            type="button"
-            className="btn btn-secondary mx-0"
-            onClick={() =>
-              updateTenantProfile(tenant.id, tenant).then((x) =>
-                setTenant(x)
-              )
-            }
-          >
-            Save
-          </button>
-        </div>
+        <button
+          type="button"
+          className="float-end m-3 btn btn-secondary"
+          onClick={handleLogOut}
+        >
+          Log Out
+        </button>
+        <div className="clearfix"></div>
       </div>
-      <button
-        type="button"
-        className="float-end m-3 btn btn-secondary"
-        onClick={handleLogOut}
-      >
-        Log Out
-      </button>
-      <div className="clearfix"></div>
     </div>
   );
 };
