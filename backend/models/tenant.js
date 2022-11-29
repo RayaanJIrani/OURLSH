@@ -84,10 +84,25 @@ const getAllTenants = async () => {
    return results;
 }
 
+const assignLandlord = async (id, landlord_id) => {
+   const query = knex(TENANT_TABLE).update({ landlord_id }).where({ id });
+   const results = await query;
+   return results;
+}
+
+const removeLandlord = async (id) => {
+   let landlord_id = null;
+   const query = knex(TENANT_TABLE).update({ landlord_id }).where({ id });
+   const results = await query;
+   return results;
+}
+
 module.exports = {
    fetchTenantByID,
    loginFetchTenantByEmail,
    updateTenantById,
    getTenantsByLandlord,
-   getAllTenants
+   getAllTenants,
+   assignLandlord,
+   removeLandlord
 }
