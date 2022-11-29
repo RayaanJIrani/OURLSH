@@ -4,8 +4,6 @@ import { checkTenantAccount } from "../api/UserApi";
 import { Nav } from "../nav/nav";
 
 export const PaymentPage = () => {
-
-  
   // const handleCacnelClick = () => {
   //   };
   return (
@@ -13,8 +11,8 @@ export const PaymentPage = () => {
       <Nav></Nav>
       <div className="p-5 mt-1 pb-0">
         <h1 className="text-center bg-white p-4 py-5 display-5 fw-bold ls-tight rounded">
-        New Payment
-      </h1>
+          New Payment
+        </h1>
       </div>
       <div className="p-5">
         <div className="card px-5 py-3">
@@ -25,19 +23,13 @@ export const PaymentPage = () => {
             <div className="col-6">
               <div className="d-flex flex-column">
                 <p className="text mb-1">Tenant ID</p>
-                <input
-                  className="form-control mb-3"
-                  type="text" 
-                />
+                <input className="form-control mb-3" type="text" />
               </div>
             </div>
             <div className="col-6">
               <div className="d-flex flex-column">
                 <p className="text mb-1">Invoice ID</p>
-                <input
-                  className="form-control mb-3 pt-2 "
-                  type="text" 
-                />
+                <input className="form-control mb-3 pt-2 " type="text" />
               </div>
             </div>
 
@@ -46,7 +38,7 @@ export const PaymentPage = () => {
                 <p className="text mb-1">Amount</p>
                 <input
                   className="form-control mb-3"
-                  type="text" 
+                  type="text"
                   placeholder="$"
                 />
               </div>
