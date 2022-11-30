@@ -67,7 +67,7 @@ router.get('/tenants/:id', async (req, res, next) => {
     }
 });
 
-router.get('/landlord/:id', async (req, res, next) => {
+router.get('/landlords/:id', async (req, res, next) => {
     const params = req.query;
     const land_id = params.id
     const landById = await req.models.landlord.fetchLandlordByID(land_id);
