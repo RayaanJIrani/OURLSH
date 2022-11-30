@@ -13,12 +13,6 @@ export const WorkOrderList = () => {
       setWorkOrderList(x);
     });
   }, []);
-
-  const handleDetialClick = (workOrder) => {
-    getWorkOrderById(workOrder.id).then((x) =>
-      navigate(`workorderlists/${workOrder.id}`)
-    );
-  };
  
   return (
     <>
@@ -36,11 +30,20 @@ export const WorkOrderList = () => {
             </div>
             <div className="float-end">Date: {workOrder.date}</div>
             <div className="fw-bold clearfix row">
-              <div className="col"> Prop ID: {workOrder.prop_id} </div>
               <div className="col"> Tenant ID: {workOrder.tenant_id} </div>
               <div className="col"> Landlord ID: {workOrder.land_id} </div>
+              <div className="col"> Address: {workOrder.address} </div>
             </div>
             <div className=""> Descroption: {workOrder.description}</div>
+            <button
+              type="button"
+              className="btn btn-secondary m-0  float-end"
+              onClick={() =>
+                <Link to="/"> {navigate(`/workorders/${workOrder.wo_num}`)} </Link>
+              }
+            >
+              Work Order Details
+            </button>
           </li>
         ))}
       </ol>
