@@ -25,15 +25,15 @@ router.post('/', async (req, res, next) => {
         const date = req.body.date
         const payment_type = req.body.payment_type
         const what_for = req.body.what_for
-        const prop_id = req.body.prop_id
         const tenant_id = req.body.tenant_id
-        if (amount === undefined || date === undefined || payment_type === undefined || what_for === undefined || land_id === undefined || prop_id === undefined || tenant_id === undefined) {
+
+        if (amount === undefined || date === undefined || payment_type === undefined || what_for === undefined || land_id === undefined || tenant_id === undefined) {
             console.log("Field was undefined")
-            console.log(amount, date, payment_type, what_for, land_id, prop_id, tenant_id)
+            console.log(amount, date, payment_type, what_for, land_id, tenant_id)
             res.sendStatus(401);
         }
         else {
-            const newInvoice = await req.models.invoice.addInvoice(amount, date, payment_type, what_for, land_id, prop_id, tenant_id);
+            const newInvoice = await req.models.invoice.addInvoice(amount, date, payment_type, what_for, land_id, tenant_id);
             res.json(newInvoice);
             res.sendStatus(201);
             next();

@@ -1,10 +1,10 @@
 const knex = require('../database/knex');
 const INVOICE_TABLE = 'invoice';
 
-const addInvoice = async (amount, date, payment_type, what_for, land_id, prop_id, tenant_id) => {
+const addInvoice = async (amount, date, payment_type, what_for, land_id, tenant_id) => {
 
     //uses passed in id to get the associated tenant but only the specified columns
-    const query = knex(INVOICE_TABLE).insert({amount, date, payment_type, what_for, land_id, prop_id, tenant_id});
+    const query = knex(INVOICE_TABLE).insert({amount, date, payment_type, what_for, land_id, tenant_id});
     const results = await query;
     return results;
 }

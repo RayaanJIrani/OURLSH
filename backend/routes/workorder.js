@@ -63,16 +63,14 @@ router.get('/:wo_num', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-    let prop_id = req.body.prop_id;
     let tenant = req.body.tenant;
     let descrip = req.body.descrip;
 
-    if (prop_id === undefined || tenant === undefined || descrip === undefined){
+    if (tenant === undefined || descrip === undefined){
         return res.sendStatus(400);
     }
 
     const makeWorkOrder = await createWorkOrder(
-        prop_id,
         tenant,
         descrip
     )
@@ -81,7 +79,7 @@ router.post('/', async (req, res, next) => {
 });
 
 router.put('/:id', async (req, res, next) => {
-    const updateWorkOrder = await req.models.workorders.updateWorkOrder(req.body.resolved, req.body.property, req.body.description,req.body.tenant);
+    const updateWorkOrder = await req.models.workorders.updateWorkOrder(req.body.resolved, req.body.description, req.body.tenant);
         res.json(updateWorkOrder);
         next();
 });
