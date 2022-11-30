@@ -43,3 +43,5 @@ router.post('/', async (req, res, next) => {
         res.sendStatus(res.status);
     }
 });
+
+module.exports = router;
