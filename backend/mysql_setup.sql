@@ -9,7 +9,7 @@ CREATE TABLE landlord(
         email VARCHAR(255) NOT NULL,
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NOT NULL,
-        pfp BLOB NOT NULL
+        pfp VARCHAR(255) NOT NULL
 );
 
 # TENANT TABLE
@@ -21,7 +21,7 @@ CREATE TABLE tenant(
         last_name VARCHAR(255) NOT NULL,
         address VARCHAR(255),
         landlord_id INT REFERENCES landlord(id),
-        pfp BLOB NOT NULL
+        pfp VARCHAR(255) NOT NULL
 );
 
 # INVOICE TABLE
