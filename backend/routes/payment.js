@@ -68,9 +68,11 @@ router.get('/tenants/:id', async (req, res, next) => {
 });
 
 router.get('/landlords/:id', async (req, res, next) => {
-    const params = req.query;
+    const params = req.params;
     const land_id = params.id
+    console.log("getting landlord,", land_id)
     const landById = await req.models.landlord.fetchLandlordByID(land_id);
+    console.log("done getting land")
     let auth = await authenticateMultipleClaims(['landlord', `${land_id}`], req, res)
 
     if(res.status == 200)
