@@ -81,12 +81,6 @@ export const TenantList = () => {
         console.log(address);
         //Gets the tenant id from the email
         let tenantId = 0;
-        for (let i = 0; i < tenants.length; i++) {
-            if (tenants[i].email === tenantEmail) {
-                tenantId = tenants[i].id;
-                break;
-            }
-        }
         console.log(tenantId);
         assignTenant(tenantId, address).then((response) => {
             console.log(response);

@@ -183,13 +183,23 @@ export const getTenants = (landLordID) => new Promise((resolve, reject) => {
             token: localStorage.getItem("token"),
         },
     };
-    axios
-        .get(`${baseEndpoint}/tenants?landlord=${landLordID}`, apiConfig)
-        .then((x) => resolve(x.data))
-        .catch((x) => {
-            alert(x);
-            reject(x);
-        });
+    if(landLordID){
+        axios
+            .get(`${baseEndpoint}/tenants?landlord=${landLordID}`, apiConfig)
+            .then((x) => resolve(x.data))
+            .catch((x) => {
+                alert(x);
+                reject(x);
+            });
+    } else {
+        axios
+            .get(`${baseEndpoint}/tenants`, apiConfig)
+            .then((x) => resolve(x.data))
+            .catch((x) => {
+                alert(x);
+                reject(x);
+            });
+    }
 });
 
 export const removeTenantAPICall = (id) => new Promise((resolve, reject) => {
