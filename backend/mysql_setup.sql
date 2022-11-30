@@ -45,7 +45,8 @@ CREATE TABLE work_order(
         importance INT NOT NULL,
         tenant_id INT NOT NULL REFERENCES tenant(id),
         invoice_id INT NOT NULL REFERENCES invoice(id),
-        land_id INT NOT NULL REFERENCES landlord(id)
+        land_id INT NOT NULL REFERENCES landlord(id),
+        address VARCHAR(255) 
 );
 
 CREATE TABLE payment(
