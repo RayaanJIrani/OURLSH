@@ -69,7 +69,8 @@ router.get('/', async (req, res, next) => {
     }
     else if(email !== undefined)
     {
-        let tenantByEmail = await req.models.tenant.tenantByEmail(email);
+        let tenantByEmail = await req.models.tenant.loginFetchTenantByEmail(email);
+        tenantByEmail = tenantByEmail[0];
         tenantByEmail.password = undefined;
         res.json(tenantByEmail);
         next();
