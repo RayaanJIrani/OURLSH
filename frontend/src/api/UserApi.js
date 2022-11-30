@@ -208,11 +208,12 @@ export const removeTenantAPICall = (id) => new Promise((resolve, reject) => {
     console.log(`${baseEndpoint}/tenants/${id}/remove`);
     let apiConfig = {
         headers: {
-            token: localStorage.getItem("token"),
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywicGFzc3dvcmQiOiIkMmIkMTAkUzQ2Y1VLUVU4cUZyOGR2UDRta2ZITzhudFRBeHlldmY1d0F5Ljh6VXBGQXZQL0VDem5CbnUiLCJlbWFpbCI6IlJheWFhbmppcmFuaUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiUmF5IiwibGFzdF9uYW1lIjoiSXJhbmkiLCJwZnAiOnsidHlwZSI6IkJ1ZmZlciIsImRhdGEiOltdfSwiY2xhaW1zIjpbImxhbmRsb3JkIiwiNyJdLCJpYXQiOjE2Njk3ODY0MTB9.pxtYthnD6nZBe-L0mpDsyjfmpJ_uE__38Lq-t0_lZWI'
         },
     };
+    console.log("apiConfig", apiConfig);
     axios
-        .put(`${baseEndpoint}/tenants/${id}/remove`, apiConfig)
+        .put(`${baseEndpoint}/tenants/${id}/remove`, {}, apiConfig)
         .then((x) => resolve(x.data))
         .catch((x) => {
             console.log("We have an error");

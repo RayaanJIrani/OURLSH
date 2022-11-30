@@ -8,21 +8,22 @@ import button from "bootstrap/js/src/button";
 
 const SingleTenant = ({tenant, onClickMethod}) => {
     return (
-        <div className="card p-2 mx-3 my-3 d-flex flex-row">
-            <div className="card-body p-0">
-            <h3 className="mx-2">
-                <NavLink to={`/tenants/${tenant.id}`} className={"text-decoration-none text-black"}>
-                    {tenant.first_name + " " + tenant.last_name}
-                </NavLink>
-            </h3>
-            </div>
-            <div className={"float-right"}>
-                <div className={"align-self-end"}>
-                    <button type="button" className="btn btn-danger text-white rounded text-center" onClick={() => onClickMethod(tenant.id)}>
-                        Remove
-                    </button>
+        <div className={"mx-3"}>
+            <div className="card p-2 my-3 d-flex flex-row">
+                <div className="card-body p-0">
+                <h3 className="mx-2">
+                    <NavLink to={`/tenants/${tenant.id}`} className={"text-decoration-none text-black"}>
+                        {tenant.first_name + " " + tenant.last_name}
+                    </NavLink>
+                </h3>
                 </div>
-
+                <div className={"float-right"}>
+                    <div className={"align-self-end"}>
+                        <button type="button" className="btn btn-danger text-white rounded text-center" onClick={() => onClickMethod(tenant.id)}>
+                            Remove
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     )
@@ -79,7 +80,6 @@ export const TenantList = () => {
             console.log(response);
             renderTenants();
         });
-       renderTenants();
     }
 
     const addTenant = (tenantEmail, address) => {
