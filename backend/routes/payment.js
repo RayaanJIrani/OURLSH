@@ -41,18 +41,21 @@ router.post('/', async (req, res, next) => {
 //Not my idea for an endpoint
 
 router.get('/tenants/:id', async (req, res, next) => {
-    const params = req.query;
-    const tenant_id = params.id
+    const tenant_id = req.params.id
+    console.log("getting tenant", tenant_id)
     const tenantByID = await req.models.tenant.fetchTenantByID(tenant_id);
+    console.log("checking creds")
     let auth = await authenticateMultipleClaims(['tenant', `${tenant_id}`], req, res)
-
+    //
     //lets either tenant with id matching access or the landlord linked to that tenant
     if(res.status != 200)
     {
+        console.log("checking landlord")
         let auth = await authenticateMultipleClaims(['landlord', `${tenantByID.landlord_id}`], req, res)
     }
     if(res.status == 200)
     {
+        console.log("getting payments")
         const payments = await req.models.payment.getPayments(tenant_id);
         res.json(payments);
         res.sendStatus(200);
