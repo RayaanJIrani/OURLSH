@@ -61,9 +61,18 @@ router.get('/', async (req, res, next) => {
     const params = req.query;
     console.log("params = ", req.query);
     const landlord_id = params.landlord
-    if (landlord_id === undefined) {
+    const email = params.email
+    if (landlord_id === undefined && email === undefined) {
         const getAllTenants = await req.models.tenant.getAllTenants();
         res.json(getAllTenants);
+        next();
+    }
+    else if(email !== undefined)
+    {
+        let tenantByEmail = await req.models.tenant.loginFetchTenantByEmail(email);
+        tenantByEmail = tenantByEmail[0];
+        tenantByEmail.password = undefined;
+        res.json(tenantByEmail);
         next();
     }
     else {
