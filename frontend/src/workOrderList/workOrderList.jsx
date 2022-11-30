@@ -13,7 +13,7 @@ export const WorkOrderList = () => {
       setWorkOrderList(x);
     });
   }, []);
- 
+
   return (
     <>
       <Nav></Nav>
@@ -38,9 +38,12 @@ export const WorkOrderList = () => {
             <button
               type="button"
               className="btn btn-secondary m-0  float-end"
-              onClick={() =>
-                <Link to="/"> {navigate(`/workorders/${workOrder.wo_num}`)} </Link>
-              }
+              onClick={() => (
+                <Link to="/">
+                  {" "}
+                  {navigate(`/workorders/${workOrder.wo_num}`)}{" "}
+                </Link>
+              )}
             >
               Work Order Details
             </button>
