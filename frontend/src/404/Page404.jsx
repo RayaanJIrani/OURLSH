@@ -1,7 +1,10 @@
 //A 404 page designed using bootstrap
+import {Nav} from "../nav/nav";
 
 export const Page404 = () => {
     return (
+        <>
+            <Nav />
         <div className="container">
             <div className="row">
                 <div className="col-12">
@@ -13,5 +16,6 @@ export const Page404 = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 }
