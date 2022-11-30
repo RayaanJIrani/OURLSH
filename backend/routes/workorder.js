@@ -1,6 +1,5 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const { createWorkOrder } = require('../models/workorder');
 router = express.Router();
 router.use(bodyParser.json());
 
@@ -70,7 +69,7 @@ router.post('/', async (req, res, next) => {
         return res.sendStatus(400);
     }
 
-    const makeWorkOrder = await createWorkOrder(
+    const makeWorkOrder = await req.models.workorder.createWorkOrder(
         tenant,
         descrip
     )
@@ -79,7 +78,8 @@ router.post('/', async (req, res, next) => {
 });
 
 router.put('/:id', async (req, res, next) => {
-    const updateWorkOrder = await req.models.workorders.updateWorkOrder(req.body.resolved, req.body.description, req.body.tenant);
+    let wo_num = req.params.id;
+    const updateWorkOrder = await req.models.workorder.updateWorkOrder(req.body.resolved, req.body.description, wo_num);
         res.json(updateWorkOrder);
         next();
 });
