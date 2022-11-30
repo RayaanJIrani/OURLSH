@@ -50,8 +50,19 @@ export const PaymentList = () => {
           Payment History
         </h1>
       </div>
+      {(() => {
+          if (paymentList.length === 0) {
+            return (
+              <div className="p-5 mt-1 pb-0">
+              <h5 className="text-center bg-white p-4 ls-tight rounded">
+                No Payments yet....
+              </h5>
+            </div>
+            );}
+          })()}
       <ol className="list-group list-group-light list-group-numbered mt-2 p-5">
-        {paymentList.map((payment) => (
+        {
+        paymentList.map((payment) => ( 
           <li key={payment.payment_num} className="list-group-item">
             {/* <div className="col badge badge-pill bg-primary align-top float-none">
               {payment.status ? "Open" : "Closed"}{" "}
