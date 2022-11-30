@@ -76,11 +76,25 @@ const getAllTenants = async () => {
       "first_name",
       "last_name",
       "prop_id",
-      "landlord_id");
+      "landlord_id",
+      "pfp");
    console.log("Grabbing all tenants...");
    const results = await query;
    console.log("I all the have the tenants -");
    console.log(results);
+   return results;
+}
+
+const assignLandlord = async (id, landlord_id) => {
+   const query = knex(TENANT_TABLE).update({ landlord_id }).where({ id });
+   const results = await query;
+   return results;
+}
+
+const removeLandlord = async (id) => {
+   let landlord_id = null;
+   const query = knex(TENANT_TABLE).update({ landlord_id }).where({ id });
+   const results = await query;
    return results;
 }
 
@@ -89,5 +103,7 @@ module.exports = {
    loginFetchTenantByEmail,
    updateTenantById,
    getTenantsByLandlord,
-   getAllTenants
+   getAllTenants,
+   assignLandlord,
+   removeLandlord
 }

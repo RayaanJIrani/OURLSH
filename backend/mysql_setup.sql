@@ -61,3 +61,15 @@ CREATE TABLE work_order(
         invoice_id INT NOT NULL REFERENCES invoice(id),
         land_id INT NOT NULL REFERENCES landlord(id)
 );
+
+CREATE TABLE payment(
+        payment_num INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        tenant_id INT NOT NULL REFERENCES tenant(id), 
+        invoice_id INT NOT NULL REFERENCES invoice(id), 
+        amount FLOAT NOT NULL, 
+        person_name VARCHAR(255), 
+        card_number VARCHAR(255), 
+        expiry VARCHAR(255) NOT NULL, 
+        security_code VARCHAR(255)
+
+);
