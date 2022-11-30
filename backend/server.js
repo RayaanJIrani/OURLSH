@@ -1,43 +1,54 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const tenantRoutes = require('./routes/tenant');
+const landlordRoutes = require('./routes/landlord');
+const registerRoutes = require('./routes/register');
+const loginRoutes = require('./routes/login' );
+const workorderRoutes = require('./routes/workorder' );
+const paymentRoutes = require('./routes/payment' );
+const invoiceRoutes = require('./routes/invoice' );
+
+const {createModelsMiddleware} = require('./middleware/model-middleware' );
+const { authenticateJWT, authenticateWithClaims } = require('./middleware/auth-middleware');
+
 const cors = require('cors');
-const { log, ExpressAPILogMiddleware } = require('@rama41222/node-logger');
-const tenantRoutes = require('./routes/tenant' );
-const { createModelsMiddleware  } = require('./middleware/model-middleware' );
-// const mysqlConnect = require('./db');
-const routes = require('./routes');
-
-// set up some configs for express.
-const config = {
-  name: 'sample-express-app',
-  port: 8000,
-  host: '0.0.0.0',
-};
-
-// create the express.js object
 const app = express();
+const port = 8000;
+app.use(createModelsMiddleware);
 
-// create a logger object.  Using logger is preferable to simply writing to the console.
-const logger = log({ console: true, file: false, label: config.name });
-
-// specify middleware to use
-app.use(bodyParser.json());
+//get rid of CORS issue
 app.use(cors({
-  origin: '*'
+    origin: '*'
 }));
-app.use(ExpressAPILogMiddleware(logger, { request: true }));
-app.use(createModelsMiddleware );
 
-//include routes
-routes(app, logger);
-app.use('/tenant', tenantRoutes);
-
-// connecting the express object to listen on a particular port as defined in the config object.
-app.listen(config.port, config.host, (e) => {
-  if (e) {
-    throw new Error('Internal Server Error');
-  }
-  logger.info(`${config.name} running on ${config.host}:${config.port}`);
+app.get('/health', (request, response, next) => {
+    const responseBody = { status: 'up', port };
+    response.json(responseBody);
+    // next() is how we tell express to continue through the middleware chain
+    next();
 });
+//tenant routes
+app.use('/tenants', authenticateJWT, tenantRoutes);
+
+//landlord routes
+app.use('/landlords', authenticateJWT, landlordRoutes);
+
+//login routes
+app.use('/login', loginRoutes);
+
+//register routes
+app.use('/register', registerRoutes);
+
+//workorder routes
+app.use('/workorders', authenticateJWT, workorderRoutes);
+
+//payment routes
+app.use('/payments', authenticateJWT, paymentRoutes);
+
+//invoice routes
+app.use('/invoices', authenticateJWT, invoiceRoutes);
+
+app.listen(port, () => {
+    console.log(`This app is listening on port ${port}`);
+});
+
