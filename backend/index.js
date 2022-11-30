@@ -5,6 +5,7 @@ const landlordRoutes = require('./routes/landlord');
 const registerRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login' );
 const workorderRoutes = require('./routes/workorder' );
+const paymentRoutes = require('./routes/payment' );
 const {createModelsMiddleware} = require('./middleware/model-middleware' );
 const { authenticateJWT, authenticateWithClaims } = require('./middleware/auth-middleware');
 
@@ -38,6 +39,9 @@ app.use('/register', registerRoutes);
 
 //workorder routes
 app.use('/workorders', authenticateJWT, workorderRoutes);
+
+//payment routes
+app.use('/payments', authenticateJWT, paymentRoutes);
 
 app.listen(port, () => {
     console.log(`This app is listening on port ${port}`);
