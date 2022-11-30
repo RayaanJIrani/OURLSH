@@ -94,8 +94,8 @@ export const LandlordProfile = () => {
             />
             <TextField
               label="New Photo"
-              value={landlord.phote}
-              setValue={(phote) => mergeLandlord({ phote })}
+              value={landlord.pfp}
+              setValue={(pfp) => mergeLandlord({ pfp })}
             />
             <button
               type="button"
