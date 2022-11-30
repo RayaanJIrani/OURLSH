@@ -58,7 +58,7 @@ router.get('/tenants/:id', async (req, res, next) => {
         console.log("getting payments")
         const payments = await req.models.payment.getPayments(tenant_id);
         res.json(payments);
-        res.sendStatus(200);
+        // res.sendStatus(200);
         next();
     }
     else
