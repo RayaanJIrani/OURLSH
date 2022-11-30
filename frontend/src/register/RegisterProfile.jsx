@@ -51,7 +51,7 @@ export const RegisterProfile = () => {
 
     const handleLoginClick = () => {
         localStorage.clear();
-        navigate("/login");
+        navigate("/workorders");
     };
 
     return (

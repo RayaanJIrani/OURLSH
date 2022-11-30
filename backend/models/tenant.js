@@ -9,7 +9,6 @@ const fetchTenantByID = async (id) => {
          "email",
          "first_name",
          "last_name",
-         "prop_id",
          "landlord_id");
 
    const results = await query;
@@ -60,7 +59,6 @@ const getTenantsByLandlord = async (landlord_id) => {
       "email",
       "first_name",
       "last_name",
-      "prop_id",
       "landlord_id");
    console.log(`Grabbing all tenants with landlord id = ${landlord_id}...`);
    console.log(`I have the tenants with landlord id = ${landlord_id} -`);
@@ -75,8 +73,8 @@ const getAllTenants = async () => {
       "email",
       "first_name",
       "last_name",
-      "prop_id",
-      "landlord_id");
+      "landlord_id",
+      "pfp");
    console.log("Grabbing all tenants...");
    const results = await query;
    console.log("I all the have the tenants -");
