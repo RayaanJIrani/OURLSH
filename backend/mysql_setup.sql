@@ -46,7 +46,6 @@ CREATE TABLE work_order(
         tenant_id INT NOT NULL REFERENCES tenant(id),
         invoice_id INT NOT NULL REFERENCES invoice(id),
         land_id INT NOT NULL REFERENCES landlord(id),
-        address VARCHAR(255) 
 );
 
 CREATE TABLE payment(
