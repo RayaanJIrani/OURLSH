@@ -1,19 +1,21 @@
 import {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {Link, NavLink, useParams} from "react-router-dom";
 import {getTenants} from "../api/UserApi";
 import {EntryBox, WelcomeHeader} from "../components";
+import {Nav} from "../nav/nav";
+import button from "bootstrap/js/src/button";
 
-const SingleTenant = ({tenant}) => {
+const SingleTenant = ({tenant, onClickMethod}) => {
     return (
-        <div className="col-12 col-md-6 col-lg-4 my-3">
-            <div className="card">
-                <div className="card-body">
-                    <h5 className="card-title">Tenant ID: {tenant.id}</h5>
-                    <h5 className="card-title">First Name: {tenant.first_name}</h5>
-                    <h5 className="card-title">Last Name: {tenant.last_name}</h5>
-                    <h5 className="card-title">Email: {tenant.email}</h5>
-                </div>
-            </div>
+        <div className="card col p-2 mx-3 my-3 flex-row">
+            <h3 className="card-title mx-2">
+                <NavLink to={`/tenants/${tenant.id}`} className={"text-decoration-none text-black"}>
+                    {tenant.first_name + " " + tenant.last_name}
+                </NavLink>
+            </h3>
+            <button type="button" className="btn btn-danger text-white rounded text-center d-flex justify-content-end" onClick={onClickMethod}>
+                Remove
+            </button>
         </div>
     )
 }
@@ -27,20 +29,24 @@ export const TenantList = () => {
 
     useEffect(() => {
         getTenants(params.id).then((response) => {
-            setTenants(response.data);
+            setTenants(response);
         });
-    }, [tenants]);
+    }, []);
 
-    console.log(tenants);
+    const renderTenants = () => {
+        getTenants(params.id).then((response) => {
+            setTenants(response);
+        });
+    }
+
 
     return <>
-        <WelcomeHeader/>
+        <Nav/>
         <div className="container my-5 bg-white border border-light border-2 rounded">
-            <h2 className="text-center border-bottom py-5">Tenant List</h2>
+            <h1 className="text-center border-bottom py-5">Tenant List</h1>
             <div className="row justify-content-center">
                 {!tenants && <h3 className={"text-center my-5"}>You have no Tenants.</h3>}
-                {tenants && tenants.map((tenant) => <SingleTenant {...tenant}/>)}
-
+                {tenants && tenants.map((tenant) => <SingleTenant key={tenant.id} tenant={tenant} onClickMethod={renderTenants}/>)}
             </div>
         </div>
     </>
