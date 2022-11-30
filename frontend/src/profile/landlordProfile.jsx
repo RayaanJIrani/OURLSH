@@ -53,9 +53,9 @@ export const LandlordProfile = () => {
         <div className="my-4">
           <div className="my-3 text-center">
             <div>
-              <h5 className="my-2">Tenant ID: {landlord.id}</h5>
+              {/* <h5 className="my-2">Tenant ID: {landlord.id}</h5> */}
+              <h5 className="my-2">Landlord ID: {landlord.id}</h5>
               <h5 className="my-2">Property ID: {landlord.prop_id}</h5>
-              <h5 className="my-2">Landlord ID: {landlord.landlord_id}</h5>
               <h5 className="my-2">
                 Last Name:
                 <span className="text-muted"> {landlord.last_name}</span>
