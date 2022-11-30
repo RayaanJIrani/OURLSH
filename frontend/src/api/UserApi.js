@@ -347,6 +347,46 @@ export const getTenantPayments = (id) =>
       });
   });
 
+export const createWorkOrder = (Address, Description , TenantID, LandlordID, Resolved) => new Promise((resolve,reject) => {
+    let apiConfig={
+        headers:{
+            token : localStorage.getItem('token')
+        }
+    };
+    axios.post(`${baseEndpoint}/workorders`, {
+        tenant_id: TenantID,
+        land_id: LandlordID,
+        description: Description,
+        resolved: Resolved,
+        addy: Address,
+    }, apiConfig)
+        .then(x => resolve(x))
+        .catch(x => {
+            alert(x);
+            reject(x);
+    });
+});
+
+export const updateWorkOrder = (id, Address, Description , TenantID, LandlordID, Resolved) => new Promise((resolve,reject) => {
+    let apiConfig={
+        headers:{
+            token : localStorage.getItem('token')
+        }
+    };
+    axios.put(`${baseEndpoint}/workorders/${id}`, {
+        tenant_id: TenantID,
+        land_id:  LandlordID,
+        description: Description,
+        resolved: Resolved,
+        addy: Address,
+    }, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+    });
+});
+
 
   export const getLandlordPayments = (id) =>
   new Promise((resolve, reject) => {

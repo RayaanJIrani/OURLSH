@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import {Nav} from "../nav/nav";
-import {EntryBox, EntryTextField} from "../components";
-import { getWorkOrders, getWorkOrderById } from "../api/UserApi";
+import {EntryBox, EntryTextField, TextField} from "../components";
+import {getWorkOrders, getWorkOrderById, createWorkOrder, updateWorkOrder} from "../api/UserApi";
 
 export const WorkOrder = () => {
     const [date, setDate] = useState("");
@@ -12,9 +12,12 @@ export const WorkOrder = () => {
     const [landlord_id, setLandlord_id] = useState("");
     const [resolved, setResolved] = useState("");
 
+
     const {id} = useParams();
 
     console.log("id", id);
+
+    const navigate = useNavigate();
 
 
     //If the value of id is not -1, then this is an existing work order. We need to fetch the data from the server.
@@ -33,9 +36,44 @@ export const WorkOrder = () => {
         }
         }, []);
 
+
+    console.log("date", date);
+    console.log("address", address);
+    console.log("description", description);
+    console.log("tenant_id", tenant_id);
+    console.log("landlord_id", landlord_id);
+    console.log("resolved", resolved);
+
     return <>
         <Nav />
         <EntryBox title={"Work Order"}>
+            <div className ="text-start">
+             <h3> Date: {date} </h3>
+            <h3> Address: {address} </h3>
+            <TextField label={"Description"} value={description} setValue={setDescription} />
+            <TextField label={"Tenant ID"} value={tenant_id}  setValue={setTenant_id} />
+            <h3> Landlord ID: {landlord_id} </h3>
+            <TextField label={"Resolved"} value={resolved} setValue={setResolved} />
+                <button
+                    type="button"
+                    className="btn btn-secondary mx-0"
+                    onClick={() => {
+                        if (id && id !== -1) {
+                            updateWorkOrder(id, address, description, tenant_id, landlord_id, resolved).then((x) => {
+                                console.log("x", x);
+                            });
+                        } else if(id === -1) {
+                            console.log("In the else");
+                            createWorkOrder(address, description, tenant_id, landlord_id, resolved).then((x) => {
+                                console.log("x", x);
+                                navigate(`/workorderlists/${x.wo_num}`);
+                            });
+                        }
+                    }}
+                >
+                    Save
+                </button>
+            </div>
         </EntryBox>
     </>
 }
