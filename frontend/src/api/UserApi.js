@@ -276,6 +276,26 @@ export const getWorkOrderById = (id) => new Promise((resolve,reject) => {
     });
 });
 
+export const createPayment = (tenant_id, amount, person_name, card_number, expiry, security_code) => new Promise((resolve, reject) => {
+    let apiConfig = {
+        headers: {
+            token: localStorage.getItem("token"),
+        },
+    };
+    axios.post(baseEndpoint + '/payments', {
+        tenant_id: tenant_id,
+        amount: amount,
+        person_name: person_name,
+        card_number: card_number,
+        expiry: expiry,
+        security_code:security_code
+    }, apiConfig).then(x => resolve(x.data))
+    .catch(x => {
+        alert(x);
+        reject(x);
+    });
+});
+
 
 
 
