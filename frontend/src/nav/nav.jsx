@@ -65,7 +65,7 @@ export const Nav = () => {
                   </a>
                 </div>
                 <div className="nav-item col" aria-current="page">
-                  <a className="nav-link text-white p-2" href="/workorders">
+                  <a className="nav-link text-white p-2" href={`/tenantsList/${landlord_id}`}>
                     TenantList{" "}
                   </a>
                 </div>
