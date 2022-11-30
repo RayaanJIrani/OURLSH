@@ -76,7 +76,8 @@ const getAllTenants = async () => {
       "first_name",
       "last_name",
       "prop_id",
-      "landlord_id");
+      "landlord_id",
+      "pfp");
    console.log("Grabbing all tenants...");
    const results = await query;
    console.log("I all the have the tenants -");
