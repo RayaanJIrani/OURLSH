@@ -4,12 +4,10 @@ const WORK_ORDER_TABLE = 'work_order';
 const res = require("express/lib/response");
 const { fetchTenantByID } = require('./tenant');
 
-const createWorkOrder = async (tenant_id, descrip) => {
-   let tenantobj = fetchTenantByID(tenant_id);
-   const tenantobject = await tenantobj;
+const createWorkOrder = async (tenantobject, descrip) => {
    const result = await knex(WORK_ORDER_TABLE).insert({
       description: descrip,
-      tenant_id: tenant_id,
+      tenant_id: tenantobject.id,
       status: 1,
       date: new Date(),
       resolved: false,
