@@ -14,7 +14,7 @@ const createWorkOrder = async (tenantobject, descrip) => {
       importance: 1,
       land_id: tenantobject.landlord_id,
       invoice_id: 0,
-      address: addy
+      address: tenantobject.address
    });
    return result;
 }
