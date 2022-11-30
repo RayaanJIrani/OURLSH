@@ -23,6 +23,12 @@ export const LandlordProfile = () => {
   const handleLogOut = () => {
     navigate("/");
   }; //back to log in page
+  const handleWorkorderlist = () => {
+    navigate("/workorders");
+  }; //redirect to work order list page
+  const handleTenantlist = (id) => {
+    navigate(`/tenantsList/${id}`);
+  }; //redirect to tenant list page
 
   return (
     <div>
@@ -101,6 +107,13 @@ export const LandlordProfile = () => {
               }
             >
               Save
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary mx-0"
+              onClick={() => handleTenantlist(landlord.id)}
+            >
+              Tenants List
             </button>
           </div>
         </div>

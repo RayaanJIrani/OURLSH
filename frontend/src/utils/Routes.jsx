@@ -5,6 +5,8 @@ import {RegisterProfile} from "../register/RegisterProfile";
 import {Page404} from "../404";
 import {WorkOrderList} from "../workOrderList/workOrderList";
 import {PaymentPage} from "../payment/payment";
+import {WorkOrder} from "../workorder/workOrder";
+import {TenantList} from "../tenantList/tenantList";
 import { Navigate, useRoutes } from 'react-router-dom';
 
 export const Router = () => {
@@ -14,6 +16,8 @@ export const Router = () => {
         { path: '/login', element: <LoginPage /> },
         { path: '/tenants/:id', element: <TenantProfile /> },
         { path: '/landlords/:id', element: <LandlordProfile /> },
+        { path: '/tenantsList/:id', element: <TenantList /> },
+        { path: '/tenantsList', element: <TenantList /> },
         { path: '/workorders', element: <WorkOrderList /> },
         { path: '/register', element: <RegisterProfile /> }, 
         { path: '/404', element: <Page404 /> },
