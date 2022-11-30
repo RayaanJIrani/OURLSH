@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseEndpoint = "http://ec2-18-222-68-223.us-east-2.compute.amazonaws.com:8000";
+const baseEndpoint = "http://18.222.68.223:8000";
 
 // Login Tenant
 export const checkTenantAccount = (email,password) =>new Promise((resolve, reject) =>{
