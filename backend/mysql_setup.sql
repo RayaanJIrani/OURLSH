@@ -12,7 +12,6 @@ CREATE TABLE landlord(
         pfp BLOB NOT NULL
 );
 
-
 # TENANT TABLE
 CREATE TABLE tenant(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -58,5 +57,4 @@ CREATE TABLE payment(
         card_number VARCHAR(255), 
         expiry VARCHAR(255) NOT NULL, 
         security_code VARCHAR(255)
-
 );
