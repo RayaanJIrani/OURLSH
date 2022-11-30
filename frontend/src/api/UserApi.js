@@ -172,6 +172,26 @@ export const registerLandlord = (firstName, lastName, email, password) => new Pr
         });
 });
 
+
+// Calls used in the tenantsList component
+export const getTenants = (landLordID) => new Promise((resolve, reject) => {
+    let apiConfig = {
+        headers: {
+            token: localStorage.getItem("token"),
+        },
+    };
+    axios
+        .get(`${baseEndpoint}/tenants?landlord=${landLordID}`, apiConfig)
+        .then((x) => resolve(x.data))
+        .catch((x) => {
+            alert(x);
+            reject(x);
+        });
+});
+
+
+
+
 export const getWorkOrders = () => new Promise((resolve,reject) => {
     let apiConfig={
         headers:{
@@ -199,6 +219,7 @@ export const getWorkOrderById = (id) => new Promise((resolve,reject) => {
             reject(x);
     });
 });
+
 
 
 
