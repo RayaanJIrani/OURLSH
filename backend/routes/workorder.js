@@ -81,7 +81,9 @@ router.post('/', async (req, res, next) => {
             tenantobject,
             descrip
         )
-        res.status(201).json(makeWorkOrder);
+        console.log("New work order made,", makeWorkOrder)
+        const workOrderByID = await req.models.workorder.getworkOrderByID(makeWorkOrder[0]);
+        res.status(201).json(workOrderByID);
         next();
     }
 });

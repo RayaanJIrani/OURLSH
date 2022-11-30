@@ -22,15 +22,6 @@ const createWorkOrder = async (tenantobject, descrip) => {
 const getworkOrderByID = async (wo_num) => {
    //uses passed in id to get the associated work order but only the specified columns
    const query = knex(WORK_ORDER_TABLE).where({ wo_num })
-      .select("description",
-         "status",
-         "date",
-         "resolved",
-         "importance",
-         "tenant_id",
-         "invoice_id",
-         "address",
-         "land_id");
 
    const results = await query;
    return results[0];
