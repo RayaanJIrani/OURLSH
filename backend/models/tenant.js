@@ -1,5 +1,8 @@
 const knex = require('../database/knex');
 const TENANT_TABLE = 'tenant';
+const WORK_ORDER_TABLE = 'work_order';
+const PAYMENT_TABLE = 'payment';
+const INVOICE_TABLE = 'invoice';
 
 const fetchTenantByID = async (id) => {
    //uses passed in id to get the associated tenant but only the specified columns
@@ -10,7 +13,8 @@ const fetchTenantByID = async (id) => {
          "first_name",
          "last_name",
          "address",
-         "landlord_id");
+         "landlord_id",
+         "pfp");
 
    const results = await query;
    return results[0];
@@ -24,7 +28,8 @@ const loginFetchTenantByEmail = async (email) => {
       "email",
       "first_name",
       "last_name",
-      "password"
+      "password",
+      "pfp"
    );
    const results = await query;
    return results;
@@ -61,7 +66,8 @@ const getTenantsByLandlord = async (landlord_id) => {
       "first_name",
       "last_name",
       "address",
-      "landlord_id");
+      "landlord_id",
+      "pfp");
    console.log(`Grabbing all tenants with landlord id = ${landlord_id}...`);
    console.log(`I have the tenants with landlord id = ${landlord_id} -`);
    const results = await query;
@@ -86,6 +92,11 @@ const getAllTenants = async () => {
 }
 
 const assignLandlord = async (id, landlord_id, address) => {
+   const updateWorkOrder = knex(WORK_ORDER_TABLE).update({land_id:landlord_id, address}).where({ tenant_id:id });
+   const woresults = await updateWorkOrder;
+   const updateInvoice = knex(INVOICE_TABLE).update({land_id:landlord_id}).where({ tenant_id:id });
+   const inresults = await updateInvoice;
+
    const query = knex(TENANT_TABLE).update({ landlord_id, address }).where({ id });
    const results = await query;
    return results;
@@ -94,6 +105,12 @@ const assignLandlord = async (id, landlord_id, address) => {
 const removeLandlord = async (id) => {
    let landlord_id = null;
    let address = null;
+
+   const updateWorkOrder = knex(WORK_ORDER_TABLE).update({land_id:landlord_id, address}).where({ tenant_id:id });
+   const woresults = await updateWorkOrder;
+   const updateInvoice = knex(INVOICE_TABLE).update({land_id:landlord_id}).where({ tenant_id:id });
+   const inresults = await updateInvoice;
+
    const query = knex(TENANT_TABLE).update({ landlord_id, address }).where({ id });
    const results = await query;
    return results;
