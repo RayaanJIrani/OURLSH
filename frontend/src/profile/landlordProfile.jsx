@@ -38,14 +38,14 @@ export const LandlordProfile = () => {
             return (
               <img
                 src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png"
-                className="mt-5 my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
+                className="mt-5 my-3 col-md-3 col-lg-3 col-5 rounded mx-auto d-block"
               />
             );
           } else {
             return (
               <img
                 src={landlord.photo}
-                className="mt-5 my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
+                className="mt-5 my-3 col-md-3 col-lg-3 col-5 rounded mx-auto d-block"
               />
             );
           }
