@@ -15,6 +15,7 @@ const createWorkOrder = async (tenant_id, descrip) => {
       resolved: false,
       importance: 1,
       land_id: tenantobject.landlord_id,
+      address: address,
       invoice_id: 0
    });
    return result;
@@ -30,7 +31,8 @@ const getworkOrderByID = async (wo_num) => {
          "importance",
          "tenant_id",
          "invoice_id",
-         "land_id");
+         "land_id",
+         "address");
 
    const results = await query;
    return results[0];
@@ -67,7 +69,8 @@ const updateWorkOrder = async (resolved, description, wo_num) => {
       "importance",
       "tenant_id",
       "invoice_id",
-      "land_id");
+      "land_id",
+      "address");
    const results = await query;
    return results;
 }
