@@ -27,13 +27,16 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     let id = req.params.id
-    console.log("yuh?")
     let auth = await authenticateMultipleClaims(['tenant', `${id}`], req, res)
     console.log(res.status)
-    if (res.status === 200) {
-        if (req.body.body.email !== undefined) {
+    if (res.status === 200)
+    {
+        console.log("successfully auth")
+        console.log("body:", req.body.body)
+        if(req.body.body.email !== undefined){
             const tenants = await req.models.tenant.loginFetchTenantByEmail(req.body.body.email);
-            if (tenants.length > 0) {
+            if(tenants.length > 0 && tenants[0].id != req.params.id)
+            {
                 console.log("Cannot update, email is already in use")
                 res.sendStatus(403);
             }

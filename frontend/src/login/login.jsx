@@ -4,6 +4,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { checkTenantAccount, checkLandlordAccount } from "../api/UserApi";
+import {WelcomeHeader, EntryBox, EntryTextField, Button, RoleRadioSelector} from "../components";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -36,8 +37,6 @@ export const LoginPage = () => {
         checkLandlordAccount(email, password);
       }
     }
-    // let response = checkAccount(email, password);
-    // navigate("/tenant_profile");
   };
 
   const handleRegisterClick = () => {
@@ -46,18 +45,8 @@ export const LoginPage = () => {
   };
   return (
     <>
-      <div className="bg-white text-left">
-        <h1 className="container p-5 display-5 fw-bold ls-tight mx-0">
-          WELCOME TO OURLSH
-        </h1>
-      </div>
-      <div className="p-5">
-      <div className="container py-5 my-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-12 col-md-8 col-lg-8 col-xl-6">
-            <div className="card shadow-2-strong">
-              <div className="card-body p-5 text-center">
-                <h1 className="mb-5 ">Sign in</h1>
+      <WelcomeHeader/>
+            <EntryBox title={"Sign in"}>
                 <div className="form-outline mb-4">
                   <input
                     type="text"
@@ -111,7 +100,6 @@ export const LoginPage = () => {
                     </label>
                   </div>
                 </div>
-
                 <div className="mb-3">
                   <button
                     className="btn btn-primary btn-lg btn-block col-12 text-center p-2 mx-0"
@@ -130,12 +118,7 @@ export const LoginPage = () => {
                     Register
                   </button>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
+      </EntryBox>
     </>
   );
 };
