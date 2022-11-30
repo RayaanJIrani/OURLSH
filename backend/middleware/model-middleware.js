@@ -12,7 +12,7 @@ const createModelsMiddleware = async (req, res, next) => {
       landlord: Landlord,
       login: Login,
       workorder: WorkOrder,
-      payment: Payment
+      payment: Payment,
       invoice: Invoice
   }
   next();
