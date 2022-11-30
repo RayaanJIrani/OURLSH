@@ -41,7 +41,7 @@ export const TenantProfile = () => {
       </div>
       <div className="m-5 rounded bg-white border border-light border-2">
         {(() => {
-          if (!tenant.phote) {
+          if (!tenant.pfp) {
             return (
               <img
                 src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png"
@@ -96,8 +96,8 @@ export const TenantProfile = () => {
             />
             <TextField
               label="New Photo"
-              value={tenant.phote}
-              setValue={(phote) => mergeTenant({ phote })}
+              value={tenant.pfp}
+              setValue={(pfp) => mergeTenant({ pfp })}
             />
             <button
               type="button"
