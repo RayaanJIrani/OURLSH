@@ -5,6 +5,7 @@ const landlordRoutes = require('./routes/landlord');
 const registerRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login' );
 const workorderRoutes = require('./routes/workorder' );
+const paymentRoutes = require('./routes/payment' );
 const invoiceRoutes = require('./routes/invoice' );
 
 const {createModelsMiddleware} = require('./middleware/model-middleware' );
@@ -40,6 +41,9 @@ app.use('/register', registerRoutes);
 
 //workorder routes
 app.use('/workorders', authenticateJWT, workorderRoutes);
+
+//payment routes
+app.use('/payments', authenticateJWT, paymentRoutes);
 
 //invoice routes
 app.use('/invoices', authenticateJWT, invoiceRoutes);
