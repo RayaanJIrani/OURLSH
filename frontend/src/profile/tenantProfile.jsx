@@ -61,7 +61,7 @@ export const TenantProfile = () => {
           <div className="my-3 text-center">
             <div>
               <h5 className="my-2">Tenant ID: {tenant.id}</h5>
-              <h5 className="my-2">Property ID: {tenant.prop_id}</h5>
+              <h5 className="my-2">Property Address: {tenant.address}</h5>
               <h5 className="my-2">Landlord ID: {tenant.landlord_id}</h5>
               <h5 className="my-2">
                 Last Name:
