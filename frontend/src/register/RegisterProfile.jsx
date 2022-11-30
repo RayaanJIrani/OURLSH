@@ -4,8 +4,11 @@ import {registerTenant, registerLandlord, checkTenantAccount, checkLandlordAccou
 import {WelcomeHeader, EntryBox, EntryTextField, Button, RoleRadioSelector} from "../components";
 
 export const RegisterProfile = () => {
+    const id = localStorage.getItem("tenant") ? "tenant" : "landlord";
+    const tenant_id = localStorage.getItem("tenant");
+    const landlord_id = localStorage.getItem("landlord");
     const navigate = useNavigate();
-    localStorage.clear();
+    // localStorage.clear();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -35,7 +38,7 @@ export const RegisterProfile = () => {
 
     const handleRegisterClick = () => {
         console.log("A click to register");
-        localStorage.clear();
+        // localStorage.clear();
         if (!identity) {
             window.alert("Select Tenant or Landlord");
         } else {
@@ -50,7 +53,7 @@ export const RegisterProfile = () => {
     };
 
     const handleLoginClick = () => {
-        localStorage.clear();
+        // localStorage.clear();
         navigate("/workorders");
     };
 

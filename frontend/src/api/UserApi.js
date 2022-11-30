@@ -148,8 +148,10 @@ export const registerTenant = (firstName, lastName, email, password) =>
       })
       .then(function (response) {
         if (response.status === 201) {
-          localStorage.setItem("token", response.data.token); //存token
-          window.location.href = "./tenants/" + response.data.id;
+          localStorage.setItem("token", response.data.token); //存token 
+          localStorage.setItem("tenant", response.data.id);
+          // window.location.href = "./tenants/" + response.data.id;
+          window.location.href = "./workorders";
           window.alert("Successfully Registered!!");
         } else {
           window.alert("Register with error");
@@ -173,7 +175,8 @@ export const registerLandlord = (firstName, lastName, email, password) =>
       })
       .then(function (response) {
         if (response.status === 201) {
-          localStorage.setItem("token", response.data.token); //token
+          localStorage.setItem("token", response.data.token); //token 
+          localStorage.setItem("landlord", response.data.id);
           window.location.href = "./landlords/" + response.data.id;
           window.alert("Successfully log in!!");
         } else {
