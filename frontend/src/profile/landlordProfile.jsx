@@ -69,8 +69,8 @@ export const LandlordProfile = () => {
               </h5>
             </div>
           </div>
-          <h1 className="border-bottom mx-5"></h1>
-          <div className="container col-md-8 col-lg-8 col-8 p-4">
+          <h1 className="border-bottom mx-2"></h1>
+          <div className="container col-md-8 col-lg-8 col-12 p-4">
             <h5>Edit Profile:</h5>
             <TextField
               label="New First Name"

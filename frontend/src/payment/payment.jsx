@@ -89,7 +89,7 @@ export const PaymentPage = () => {
             <div className="col-6 mb-3 mt-3">
               <div className="d-flex flex-column">
                 <div className="btn btn-primary mb-3">
-                  <span className="">Pay Now</span>
+                  <span className="">Pay</span>
                   <span className="fas fa-arrow-right"></span>
                 </div>
               </div>

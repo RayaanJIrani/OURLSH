@@ -45,14 +45,14 @@ export const TenantProfile = () => {
             return (
               <img
                 src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png"
-                className="mt-5 my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
+                className="mt-5 my-3 col-md-3 col-lg-3 col-5 rounded mx-auto d-block"
               />
             );
           } else {
             return (
               <img
                 src={tenant.pfp}
-                className="mt-5 my-3 col-md-3 col-lg-3 col-3 rounded mx-auto d-block"
+                className="mt-5 my-3 col-md-3 col-lg-3 col-5 rounded mx-auto d-block"
               />
             );
           }
@@ -76,8 +76,8 @@ export const TenantProfile = () => {
               </h5>
             </div>
           </div>
-          <h1 className="border-bottom mx-5"></h1>
-          <div className="container col-md-8 col-lg-8 col-8 p-4">
+          <h1 className="border-bottom mx-2"></h1>
+          <div className="container col-md-8 col-lg-8 col-12 p-4">
             <h5>Edit Profile:</h5>
             <TextField
               label="New First Name"
