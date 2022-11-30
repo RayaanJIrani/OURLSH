@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import {Link, NavLink, useParams} from "react-router-dom";
 import {getTenants} from "../api/UserApi";
 import {EntryBox, WelcomeHeader} from "../components";
-import {removeTenantAPICall} from "../api/UserApi";
+import {removeTenantAPICall, assignTenant} from "../api/UserApi";
 import {Nav} from "../nav/nav";
 import button from "bootstrap/js/src/button";
 
@@ -43,7 +43,8 @@ export const TenantList = () => {
         console.log("Removing tenant");
         console.log(tenantId);
         removeTenantAPICall(tenantId).then((response) => {
-
+            console.log(response);
+            renderTenants();
         });
        renderTenants();
     }
@@ -52,7 +53,19 @@ export const TenantList = () => {
         console.log("Adding tenant");
         console.log(tenantEmail);
         console.log(address);
-
+        //Gets the tenant id from the email
+        let tenantId = 0;
+        for (let i = 0; i < tenants.length; i++) {
+            if (tenants[i].email === tenantEmail) {
+                tenantId = tenants[i].id;
+                break;
+            }
+        }
+        console.log(tenantId);
+        assignTenant(tenantId, address).then((response) => {
+            console.log(response);
+            renderTenants();
+        });
     }
 
 
