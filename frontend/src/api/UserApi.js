@@ -177,13 +177,12 @@ export const registerLandlord = (firstName, lastName, email, password) => new Pr
 
 
 // Calls used in the tenantsList component
-export const getTenants = (landLordID) => new Promise((resolve, reject) => {
+export const getTenantsByLandlord = (landLordID) => new Promise((resolve, reject) => {
     let apiConfig = {
         headers: {
             token: localStorage.getItem("token"),
         },
     };
-    if(landLordID){
         axios
             .get(`${baseEndpoint}/tenants?landlord=${landLordID}`, apiConfig)
             .then((x) => resolve(x.data))
@@ -191,15 +190,21 @@ export const getTenants = (landLordID) => new Promise((resolve, reject) => {
                 alert(x);
                 reject(x);
             });
-    } else {
-        axios
-            .get(`${baseEndpoint}/tenants`, apiConfig)
-            .then((x) => resolve(x.data))
-            .catch((x) => {
-                alert(x);
-                reject(x);
-            });
-    }
+});
+
+export const getTenantsByEmail = (email) => new Promise((resolve, reject) => {
+    let apiConfig = {
+        headers: {
+            token: localStorage.getItem("token"),
+        },
+    };
+    axios
+        .get(`${baseEndpoint}/tenants?email=${email}`, apiConfig)
+        .then((x) => resolve(x.data))
+        .catch((x) => {
+            alert(x);
+            reject(x);
+        });
 });
 
 export const removeTenantAPICall = (id) => new Promise((resolve, reject) => {
@@ -208,7 +213,7 @@ export const removeTenantAPICall = (id) => new Promise((resolve, reject) => {
     console.log(`${baseEndpoint}/tenants/${id}/remove`);
     let apiConfig = {
         headers: {
-            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywicGFzc3dvcmQiOiIkMmIkMTAkUzQ2Y1VLUVU4cUZyOGR2UDRta2ZITzhudFRBeHlldmY1d0F5Ljh6VXBGQXZQL0VDem5CbnUiLCJlbWFpbCI6IlJheWFhbmppcmFuaUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiUmF5IiwibGFzdF9uYW1lIjoiSXJhbmkiLCJwZnAiOnsidHlwZSI6IkJ1ZmZlciIsImRhdGEiOltdfSwiY2xhaW1zIjpbImxhbmRsb3JkIiwiNyJdLCJpYXQiOjE2Njk3ODY0MTB9.pxtYthnD6nZBe-L0mpDsyjfmpJ_uE__38Lq-t0_lZWI'
+            token: localStorage.getItem("token"),
         },
     };
     console.log("apiConfig", apiConfig);

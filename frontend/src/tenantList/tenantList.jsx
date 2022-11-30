@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import {Link, NavLink, useParams} from "react-router-dom";
-import {getTenants} from "../api/UserApi";
+import {getTenantsByEmail, getTenantsByLandlord} from "../api/UserApi";
 import {EntryBox, EntryTextField, WelcomeHeader} from "../components";
 import {removeTenantAPICall, assignTenant} from "../api/UserApi";
 import {Nav} from "../nav/nav";
@@ -60,7 +60,7 @@ export const TenantList = () => {
     const [tenants, setTenants] = useState(undefined); //This is the list of tenants that we get from the backend
 
     useEffect(() => {
-        getTenants(params.id).then((response) => {
+        getTenantsByLandlord(params.id).then((response) => {
             setTenants(response);
         });
         console.log(tenants);
@@ -68,7 +68,7 @@ export const TenantList = () => {
 
     const renderTenants = () => {
         console.log("Rendering tenants");
-        getTenants(params.id).then((response) => {
+        getTenantsByLandlord(params.id).then((response) => {
             setTenants(response);
         });
     }
@@ -87,11 +87,14 @@ export const TenantList = () => {
         console.log(tenantEmail);
         console.log(address);
         //Gets the tenant id from the email
-        let tenantId = 0;
-        console.log(tenantId);
-        assignTenant(tenantId, address).then((response) => {
+        getTenantsByEmail(tenantEmail).then((response) => {
             console.log(response);
-            renderTenants();
+            console.log("Tenant id: " + response.id);
+            //Assigns the tenant to the landlord
+            assignTenant(response.id, params.id, address).then((response) => {
+                console.log(response);
+                renderTenants();
+            });
         });
     }
 
