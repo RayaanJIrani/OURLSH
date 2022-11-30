@@ -12,17 +12,6 @@ CREATE TABLE landlord(
         pfp BLOB NOT NULL
 );
 
-# PROPERTY TABLE
-CREATE TABLE prop(
-        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        date_available DATE NOT NULL,
-        status INT NOT NULL,
-        landlord_id INT  NOT NULL REFERENCES landlord(id),
-        prop_name VARCHAR(255) NOT NULL,
-        address VARCHAR(255) NOT NULL,
-        description VARCHAR (255) NOT NULL,
-        occupied BOOLEAN NOT NULL
-);
 
 # TENANT TABLE
 CREATE TABLE tenant(
@@ -31,7 +20,7 @@ CREATE TABLE tenant(
         email VARCHAR(255) NOT NULL,
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NOT NULL,
-        prop_id INT REFERENCES prop(id),
+        address VARCHAR(255),
         landlord_id INT REFERENCES landlord(id),
         pfp BLOB NOT NULL
 );
@@ -44,7 +33,6 @@ CREATE TABLE invoice(
         payment_type VARCHAR(255) NOT NULL,
         what_for INT NOT NULL,
         land_id INT NOT NULL REFERENCES landlord(id),
-        prop_id INT NOT NULL REFERENCES prop(id),
         tenant_id INT NOT NULL REFERENCES tenant(id)
 );
 
@@ -57,7 +45,6 @@ CREATE TABLE work_order(
         resolved BOOLEAN NOT NULL,
         importance INT NOT NULL,
         tenant_id INT NOT NULL REFERENCES tenant(id),
-        prop_id INT NOT NULL REFERENCES prop(id),
         invoice_id INT NOT NULL REFERENCES invoice(id),
         land_id INT NOT NULL REFERENCES landlord(id)
 );
