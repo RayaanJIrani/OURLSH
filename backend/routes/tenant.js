@@ -27,13 +27,16 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     let id = req.params.id
-    console.log("yuh?")
     let auth = await authenticateMultipleClaims(['tenant', `${id}`], req, res)
     console.log(res.status)
-    if (res.status === 200) {
-        if (req.body.body.email !== undefined) {
+    if (res.status === 200)
+    {
+        console.log("successfully auth")
+        console.log("body:", req.body.body)
+        if(req.body.body.email !== undefined){
             const tenants = await req.models.tenant.loginFetchTenantByEmail(req.body.body.email);
-            if (tenants.length > 0) {
+            if(tenants.length > 0 && tenants[0].id != req.params.id)
+            {
                 console.log("Cannot update, email is already in use")
                 res.sendStatus(403);
             }
@@ -79,16 +82,25 @@ router.put('/:id/assign', async (req, res, next) => {
     console.log(res.status)
     if (res.status === 200) {
         console.log("Your creds check out, attempting to assign tenant")
-        const tenantByID = await req.models.tenant.fetchTenantByID(tenant_id);
-        if (!tenantByID.landlord_id) {
-            const updateTenant = await req.models.tenant.assignLandlord(tenant_id, landlord_id);
-            const newTenant = await req.models.tenant.fetchTenantByID(tenant_id);
-            res.json(newTenant);
-            next();
+        const address = req.body.address;
+        if(address === undefined)
+        {
+            console.log("address is undefined");
+            res.sendStatus(400);
         }
-        else{
-            console.log("account already linked")
-            res.sendStatus(403);
+        else
+        {
+            const tenantByID = await req.models.tenant.fetchTenantByID(tenant_id);
+            if (!tenantByID.landlord_id) {
+                const updateTenant = await req.models.tenant.assignLandlord(tenant_id, landlord_id, address);
+                const newTenant = await req.models.tenant.fetchTenantByID(tenant_id);
+                res.json(newTenant);
+                next();
+            }
+            else{
+                console.log("account already linked")
+                res.sendStatus(403);
+            }
         }
     }
     else {

@@ -39,7 +39,7 @@ router.put('/:id', async (req, res, next) => {
     {
         if(req.body.body.email !== undefined){
             const landlords = await req.models.landlord.loginFetchLandlordByEmail(req.body.body.email);
-            if(landlords.length > 0)
+            if(landlords.length > 0 && landlords[0].id != req.params.id)
             {
                 console.log("Cannot update, email is already in use")
                 res.sendStatus(403);

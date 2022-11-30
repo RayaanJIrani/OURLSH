@@ -9,7 +9,7 @@ const fetchTenantByID = async (id) => {
          "email",
          "first_name",
          "last_name",
-         "prop_id",
+         "address",
          "landlord_id");
 
    const results = await query;
@@ -60,7 +60,7 @@ const getTenantsByLandlord = async (landlord_id) => {
       "email",
       "first_name",
       "last_name",
-      "prop_id",
+      "address",
       "landlord_id");
    console.log(`Grabbing all tenants with landlord id = ${landlord_id}...`);
    console.log(`I have the tenants with landlord id = ${landlord_id} -`);
@@ -75,8 +75,8 @@ const getAllTenants = async () => {
       "email",
       "first_name",
       "last_name",
-      "prop_id",
       "landlord_id",
+      "address",
       "pfp");
    console.log("Grabbing all tenants...");
    const results = await query;
@@ -85,15 +85,16 @@ const getAllTenants = async () => {
    return results;
 }
 
-const assignLandlord = async (id, landlord_id) => {
-   const query = knex(TENANT_TABLE).update({ landlord_id }).where({ id });
+const assignLandlord = async (id, landlord_id, address) => {
+   const query = knex(TENANT_TABLE).update({ landlord_id, address }).where({ id });
    const results = await query;
    return results;
 }
 
 const removeLandlord = async (id) => {
    let landlord_id = null;
-   const query = knex(TENANT_TABLE).update({ landlord_id }).where({ id });
+   let address = null;
+   const query = knex(TENANT_TABLE).update({ landlord_id, address }).where({ id });
    const results = await query;
    return results;
 }

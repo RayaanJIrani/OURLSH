@@ -6,8 +6,10 @@ export const checkTenantAccount = (email,password) =>new Promise((resolve, rejec
   axios.post(baseEndpoint+'/login/tenant',{email:email, password:password})
           .then(function(response){
               if(response.status === 200){
-                  localStorage.setItem('token',response.data.token); //存token 
-                  window.location.href="./tenants/"+response.data.id; 
+                  localStorage.setItem('token',response.data.token); 
+                  localStorage.setItem('tenant',response.data.id); 
+                  window.location.href="./workorders";
+                //   window.location.href="./tenants/"+response.data.id; 
                   window.alert("Successfully log in!!"); 
               }
               else{
@@ -29,9 +31,10 @@ export const checkLandlordAccount = (email,password) =>new Promise((resolve, rej
   axios.post(baseEndpoint+'/login/landlord',{email:email, password:password})
           .then(function(response){
               if(response.status === 200){
-                  localStorage.setItem('token',response.data.token);//存token
-
-                  window.location.href="./landlords/"+response.data.id; 
+                  localStorage.setItem('token',response.data.token); 
+                  localStorage.setItem('landlord',response.data.id); 
+                  window.location.href="./workorders";
+                //   window.location.href="./landlords/"+response.data.id; 
                   window.alert("Successfully log in!!"); 
               }
               else{
@@ -172,6 +175,26 @@ export const registerLandlord = (firstName, lastName, email, password) => new Pr
         });
 });
 
+
+// Calls used in the tenantsList component
+export const getTenants = (landLordID) => new Promise((resolve, reject) => {
+    let apiConfig = {
+        headers: {
+            token: localStorage.getItem("token"),
+        },
+    };
+    axios
+        .get(`${baseEndpoint}/tenants?landlord=${landLordID}`, apiConfig)
+        .then((x) => resolve(x.data))
+        .catch((x) => {
+            alert(x);
+            reject(x);
+        });
+});
+
+
+
+
 export const getWorkOrders = () => new Promise((resolve,reject) => {
     let apiConfig={
         headers:{
@@ -199,6 +222,7 @@ export const getWorkOrderById = (id) => new Promise((resolve,reject) => {
             reject(x);
     });
 });
+
 
 
 
