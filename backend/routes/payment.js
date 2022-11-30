@@ -75,7 +75,7 @@ router.get('/landlord/:id', async (req, res, next) => {
 
     if(res.status == 200)
     {
-        const payments = await req.models.payment.getLandPayments(land_id);
+        const payments = await req.models.payment.getLandPayments(land_id, req);
         res.json(payments);
         next();
     }
