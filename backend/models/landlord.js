@@ -7,7 +7,8 @@ const fetchLandlordByID = async (id) => {
         .select("id",
             "email",
             "first_name",
-            "last_name");
+            "last_name",
+            "pfp");
     const results = await query;
     return results[0];
 }
