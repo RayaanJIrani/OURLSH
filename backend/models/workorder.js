@@ -51,15 +51,6 @@ const updateWorkOrder = async (resolved, description, wo_num) => {
       const results = await query;
    }
    const query = knex(WORK_ORDER_TABLE).where({ wo_num })
-   .select("description",
-      "status",
-      "date",
-      "resolved",
-      "importance",
-      "tenant_id",
-      "invoice_id",
-      "address",
-      "land_id");
    const results = await query;
    return results;
 }
