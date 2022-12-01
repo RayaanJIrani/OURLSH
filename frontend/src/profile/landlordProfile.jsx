@@ -108,13 +108,13 @@ export const LandlordProfile = () => {
             >
               Save
             </button>
-            <button
+            {/* <button
               type="button"
               className="btn btn-primary mx-0"
               onClick={() => handleTenantlist(landlord.id)}
             >
               Tenants List
-            </button>
+            </button> */}
           </div>
         </div>
         <button

@@ -58,7 +58,27 @@ router.get('/tenants/:id', async (req, res, next) => {
         console.log("getting payments")
         const payments = await req.models.payment.getPayments(tenant_id);
         res.json(payments);
-        res.sendStatus(200);
+        // res.sendStatus(200);
+        next();
+    }
+    else
+    {   
+        res.sendStatus(res.status);
+    }
+});
+
+router.get('/landlords/:id', async (req, res, next) => {
+    const params = req.params;
+    const land_id = params.id
+    console.log("getting landlord,", land_id)
+    const landById = await req.models.landlord.fetchLandlordByID(land_id);
+    console.log("done getting land")
+    let auth = await authenticateMultipleClaims(['landlord', `${land_id}`], req, res)
+
+    if(res.status == 200)
+    {
+        const payments = await req.models.payment.getLandPayments(land_id, req);
+        res.json(payments);
         next();
     }
     else
