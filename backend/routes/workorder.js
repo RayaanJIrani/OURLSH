@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const { returnClaims } = require('../middleware/auth-middleware');
 router = express.Router();
 router.use(bodyParser.json());
 
@@ -7,17 +8,27 @@ router.use(bodyParser.json());
 router.get('/', async (req, res, next) => {
     console.log("params = ", req.query)
     let text = (req.query.description);
-
     let status = parseInt(req.query.status);
-
-    //will return 404 not found if id does not exist
+    let blah = await returnClaims(req,res,next);
+    let user = res.user
+    console.log("user is", user)
     let workOrders;
-    if (req.query.status) {
-         workOrders = await req.models.workorder.fetchWorkOrderByStatus(status);
+    if(user.role === "landlord")
+    {
+        workOrders = await req.models.workorder.fetchLandWorkOrders(user.id);
     }
-    else {
-         workOrders = await req.models.workorder.fetchAllWorkOrders();
+    else if(user.role === "tenant")
+    {
+        workOrders = await req.models.workorder.fetchTenWorkOrders(user.id)
     }
+    //will return 404 not found if id does not exist
+
+    // if (req.query.status) {
+    //      workOrders = await req.models.workorder.fetchWorkOrderByStatus(status);
+    // }
+    // else {
+    //      workOrders = await req.models.workorder.fetchAllWorkOrders();
+    // }
     let newWorkOrders = [];
     if(!text)
     {
@@ -32,7 +43,7 @@ router.get('/', async (req, res, next) => {
         }
     }
     console.log("returned list =", newWorkOrders)
-    res.status(200).json(newWorkOrders);
+    res.json(newWorkOrders);
     next();
 });
 
