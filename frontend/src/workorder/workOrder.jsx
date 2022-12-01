@@ -48,11 +48,11 @@ export const WorkOrder = () => {
         <Nav />
         <EntryBox title={"Work Order"}>
             <div className ="text-start">
-             <h3> Date: {date} </h3>
-            <h3> Address: {address} </h3>
+             <p> Date: {date} </p>
+            <p> Address: {address} </p>
             <TextField label={"Description"} value={description} setValue={setDescription} />
             <TextField label={"Tenant ID"} value={tenant_id}  setValue={setTenant_id} />
-            <h3> Landlord ID: {landlord_id} </h3>
+            <p> Landlord ID: {landlord_id} </p>
             <TextField label={"Resolved"} value={resolved} setValue={setResolved} />
                 <button
                     type="button"
