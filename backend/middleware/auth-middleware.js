@@ -73,4 +73,40 @@ const authenticateMultipleClaims = async (claims, req, res) => {
     });
 }
 
-module.exports = { authenticateJWT, authenticateWithClaims, authenticateMultipleClaims };
+const returnClaims = async (req, res) => {
+    console.log("Getting multiple claims")
+    const authHeader = req.headers.token;
+    console.log(authHeader)
+    if (!authHeader) {
+        console.log("sending 401")
+        res.status= 401;
+        return
+    }
+    const token = authHeader;
+    jwt.verify(token, accessTokenSecret, (err, user) => {
+        if (err) {        
+            console.log("ERROR - sending 403")
+            console.log(err)
+            res.status= 403;
+            return
+        }
+        let claims = {}
+        console.log(user.claims)
+        for (let claim of user.claims) {
+            if(claim === "tenant" || claim === "landlord")
+            {
+                claims.role = claim
+            }
+            else
+            {
+                claims.id = claim
+            }
+        }
+        console.log("sending 200")
+        res.status= 200;
+        res.user = claims
+        return
+    });
+}
+
+module.exports = { authenticateJWT, authenticateWithClaims, authenticateMultipleClaims, returnClaims };
