@@ -5,11 +5,44 @@ router = express.Router();
 router.use(bodyParser.json());
 
 router.get('/:id', async (req, res, next) => {
+    const params = req.params;
+    const getInvoices = await req.models.invoice.getInvoiceByID(params.id);
+    res.json(getInvoices[0]);
+    next();
+});
+
+router.get('/', async (req, res, next) => {
     const params = req.query;
     console.log("params = ", req.query);
     const landlord_id = params.landlord
     const tenant_id = params.tenant
-    const getInvoices = await req.models.invoice.getInvoices(landlord_id, tenant_id);
+    const x = await returnClaims(req, res);
+    let user = res.user
+    let getInvoices
+    if(user.role === "landlord")
+    {
+        getInvoices = await req.models.invoice.getInvoices(landlord_id, tenant_id);
+    }
+    if(user.role === "tenant")
+    {
+        //jank, but works. Don't judge
+        if(tenant_id !== undefined)
+        {
+            if(tenant_id != user.id) //not a strong match since one is string one is num
+            {
+                console.log("Trying to access another tenant's invoices")
+                res.sendStatus(403);
+            }
+            else
+            {
+                getInvoices = await req.models.invoice.getInvoices(landlord_id, tenant_id)
+            }
+        }
+        else
+        {
+            getInvoices = await req.models.invoice.getInvoices(landlord_id, user.id)
+        }
+    }
     res.json(getInvoices);
     next();
 });
