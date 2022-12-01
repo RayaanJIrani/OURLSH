@@ -2,7 +2,6 @@ const knex = require('../database/knex');
 const WORK_ORDER_TABLE = 'work_order';
 
 const res = require("express/lib/response");
-const { fetchTenantByID } = require('./tenant');
 
 const createWorkOrder = async (tenantobject, descrip) => {
    const result = await knex(WORK_ORDER_TABLE).insert({
@@ -22,28 +21,27 @@ const createWorkOrder = async (tenantobject, descrip) => {
 const getworkOrderByID = async (wo_num) => {
    //uses passed in id to get the associated work order but only the specified columns
    const query = knex(WORK_ORDER_TABLE).where({ wo_num })
-      .select("description",
-         "status",
-         "date",
-         "resolved",
-         "importance",
-         "tenant_id",
-         "invoice_id",
-         "address",
-         "land_id");
 
    const results = await query;
    return results[0];
 
 }
-const fetchAllWorkOrders = async () => {
-   const query = knex(WORK_ORDER_TABLE);
+
+const fetchTenWorkOrders = async (tenant_id) => {
+   console.log("getting tenant wo", tenant_id)
+   const query = knex(WORK_ORDER_TABLE).where({tenant_id});
    const results = await query;
    return results;
 }
 
-const fetchWorkOrderByStatus = async (status) => {
-   const query = knex(WORK_ORDER_TABLE).where({ status });
+const fetchLandWorkOrders = async (land_id) => {
+   const query = knex(WORK_ORDER_TABLE).where({land_id});
+   const results = await query;
+   return results;
+}
+
+const fetchWorkOrderByStatus = async (resolved) => {
+   const query = knex(WORK_ORDER_TABLE).where({ resolved });
    const results = await query;
    return results;
 }
@@ -59,24 +57,15 @@ const updateWorkOrder = async (resolved, description, wo_num) => {
       const query = knex(WORK_ORDER_TABLE).update({ description }).where({ wo_num });
       const results = await query;
    }
-   const query = knex(WORK_ORDER_TABLE).where({ wo_num })
-   .select("description",
-      "status",
-      "date",
-      "resolved",
-      "importance",
-      "tenant_id",
-      "invoice_id",
-      "address",
-      "land_id");
+   const query = knex(WORK_ORDER_TABLE).where({ wo_num });
    const results = await query;
    return results;
 }
 module.exports = {
-   fetchAllWorkOrders,
+   fetchLandWorkOrders,
    fetchWorkOrderByStatus,
    createWorkOrder,
    getworkOrderByID,
-   updateWorkOrder
-
+   updateWorkOrder,
+   fetchTenWorkOrders
 }
