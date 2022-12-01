@@ -48,7 +48,7 @@ export const WorkOrder = () => {
         <Nav />
         <EntryBox title={"Work Order"}>
             <div className ="text-start">
-             <p> Date: {date} </p>
+            <p> Date: {date} </p>
             <p> Address: {address} </p>
             <TextField label={"Description"} value={description} setValue={setDescription} />
             <TextField label={"Tenant ID"} value={tenant_id}  setValue={setTenant_id} />

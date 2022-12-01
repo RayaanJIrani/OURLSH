@@ -37,7 +37,7 @@ export const WorkOrderList = () => {
             <div className=""> Descroption: {workOrder.description}</div>
             <button
               type="button"
-              className="btn btn-secondary m-0  float-end"
+              className="btn btn-warning m-0  float-end"
               onClick={() => (
                 <Link to="/">
                   {" "}
@@ -45,7 +45,7 @@ export const WorkOrderList = () => {
                 </Link>
               )}
             >
-              Work Order Details
+              Work Order
             </button>
           </li>
         ))}
