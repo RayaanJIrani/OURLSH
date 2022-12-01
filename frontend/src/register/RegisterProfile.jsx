@@ -67,7 +67,7 @@ export const RegisterProfile = () => {
                 <EntryTextField placeholder={"Password"} fieldValue={password} fieldOnChange={handleChangePassword} isPassword={true}/>
                 <RoleRadioSelector handleChangeIdentity={handleChangeIdentity}/>
                 <Button buttonName={"Register"} handleClick={handleRegisterClick}/>
-                <Button buttonName={"Login"} handleClick={handleLoginClick}/>
+                {/* <Button buttonName={"Login"} handleClick={handleLoginClick}/> */}
             </EntryBox>
         </>
     );

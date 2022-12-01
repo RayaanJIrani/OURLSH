@@ -177,7 +177,7 @@ export const registerLandlord = (firstName, lastName, email, password) =>
         if (response.status === 201) {
           localStorage.setItem("token", response.data.token); //token 
           localStorage.setItem("landlord", response.data.id);
-          window.location.href = "./landlords/" + response.data.id;
+          window.location.href = "./workorders";
           window.alert("Successfully log in!!");
         } else {
           window.alert("Register with error");
