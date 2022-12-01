@@ -1,11 +1,31 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, Navigate } from "react-router-dom";
 import { useState } from "react";
-import { checkTenantAccount } from "../api/UserApi";
+import { checkTenantAccount, createPayment } from "../api/UserApi";
 import { Nav } from "../nav/nav";
 
 export const PaymentPage = () => {
+  const navigate = useNavigate();
+  const tenant_id = localStorage.getItem("tenant");
+  const [ amount, setAmount ] = useState(""); 
+  const [ name, setName ] = useState(""); 
+  const [ card, setCard ] = useState(""); 
+  const [ expiry, setExpiry ] = useState(""); 
+  const [ cvv, setCvv ] = useState(""); 
   // const handleCacnelClick = () => {
   //   };
+
+  const handlePayClick = () => {
+    createPayment(tenant_id, amount, name, card, expiry, cvv); 
+    navigate(`/workorders`);
+  };
+
+  const handleCancelClick = () => { 
+    setAmount("");
+    setName("");
+    setCard("");
+    setExpiry("");
+    setCvv(""); 
+  };
   return (
     <>
       <Nav></Nav>
@@ -20,7 +40,7 @@ export const PaymentPage = () => {
             <strong>Payment Info</strong>
           </p>
           <div className="row gx-3">
-            <div className="col-6">
+            {/* <div className="col-6">
               <div className="d-flex flex-column">
                 <p className="text mb-1">Tenant ID</p>
                 <input className="form-control mb-3" type="text" />
@@ -31,7 +51,7 @@ export const PaymentPage = () => {
                 <p className="text mb-1">Invoice ID</p>
                 <input className="form-control mb-3 pt-2 " type="text" />
               </div>
-            </div>
+            </div> */}
 
             <div className="col-12">
               <div className="d-flex flex-column">
@@ -40,6 +60,8 @@ export const PaymentPage = () => {
                   className="form-control mb-3"
                   type="text"
                   placeholder="$"
+                  value={amount}
+                  onChange={(event) => setAmount(event.target.value)}
                 />
               </div>
             </div>
@@ -51,6 +73,8 @@ export const PaymentPage = () => {
                   className="form-control mb-3"
                   type="text"
                   placeholder="Name"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
                   //   value="Barry Allen"
                 />
               </div>
@@ -62,6 +86,8 @@ export const PaymentPage = () => {
                   className="form-control mb-3"
                   type="text"
                   placeholder="1234 5678 435678"
+                  value={card}
+                  onChange={(event) => setCard(event.target.value)}
                 />
               </div>
             </div>
@@ -72,6 +98,8 @@ export const PaymentPage = () => {
                   className="form-control mb-3"
                   type="text"
                   placeholder="MM/YYYY"
+                  value={expiry}
+                  onChange={(event) => setExpiry(event.target.value)}
                 />
               </div>
             </div>
@@ -82,13 +110,15 @@ export const PaymentPage = () => {
                   className="form-control mb-3 pt-2 "
                   type="password"
                   placeholder="***"
+                  value={cvv}
+                  onChange={(event) => setCvv(event.target.value)}
                 />
               </div>
             </div>
 
             <div className="col-6 mb-3 mt-3">
               <div className="d-flex flex-column">
-                <div className="btn btn-primary mb-3">
+                <div className="btn btn-primary mb-3" onClick={handlePayClick}> 
                   <span className="">Pay</span>
                   <span className="fas fa-arrow-right"></span>
                 </div>
@@ -96,8 +126,8 @@ export const PaymentPage = () => {
             </div>
             <div className="col-6 mb-3 mt-3">
               <div className="d-flex flex-column">
-                <div className="btn btn-warning mb-3">
-                  <span className="">Cancel</span>
+                <div className="btn btn-warning mb-3" onClick={handleCancelClick}>
+                  <span className="" >Cancel</span>
                   <span className="fas fa-arrow-right"></span>
                 </div>
               </div>

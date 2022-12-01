@@ -33,13 +33,18 @@ export const Nav = () => {
                   </a>
                 </div>
                 <div className="nav-item col" aria-current="page">
-                  <a className="nav-link text-white p-2" href="/workorders">
+                  <a className="nav-link text-white p-2" href="/workorders/-1">
                     NewOrder{" "}
                   </a>
                 </div>
                 <div className="nav-item col" aria-current="page">
                   <a className="nav-link text-white  p-2" href="/payments">
                     NewPayment{" "}
+                  </a>
+                </div>
+                <div className="nav-item col" aria-current="page"> 
+                  <a className="nav-link text-white  p-2" href={`/paymentList/${tenant_id}`}>
+                    PaymentHistory{" "}
                   </a>
                 </div>
                 <div className="nav-item col" aria-current="page">
@@ -65,8 +70,13 @@ export const Nav = () => {
                   </a>
                 </div>
                 <div className="nav-item col" aria-current="page">
-                  <a className="nav-link text-white p-2" href="/workorders">
+                  <a className="nav-link text-white p-2" href={`/tenantsList/${landlord_id}`}>
                     TenantList{" "}
+                  </a>
+                </div>
+                <div className="nav-item col" aria-current="page"> 
+                  <a className="nav-link text-white  p-2" href={`/paymentList/${landlord_id}`}>
+                    PyamentHistory{" "}
                   </a>
                 </div>
 

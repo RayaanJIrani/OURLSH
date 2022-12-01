@@ -2,8 +2,12 @@ const jwt = require("jsonwebtoken");
 const accessTokenSecret = 'not-a-password';
 
 const authenticateJWT = (req, res, next) => {
+    console.log("Req", req.headers)
     const authHeader = req.headers.token;
+    console.log("Checking auth")
+    console.log(authHeader)
     if (!authHeader) {
+        console.log("Not valid token")
         return res.sendStatus(401);
     }
     const token = authHeader
@@ -37,7 +41,9 @@ const authenticateWithClaims = (claims) => (req, res, next) => {
 }
 
 const authenticateMultipleClaims = async (claims, req, res) => {
+    console.log("Checking multiple claims")
     const authHeader = req.headers.token;
+    console.log(authHeader)
     if (!authHeader) {
         console.log("sending 401")
         res.status= 401;

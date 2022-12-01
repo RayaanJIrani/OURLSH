@@ -68,13 +68,24 @@ router.post('/', async (req, res, next) => {
     if (tenant === undefined || descrip === undefined){
         return res.sendStatus(400);
     }
-
-    const makeWorkOrder = await req.models.workorder.createWorkOrder(
-        tenant,
-        descrip
-    )
-    res.status(201).json(makeWorkOrder);
-    next();
+    let tenantobj = req.models.tenant.fetchTenantByID(tenant);
+    const tenantobject = await tenantobj;
+    if(!tenantobject.landlord_id)
+    {
+        console.log("not landlord linked")
+        res.sendStatus(400);
+    }
+    else
+    {
+        const makeWorkOrder = await req.models.workorder.createWorkOrder(
+            tenantobject,
+            descrip
+        )
+        console.log("New work order made,", makeWorkOrder)
+        const workOrderByID = await req.models.workorder.getworkOrderByID(makeWorkOrder[0]);
+        res.status(201).json(workOrderByID);
+        next();
+    }
 });
 
 router.put('/:id', async (req, res, next) => {

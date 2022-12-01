@@ -4,18 +4,17 @@ const WORK_ORDER_TABLE = 'work_order';
 const res = require("express/lib/response");
 const { fetchTenantByID } = require('./tenant');
 
-const createWorkOrder = async (tenant_id, descrip) => {
-   let tenantobj = fetchTenantByID(tenant_id);
-   const tenantobject = await tenantobj;
+const createWorkOrder = async (tenantobject, descrip) => {
    const result = await knex(WORK_ORDER_TABLE).insert({
       description: descrip,
-      tenant_id: tenant_id,
+      tenant_id: tenantobject.id,
       status: 1,
       date: new Date(),
       resolved: false,
       importance: 1,
       land_id: tenantobject.landlord_id,
-      invoice_id: 0
+      invoice_id: 0,
+      address: tenantobject.address
    });
    return result;
 }
@@ -23,14 +22,6 @@ const createWorkOrder = async (tenant_id, descrip) => {
 const getworkOrderByID = async (wo_num) => {
    //uses passed in id to get the associated work order but only the specified columns
    const query = knex(WORK_ORDER_TABLE).where({ wo_num })
-      .select("description",
-         "status",
-         "date",
-         "resolved",
-         "importance",
-         "tenant_id",
-         "invoice_id",
-         "land_id");
 
    const results = await query;
    return results[0];
@@ -60,14 +51,6 @@ const updateWorkOrder = async (resolved, description, wo_num) => {
       const results = await query;
    }
    const query = knex(WORK_ORDER_TABLE).where({ wo_num })
-   .select("description",
-      "status",
-      "date",
-      "resolved",
-      "importance",
-      "tenant_id",
-      "invoice_id",
-      "land_id");
    const results = await query;
    return results;
 }
