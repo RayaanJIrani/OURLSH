@@ -20,24 +20,34 @@ const authenticateJWT = (req, res, next) => {
     });
 };
 
-const authenticateWithClaims = (claims) => (req, res, next) => {
+const authenticateWithClaims = (claims, req, res) => {
+    console.log("Checking for at least 1 claim match")
     const authHeader = req.headers.token;
     if (!authHeader) {
-        return res.sendStatus(401);
+        res.staus = 401;
+        return;
     }
-    const token = authHeader;
-    jwt.verify(token, accessTokenSecret, (err, user) => {
-        if (err) {
-            return res.sendStatus(403);
-        }
-        for (let claim of claims) {
-            if (user.claims.includes(claim)) {
-                req.user = user;
-                return next();
+    else {
+        const token = authHeader;
+        jwt.verify(token, accessTokenSecret, (err, user) => {
+            console.log("claims are", claims)
+            if (err) {
+                res.status = 403;
+                return;
             }
-        }
-        return res.sendStatus(403);
-    });
+            for (let claim of claims) {
+                if (user.claims.includes(claim)) {
+                    console.log("claim pass=", claim)
+                    req.user = user;
+                    res.status = 200;
+                    return;
+                }
+            }
+            res.status = 403;
+            return
+
+        });
+    }
 }
 
 const authenticateMultipleClaims = async (claims, req, res) => {
@@ -46,29 +56,29 @@ const authenticateMultipleClaims = async (claims, req, res) => {
     console.log(authHeader)
     if (!authHeader) {
         console.log("sending 401")
-        res.status= 401;
+        res.status = 401;
         return
     }
     const token = authHeader;
     jwt.verify(token, accessTokenSecret, (err, user) => {
-        if (err) {        
+        if (err) {
             console.log("ERROR - sending 403")
             console.log(err)
-            res.status= 403;
+            res.status = 403;
             return
         }
         console.log(user.claims)
         for (let claim of claims) {
             if (!user.claims.includes(claim)) {
-                console.log("claim fail=",claim)
-                
+                console.log("claim fail=", claim)
+
                 console.log("sending 403")
-                res.status= 403;
+                res.status = 403;
                 return
             }
         }
         console.log("sending 200")
-        res.status= 200;
+        res.status = 200;
         return
     });
 }
@@ -79,31 +89,29 @@ const returnClaims = async (req, res) => {
     console.log(authHeader)
     if (!authHeader) {
         console.log("sending 401")
-        res.status= 401;
+        res.status = 401;
         return
     }
     const token = authHeader;
     jwt.verify(token, accessTokenSecret, (err, user) => {
-        if (err) {        
+        if (err) {
             console.log("ERROR - sending 403")
             console.log(err)
-            res.status= 403;
+            res.status = 403;
             return
         }
         let claims = {}
         console.log(user.claims)
         for (let claim of user.claims) {
-            if(claim === "tenant" || claim === "landlord")
-            {
+            if (claim === "tenant" || claim === "landlord") {
                 claims.role = claim
             }
-            else
-            {
+            else {
                 claims.id = claim
             }
         }
         console.log("sending 200")
-        res.status= 200;
+        res.status = 200;
         res.user = claims
         return
     });
