@@ -31,7 +31,15 @@ router.get('/', async (req, res, next) => {
     let getInvoices
     if(user.role === "landlord")
     {
-        getInvoices = await req.models.invoice.getInvoices(landlord_id, tenant_id);
+        if(user.id == landlord_id && landlord_id !== undefined)
+        {
+            getInvoices = await req.models.invoice.getInvoices(landlord_id, tenant_id);
+        }
+        else
+        {
+            console.log("Trying to access another landlord's invoices");
+            res.sendStatus(403);
+        }
     }
     if(user.role === "tenant")
     {
