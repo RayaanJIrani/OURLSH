@@ -31,7 +31,14 @@ const getInvoices = async (land_id, tenant_id) => {
     return results;
 }
 
+const getInvoiceByID = async (id) => {
+    let query = knex(INVOICE_TABLE).where({id})
+    let results = await query;
+    return results
+}
+
 module.exports = {
     addInvoice,
-    getInvoices
+    getInvoices,
+    getInvoiceByID
 }
