@@ -41,12 +41,12 @@ router.put('/:id', async (req, res, next) => {
                 res.sendStatus(403);
             }
             else {
-                const updatetenant = await req.models.tenant.updateTenantById(id, req.body.body.email, req.body.body.first_name, req.body.body.last_name, req.body.body.photo);
+                const updatetenant = await req.models.tenant.updateTenantById(id, req.body.body.email, req.body.body.first_name, req.body.body.last_name, req.body.body.pfp);
                 res.json(updatetenant[0]);
                 next();
             }
         } else {
-            const updatetenant = await req.models.tenant.updateTenantById(id, req.body.body.email, req.body.body.first_name, req.body.body.last_name, req.body.body.photo);
+            const updatetenant = await req.models.tenant.updateTenantById(id, req.body.body.email, req.body.body.first_name, req.body.body.last_name, req.body.body.pfp);
             console.log(updatetenant[0]);
             res.json(updatetenant[0]);
             next();
