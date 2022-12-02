@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const { authenticateMultipleClaims } = require('../middleware/auth-middleware');
+const { authenticateMultipleClaims, authenticateWithClaims } = require('../middleware/auth-middleware');
 router = express.Router();
 router.use(bodyParser.json());
 
@@ -41,12 +41,12 @@ router.put('/:id', async (req, res, next) => {
                 res.sendStatus(403);
             }
             else {
-                const updatetenant = await req.models.tenant.updateTenantById(id, req.body.body.email, req.body.body.first_name, req.body.body.last_name, req.body.body.photo);
+                const updatetenant = await req.models.tenant.updateTenantById(id, req.body.body.email, req.body.body.first_name, req.body.body.last_name, req.body.body.pfp);
                 res.json(updatetenant[0]);
                 next();
             }
         } else {
-            const updatetenant = await req.models.tenant.updateTenantById(id, req.body.body.email, req.body.body.first_name, req.body.body.last_name, req.body.body.photo);
+            const updatetenant = await req.models.tenant.updateTenantById(id, req.body.body.email, req.body.body.first_name, req.body.body.last_name, req.body.body.pfp);
             console.log(updatetenant[0]);
             res.json(updatetenant[0]);
             next();
@@ -58,28 +58,40 @@ router.put('/:id', async (req, res, next) => {
 });
 
 router.get('/', async (req, res, next) => {
-    const params = req.query;
-    console.log("params = ", req.query);
-    const landlord_id = params.landlord
-    const email = params.email
-    if (landlord_id === undefined && email === undefined) {
-        const getAllTenants = await req.models.tenant.getAllTenants();
-        res.json(getAllTenants);
-        next();
-    }
-    else if(email !== undefined)
+    console.log("BRUH")
+    const auth = await authenticateWithClaims(['landlord'], req, res)
+    console.log(res.status);
+    if(res.status === 200)
     {
-        let tenantByEmail = await req.models.tenant.loginFetchTenantByEmail(email);
-        tenantByEmail = tenantByEmail[0];
-        tenantByEmail.password = undefined;
-        res.json(tenantByEmail);
-        next();
+        const params = req.query;
+        console.log("params = ", req.query);
+        const landlord_id = params.landlord
+        const email = params.email
+        if (landlord_id === undefined && email === undefined) {
+            const getAllTenants = await req.models.tenant.getAllTenants();
+            res.json(getAllTenants);
+            next();
+        }
+        else if(email !== undefined)
+        {
+            let tenantByEmail = await req.models.tenant.loginFetchTenantByEmail(email);
+            tenantByEmail = tenantByEmail[0];
+            tenantByEmail.password = undefined;
+            res.json(tenantByEmail);
+            next();
+        }
+        else {
+            const getAllTenantsUnderLandlord = await req.models.tenant.getTenantsByLandlord(landlord_id);
+            res.json(getAllTenantsUnderLandlord);
+            next();
+        }
     }
-    else {
-        const getAllTenantsUnderLandlord = await req.models.tenant.getTenantsByLandlord(landlord_id);
-        res.json(getAllTenantsUnderLandlord);
-        next();
+    else
+    {
+        console.log("Unauthorized")
+        res.sendStatus(res.status)
     }
+    
 
 });
 
