@@ -1,13 +1,23 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const { authenticateMultipleClaims } = require('../middleware/auth-middleware');
+const { authenticateMultipleClaims, returnClaims } = require('../middleware/auth-middleware');
 router = express.Router();
 router.use(bodyParser.json());
 
 router.get('/:id', async (req, res, next) => {
     const params = req.params;
     const getInvoices = await req.models.invoice.getInvoiceByID(params.id);
-    res.json(getInvoices[0]);
+    const x = await returnClaims(req, res);
+    if((res.user.role === "landlord" && res.user.id == getInvoice.land_id) 
+    || (res.user.role === "tenant" && res.user.id == getInvoice.tenant_id))
+    {
+        res.json(getInvoices[0]);
+    }    
+    else
+    {
+        console.log("User not associated with invoice requested")
+        res.sendStatus(403)
+    }
     next();
 });
 
